@@ -1,4 +1,4 @@
-import { Injectable } from 'src/context/shared/dependency-injection/injectable';
+import { Injectable } from './../../../shared/dependency-injection/injectable';
 import { AuthUserRepository } from '../../domain/authuser.repository';
 import { AuthUserNotFoundException } from '../../domain/authuser-not-found.exception';
 import { FindAuthUserByUsernameUseCaseDto } from './find-authuser-by-username-use-case.dto';

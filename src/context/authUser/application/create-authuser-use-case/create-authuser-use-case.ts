@@ -1,5 +1,5 @@
 import * as bycript from 'bcrypt';
-import { Injectable } from 'src/context/shared/dependency-injection/injectable';
+import { Injectable } from './../../../shared/dependency-injection/injectable';
 import { AuthUser } from '../../domain/authuser.model';
 import { AuthUserRepository } from '../../domain/authuser.repository';
 import { CreateAuthUserUseCaseDto } from './create-authuser-use-case.dto';
