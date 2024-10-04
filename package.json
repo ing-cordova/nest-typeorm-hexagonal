@@ -1,10 +1,10 @@
 {
-  "name": "nestjs-typeorm",
-  "version": "0.0.1",
-  "description": "",
-  "author": "",
-  "private": true,
-  "license": "UNLICENSED",
+  "name": "nestjs-typeorm-hexagonal-ps",
+  "version": "1.0.0",
+  "description": "API Example using Hexagonal Architecture with PostgreSQL",
+  "author": "Andres Cordova",
+  "private": false,
+  "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
@@ -28,6 +28,7 @@
     "bcrypt": "^5.1.1",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.1",
+    "core-js": "^3.38.1",
     "pg": "^8.13.0",
     "reflect-metadata": "^0.2.0",
     "rxjs": "^7.8.1",
@@ -73,5 +74,11 @@
     ],
     "coverageDirectory": "../coverage",
     "testEnvironment": "node"
-  }
+  },
+  "keywords": [
+    "nestjs",
+    "typeorm",
+    "hexagonal",
+    "architecture"
+  ]
 }
