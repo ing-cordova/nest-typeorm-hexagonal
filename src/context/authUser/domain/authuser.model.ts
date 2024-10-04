@@ -1,33 +1,18 @@
-import { randomUUID } from 'crypto';
+import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
+import { Exclude } from 'class-transformer';
 
-export interface PrimitiveAuthUser {
-  id: string;
-  username: string;
-  email: string;
-  password: string;
-}
+@Entity('auth_users')
 export class AuthUser {
-  constructor(private attributes: PrimitiveAuthUser) {}
+  @PrimaryGeneratedColumn()
+  id: number;
 
-  static create(createAuthUser: {
-    username: string;
-    email: string;
-    password: string;
-  }): AuthUser {
-    return new AuthUser({
-      id: randomUUID(),
-      username: createAuthUser.username,
-      email: createAuthUser.email,
-      password: createAuthUser.password,
-    });
-  }
+  @Column()
+  username: string;
 
-  toValue(): PrimitiveAuthUser {
-    return {
-      id: this.attributes.id,
-      username: this.attributes.username,
-      email: this.attributes.email,
-      password: this.attributes.password,
-    };
-  }
+  @Column()
+  email: string;
+
+  @Exclude()
+  @Column()
+  password: string;
 }

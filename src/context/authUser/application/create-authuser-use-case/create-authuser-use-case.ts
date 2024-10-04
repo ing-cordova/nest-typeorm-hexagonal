@@ -1,5 +1,6 @@
+import * as bycript from 'bcrypt';
 import { Injectable } from 'src/context/shared/dependency-injection/injectable';
-import { AuthUser, PrimitiveAuthUser } from '../../domain/authuser.model';
+import { AuthUser } from '../../domain/authuser.model';
 import { AuthUserRepository } from '../../domain/authuser.repository';
 import { CreateAuthUserUseCaseDto } from './create-authuser-use-case.dto';
 
@@ -9,9 +10,16 @@ export class CreateAuthUserUseCase {
 
   async execute(
     dto: CreateAuthUserUseCaseDto,
-  ): Promise<{ authUser: PrimitiveAuthUser }> {
-    const authUser = AuthUser.create(dto);
-    await this.authUserRepository.create(authUser);
-    return { authUser: authUser.toValue() };
+  ): Promise<{ authUser: AuthUser }> {
+        const hashPassword = await bycript.hash(dto.password, 10);
+
+        const authUser = new AuthUser();
+        authUser.username = dto.username;
+        authUser.email = dto.email;
+        authUser.password = hashPassword;
+    
+        await this.authUserRepository.create(authUser);
+    
+        return { authUser };
   }
 }

@@ -1,8 +1,8 @@
 import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
 import { FindAuthUserByUsernameUseCase } from 'src/context/authUser/application/find-authuser-by-username-use-case/find-authuser-by-username-use-case';
 import { FindAuthUserByUsernameHttpDto } from './find-authuser-by-username-http-dto';
-import { PrimitiveAuthUser } from 'src/context/authUser/domain/authuser.model';
 import { AuthUserNotFoundException } from 'src/context/authUser/domain/authuser-not-found.exception';
+import { AuthUser } from 'src/context/authUser/domain/authuser.model';
 
 @Controller('authuser')
 export class FindAuthuserByUsernameController {
@@ -13,7 +13,7 @@ export class FindAuthuserByUsernameController {
   @Get('/find/:username')
   async run(
     @Param() params: FindAuthUserByUsernameHttpDto,
-  ): Promise<{ authuser: PrimitiveAuthUser }> {
+  ): Promise<{ authuser: AuthUser }> {
     try {
       const result = await this.findAuthuserByUsernameUseCase.execute({
         username: params.username,
