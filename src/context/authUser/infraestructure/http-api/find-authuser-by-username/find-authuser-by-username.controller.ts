@@ -3,7 +3,9 @@ import { FindAuthUserByUsernameUseCase } from 'src/context/authUser/application/
 import { FindAuthUserByUsernameHttpDto } from './find-authuser-by-username-http-dto';
 import { AuthUserNotFoundException } from 'src/context/authUser/domain/authuser-not-found.exception';
 import { AuthUser } from 'src/context/authUser/domain/authuser.model';
+import { ApiTags } from '@nestjs/swagger';
 
+@ApiTags('authuser')
 @Controller('authuser')
 export class FindAuthuserByUsernameController {
   constructor(

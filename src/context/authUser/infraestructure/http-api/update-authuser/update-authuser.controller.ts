@@ -3,7 +3,9 @@ import { UpdateAuthUserUseCase } from "src/context/authUser/application/update-a
 import { AuthUser } from "src/context/authUser/domain/authuser.model";
 import { UpdateAuthUserHttpDto } from "./update-authuser-http-dto";
 import { UpdateAuthUserParamsHttpDto } from "./update-authuser-params-http-dto";
+import { ApiTags } from "@nestjs/swagger";
 
+@ApiTags('authuser')
 @Controller('authuser')
 export class UpdateAuthuserController {
     constructor(private readonly updateAuthUserUseCase: UpdateAuthUserUseCase) { }
