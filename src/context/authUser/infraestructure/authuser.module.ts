@@ -11,6 +11,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthUser } from '../domain/authuser.model';
 import { DeleteAuthUserByIdController } from './http-api/delete-authuser-by-id/delete-by-id.controller';
 import { DeleteAuthUserByIdUseCase } from '../application/delete-authuser-by-id-use-case/delete-authuser-by-id-use-case';
+import { UpdateAuthuserController } from './http-api/update-authuser/update-authuser.controller';
+import { UpdateAuthUserUseCase } from '../application/update-authuser-use-case/update-authuser-use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AuthUser])],
@@ -18,13 +20,15 @@ import { DeleteAuthUserByIdUseCase } from '../application/delete-authuser-by-id-
     CreateAuthUserController,
     FindAuthuserByUsernameController,
     GetAllAuthuserController,
-    DeleteAuthUserByIdController
+    DeleteAuthUserByIdController,
+    UpdateAuthuserController
   ],
   providers: [
     CreateAuthUserUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
+    UpdateAuthUserUseCase,
     TypeOrmAuthUserRepository,
     {
       provide: AuthUserRepository,
@@ -36,6 +40,7 @@ import { DeleteAuthUserByIdUseCase } from '../application/delete-authuser-by-id-
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
+    UpdateAuthUserUseCase,
   ],
 })
 export class AuthUserModule {}

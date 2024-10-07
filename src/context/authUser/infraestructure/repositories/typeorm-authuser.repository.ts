@@ -29,4 +29,10 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
     async deleteById(id: number): Promise<void> {
         await this.repository.delete(id);
     }
+
+    async updateById(id: number, authUser: AuthUser): Promise<AuthUser> {
+        authUser.id = id;
+        await this.repository.update(id, authUser);
+        return await this.repository.findOne({ where: { id } }) as AuthUser;
+    }
 }
