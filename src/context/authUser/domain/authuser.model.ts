@@ -12,7 +12,12 @@ export class AuthUser {
   @Column()
   email: string;
 
-  @Exclude()
   @Column()
+  @Exclude()
   password: string;
+}
+
+export class RequestAuthUser {
+  username: string;
+  email: string;
 }
