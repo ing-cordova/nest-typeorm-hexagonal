@@ -9,6 +9,8 @@ import { GetAllAuthUserUseCase } from '../application/get-all-authuser-use-case/
 import { TypeOrmAuthUserRepository } from './repositories/typeorm-authuser.repository';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { AuthUser } from '../domain/authuser.model';
+import { DeleteAuthUserByIdController } from './http-api/delete-authuser-by-id/delete-by-id.controller';
+import { DeleteAuthUserByIdUseCase } from '../application/delete-authuser-by-id-use-case/delete-authuser-by-id-use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AuthUser])],
@@ -16,11 +18,13 @@ import { AuthUser } from '../domain/authuser.model';
     CreateAuthUserController,
     FindAuthuserByUsernameController,
     GetAllAuthuserController,
+    DeleteAuthUserByIdController
   ],
   providers: [
     CreateAuthUserUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
+    DeleteAuthUserByIdUseCase,
     TypeOrmAuthUserRepository,
     {
       provide: AuthUserRepository,
@@ -31,6 +35,7 @@ import { AuthUser } from '../domain/authuser.model';
     CreateAuthUserUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
+    DeleteAuthUserByIdUseCase,
   ],
 })
 export class AuthUserModule {}

@@ -25,4 +25,8 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
     async findAll(): Promise<AuthUser[]> {
         return await this.repository.find();
     }
+
+    async deleteById(id: number): Promise<void> {
+        await this.repository.delete(id);
+    }
 }
