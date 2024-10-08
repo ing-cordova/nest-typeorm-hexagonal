@@ -13,6 +13,8 @@ import { DeleteAuthUserByIdController } from './http-api/delete-authuser-by-id/d
 import { DeleteAuthUserByIdUseCase } from '../application/delete-authuser-by-id-use-case/delete-authuser-by-id-use-case';
 import { UpdateAuthuserController } from './http-api/update-authuser/update-authuser.controller';
 import { UpdateAuthUserUseCase } from '../application/update-authuser-use-case/update-authuser-use-case';
+import { LoginController } from './http-api/login/login.controller';
+import { LoginUseCase } from '../application/login-use-case/login-use-case';
 
 @Module({
   imports: [TypeOrmModule.forFeature([AuthUser])],
@@ -21,7 +23,8 @@ import { UpdateAuthUserUseCase } from '../application/update-authuser-use-case/u
     FindAuthuserByUsernameController,
     GetAllAuthuserController,
     DeleteAuthUserByIdController,
-    UpdateAuthuserController
+    UpdateAuthuserController,
+    LoginController
   ],
   providers: [
     CreateAuthUserUseCase,
@@ -29,6 +32,7 @@ import { UpdateAuthUserUseCase } from '../application/update-authuser-use-case/u
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
     UpdateAuthUserUseCase,
+    LoginUseCase,
     TypeOrmAuthUserRepository,
     {
       provide: AuthUserRepository,
@@ -41,6 +45,7 @@ import { UpdateAuthUserUseCase } from '../application/update-authuser-use-case/u
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
     UpdateAuthUserUseCase,
+    LoginUseCase
   ],
 })
 export class AuthUserModule {}
