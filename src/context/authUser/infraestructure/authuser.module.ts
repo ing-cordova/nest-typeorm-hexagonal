@@ -15,9 +15,19 @@ import { UpdateAuthuserController } from './http-api/update-authuser/update-auth
 import { UpdateAuthUserUseCase } from '../application/update-authuser-use-case/update-authuser-use-case';
 import { LoginController } from './http-api/login/login.controller';
 import { LoginUseCase } from '../application/login-use-case/login-use-case';
+import { JwtModule } from '@nestjs/jwt';
+import { ConfigService } from '@nestjs/config';
+import { JwtStrategy } from '../../services/jwt.strategy';
 
+const config = new ConfigService();
 @Module({
-  imports: [TypeOrmModule.forFeature([AuthUser])],
+  imports: [
+    TypeOrmModule.forFeature([AuthUser]), 
+    JwtModule.register({
+      secret: config.get<string>('TOKEN_SECRET'),
+      signOptions: { expiresIn: config.get<string>('TOKEN_EXPIRATION') },
+    })
+  ],
   controllers: [
     CreateAuthUserController,
     FindAuthuserByUsernameController,
@@ -38,6 +48,7 @@ import { LoginUseCase } from '../application/login-use-case/login-use-case';
       provide: AuthUserRepository,
       useClass: TypeOrmAuthUserRepository,
     },
+    JwtStrategy
   ],
   exports: [
     CreateAuthUserUseCase,
