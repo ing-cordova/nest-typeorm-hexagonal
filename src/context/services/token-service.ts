@@ -1,5 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
+import { AuthUser } from '../authUser/domain/authuser.model';
 
 const configService = new ConfigService();
 
@@ -18,3 +19,7 @@ export const generateToken = (payload: any) => {
 export const verifyToken = (token: string) => {
     return jwt.verify(token, configService.get<string>('TOKEN_SECRET'));
 };
+
+export const generateAppToken = (authUser: AuthUser) => {
+    return generateToken({user_type: 'SUPER_ADMIN', username: authUser.username});
+ }
