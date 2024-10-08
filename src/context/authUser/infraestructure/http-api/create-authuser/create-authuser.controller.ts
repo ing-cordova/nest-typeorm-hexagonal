@@ -1,14 +1,16 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { CreateAuthUserUseCase } from 'src/context/authUser/application/create-authuser-use-case/create-authuser-use-case';
 import { CreateAuthUserHttpDto } from './create-authuser-http-dto';
 import { AuthUser } from 'src/context/authUser/domain/authuser.model';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { JwtAuthGuard } from '../../../../services/jwt.guard';
 
 @ApiTags('authuser')
 @Controller('authuser')
 export class CreateAuthUserController {
   constructor(private createAuthUserUseCase: CreateAuthUserUseCase) { }
 
+  @UseGuards(JwtAuthGuard)
   @Post()
   @ApiBody({
     description: 'Atributes requerid to create a new user at the system',
