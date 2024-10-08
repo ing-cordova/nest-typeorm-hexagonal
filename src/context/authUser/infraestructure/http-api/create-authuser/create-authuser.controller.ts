@@ -4,6 +4,7 @@ import { CreateAuthUserHttpDto } from './create-authuser-http-dto';
 import { AuthUser } from 'src/context/authUser/domain/authuser.model';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { JwtAuthGuard } from '../../../../services/jwt.guard';
+import { GetInformationByToken } from 'src/context/services/get-information.decorator';
 
 @ApiTags('authuser')
 @Controller('authuser')
@@ -35,8 +36,9 @@ export class CreateAuthUserController {
     },
   })
   async run(
-    @Body() createAuthUserHttpDto: CreateAuthUserHttpDto,
+    @Body() createAuthUserHttpDto: CreateAuthUserHttpDto,@GetInformationByToken() git: any
   ): Promise<{ authUser: AuthUser }> {
+    console.log(git.username);
     return await this.createAuthUserUseCase.execute({
       username: createAuthUserHttpDto.username,
       email: createAuthUserHttpDto.email,
