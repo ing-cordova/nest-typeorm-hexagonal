@@ -3,7 +3,7 @@ import { Injectable } from './../../../shared/dependency-injection/injectable';
 import { AuthUser } from '../../domain/authuser.model';
 import { AuthUserRepository } from '../../domain/authuser.repository';
 import { CreateAuthUserUseCaseDto } from './create-authuser-use-case.dto';
-import { encryptPassword } from 'src/context/services/password-service';
+import { encryptPassword } from '../../../services/password-service';
 
 @Injectable()
 export class CreateAuthUserUseCase {
