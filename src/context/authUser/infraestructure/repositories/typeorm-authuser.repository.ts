@@ -3,6 +3,8 @@ import { AuthUserRepository } from "../../domain/authuser.repository";
 import { AuthUser } from "../../domain/authuser.model";
 import { Repository } from "typeorm";
 import { Injectable } from "../../../shared/dependency-injection/injectable";
+import { decryptPassword } from "../../../services/password-service";
+import { HttpException } from "@nestjs/common";
 
 @Injectable()
 export class TypeOrmAuthUserRepository extends AuthUserRepository {
@@ -14,12 +16,19 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
     }
 
     async create(authUser: AuthUser): Promise<void> {
+        const foundUser = await this.repository.findOne({
+            where: [{ username: authUser.username }, { email: authUser.email }],
+        });
+
+        if (foundUser) throw new HttpException("User already exists", 409)
+
         await this.repository.save(authUser);
     }
 
     async findByUsername(username: string): Promise<AuthUser | null> {
         return await this.repository.findOne({
-            where: { username },})
+            where: { username },
+        })
     }
 
     async findAll(): Promise<AuthUser[]> {
@@ -34,5 +43,11 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
         authUser.id = id;
         await this.repository.update(id, authUser);
         return await this.repository.findOne({ where: { id } }) as AuthUser;
+    }
+
+    async login(username: string, password: string): Promise<AuthUser | null> {
+        const authUser = await this.repository.findOne({ where: { username } });
+        if (authUser && decryptPassword(password, authUser.password)) return authUser;
+        return null;
     }
 }
