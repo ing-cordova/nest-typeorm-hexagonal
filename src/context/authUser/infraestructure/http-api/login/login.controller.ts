@@ -13,7 +13,7 @@ export class LoginController {
     @HttpCode(200)
     async login(@Body() body: LoginHttpDto) {
         const userFound = await this.loginUseCase.execute(body.username, body.password);
-        if (!userFound) throw new UnauthorizedException();
+        if (!userFound) throw new HttpException('User not found', 404);
         return { token: generateAppToken(userFound) };
     }
 }
