@@ -21,7 +21,7 @@ import { AuthUserModule } from './context/authUser/infraestructure/authuser.modu
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,  // Turn off in production mode
-        dropSchema: true,  // Turn off in production mode
+        dropSchema: false,  // Turn off in production mode
       }),
     }),
     
