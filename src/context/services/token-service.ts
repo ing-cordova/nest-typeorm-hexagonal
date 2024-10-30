@@ -1,6 +1,6 @@
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
-import { AuthUser } from '../authUser/domain/authuser.model';
+import { AuthUser } from '../api/authUser/domain/authuser.model';
 
 const configService = new ConfigService();
 
