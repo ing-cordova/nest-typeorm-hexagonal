@@ -3,6 +3,7 @@ import { TypeOrmAuthUserRepository } from './typeorm-authuser.repository';
 import { AuthUser } from '../../domain/authuser.model';
 import { Repository } from 'typeorm';
 import { getRepositoryToken } from '@nestjs/typeorm';
+import { Country } from '../../../country/domain/country.model';
 
 describe('TypeOrmAuthUserRepository', () => {
   let authUserRepository: TypeOrmAuthUserRepository;
@@ -65,8 +66,29 @@ describe('TypeOrmAuthUserRepository', () => {
   it('should return all AuthUsers', async () => {
     // Arrange: Simular que find devuelve una lista de usuarios
     const users = [
-      { id:1, username: 'user1', email: 'user1@example.com', password: 'password' },
-      { id:2, username: 'user2', email: 'user2@example.com', password: 'password' },
+      { 
+        id: 1,
+        userType: { id: 1, name: 'userType', description: 'user type', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
+        first_name: 'test',
+        second_name: 'test',
+        last_name: 'test',
+        second_last_name: 'test',
+        phone_number: 'test',
+        username: 'testuser',
+        email: 'testuser@example.com',
+        email_verified_at: new Date(),
+        country: { id: 1, name: 'country', iso2: 'test', iso3: 'test', phone_code: 'test', flag: 'test', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
+        city: {
+            id: 1, name: 'city', created_at: new Date(), updated_at: new Date(), deleted_at: new Date(),
+            country: new Country()
+        },
+        address: 'test',
+        password: 'password',
+        accepted_terms: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: new Date(),
+       },
     ];
 
     mockRepository.find.mockResolvedValue(users);  // También aquí aseguramos que el mock funcione

@@ -3,6 +3,7 @@ import { AuthUserRepository } from '../../domain/authuser.repository';
 import { UpdateAuthUserUseCase } from './update-authuser-use-case';
 import { AuthUser } from '../../domain/authuser.model';
 import { AuthUserCannotUpdateException } from '../../domain/authuser-cannot-update-exception';
+import { Country } from '../../../country/domain/country.model';
 
 describe('UpdateAuthUserUseCase', () => {
     let updateAuthUserUseCase: UpdateAuthUserUseCase;
@@ -15,9 +16,26 @@ describe('UpdateAuthUserUseCase', () => {
 
     const mockAuthUser: AuthUser = {
         id: 1,
+        userType: { id: 1, name: 'userType', description: 'user type', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
+        first_name: 'test',
+        second_name: 'test',
+        last_name: 'test',
+        second_last_name: 'test',
+        phone_number: 'test',
         username: 'testuser',
         email: 'testuser@example.com',
+        email_verified_at: new Date(),
+        country: { id: 1, name: 'country', iso2: 'test', iso3: 'test', phone_code: 'test', flag: 'test', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
+        city: {
+            id: 1, name: 'city', created_at: new Date(), updated_at: new Date(), deleted_at: new Date(),
+            country: new Country()
+        },
+        address: 'test',
         password: 'password',
+        accepted_terms: true,
+        created_at: new Date(),
+        updated_at: new Date(),
+        deleted_at: new Date(),
         // otros campos necesarios para AuthUser
     };
 
