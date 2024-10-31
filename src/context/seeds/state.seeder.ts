@@ -1,12 +1,12 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
-import { City } from "../api/City/domain/city.model";
+import { State } from "../api/State/domain/state.model";
 
-export class CitySeeder implements Seeder {
+export class StateSeeder implements Seeder {
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
-        const cityRepository = dataSource.getRepository(City);
+        const stateRepository = dataSource.getRepository(State);
 
-        await cityRepository.insert([
+        await stateRepository.insert([
             {
                 name: 'San Salvador',
                 country: { id: 1 },

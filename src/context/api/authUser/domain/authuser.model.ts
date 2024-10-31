@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'ty
 import { Exclude } from 'class-transformer';
 import { UserType } from '../../userType/domain/user-type.model';
 import { Country } from '../../country/domain/country.model';
-import { City } from '../../City/domain/city.model';
+import { State } from '../../State/domain/state.model';
 
 @Entity('auth_user')
 export class AuthUser {
@@ -41,9 +41,9 @@ export class AuthUser {
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @OneToOne(() => City)
-  @JoinColumn({ name: 'city_id' })
-  city: City;
+  @OneToOne(() => State)
+  @JoinColumn({ name: 'state_id' })
+  state: State;
 
   @Column()
   address: string;

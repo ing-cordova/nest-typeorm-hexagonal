@@ -1,8 +1,8 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Country } from "../../country/domain/country.model";
 
-@Entity('city')
-export class City {
+@Entity('state')
+export class State {
     @PrimaryGeneratedColumn()
     id: number
 

@@ -4,11 +4,11 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthUserModule } from './context/api/authUser/infraestructure/authuser.module';
 import { UserTypeModule } from './context/api/userType/infraestructure/user-type.module';
 import { CountryModule } from './context/api/country/infraestructure/country.module';
-import { CityModule } from './context/api/City/infraestructure/city.module';
+import { StateModule } from './context/api/State/infraestructure/state.module';
 import { DataSource } from 'typeorm';
 import { runSeeders } from 'typeorm-extension';
 import { CountrySeeder } from './context/seeds/country.seeder';
-import { CitySeeder } from './context/seeds/city.seeder';
+import { StateSeeder } from './context/seeds/state.seeder';
 
 @Module({
   imports: [
@@ -35,7 +35,7 @@ import { CitySeeder } from './context/seeds/city.seeder';
     AuthUserModule,
     UserTypeModule,
     CountryModule,
-    CityModule
+    StateModule
   ],
 })
 export class AppModule implements OnModuleInit {
@@ -45,7 +45,7 @@ export class AppModule implements OnModuleInit {
       await runSeeders(this.dataSource, {
         seeds: [
           CountrySeeder,
-          CitySeeder
+          StateSeeder
         ],
       });
   }
