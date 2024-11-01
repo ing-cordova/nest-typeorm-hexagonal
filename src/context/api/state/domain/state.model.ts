@@ -6,8 +6,14 @@ export class State {
     @PrimaryGeneratedColumn()
     id: number
 
-    @Column({ unique: true })
+    @Column()
     name: string
+
+    @Column({ nullable: true })
+    state_code: string
+
+    @Column()
+    country_id: number
 
     @ManyToOne(() => Country)
     @JoinColumn({ name: 'country_id' })
