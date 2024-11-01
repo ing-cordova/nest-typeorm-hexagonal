@@ -56,8 +56,12 @@ source .env
 ```
 
 ## ⚙️ Usage
+1. Run the seeders
+```bash
+npm run seed
+```
 
-1. Run the application
+2. Run the application
 ```bash
 npm run start
 ```
