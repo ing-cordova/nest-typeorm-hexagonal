@@ -35,8 +35,9 @@ describe('GetAllAuthUserUseCase', () => {
   it('should return all auth users', async () => {
     // Arrange: Definir un mock de usuarios
     const mockAuthUsers: AuthUser[] = [
-      { 
+      {
         id: 1,
+        user_type_id: 1,
         userType: { id: 1, name: 'userType', description: 'user type', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
         first_name: 'test',
         second_name: 'test',
@@ -46,10 +47,14 @@ describe('GetAllAuthUserUseCase', () => {
         username: 'testuser',
         email: 'testuser@example.com',
         email_verified_at: new Date(),
-        country: { id: 1, name: 'country', iso2: 'test', iso3: 'test', phone_code: 'test', flag: 'test', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
-        city: {
-            id: 1, name: 'city', created_at: new Date(), updated_at: new Date(), deleted_at: new Date(),
-            country: new Country()
+        country_id: 1,
+        country: { id: 1, name: 'country', iso2: 'test', iso3: 'test', phone_code: 'test', region: 'test', currency: 'test', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
+        state_id: 1,
+        state: {
+          id: 1, name: 'state', created_at: new Date(), updated_at: new Date(), deleted_at: new Date(),
+          state_code: 'test',
+          country_id: 1,
+          country: new Country()
         },
         address: 'test',
         password: 'password',
@@ -57,7 +62,7 @@ describe('GetAllAuthUserUseCase', () => {
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: new Date(),
-       },
+      },
     ];
 
     // Simular que el repositorio devuelve todos los usuarios
