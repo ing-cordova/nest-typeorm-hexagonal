@@ -30,7 +30,7 @@ import { UserTypeSeeder } from './context/seeds/user-type.seeder';
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,  // Turn off in production mode
-        dropSchema: true,  // Turn off in production mode
+        dropSchema: false,  // Turn off in production mode
       }),
     }),
     
@@ -40,17 +40,4 @@ import { UserTypeSeeder } from './context/seeds/user-type.seeder';
     StateModule
   ],
 })
-export class AppModule implements OnModuleInit {
-  constructor(private dataSource: DataSource) {}
-
-  async onModuleInit() {
-      await runSeeders(this.dataSource, {
-        seeds: [
-          CountrySeeder,
-          StateSeeder,
-          UserTypeSeeder,
-          AuthUserSeeder
-        ],
-      });
-  }
-}
+export class AppModule { }
