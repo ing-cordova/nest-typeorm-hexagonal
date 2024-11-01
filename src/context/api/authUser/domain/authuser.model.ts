@@ -9,9 +9,8 @@ export class AuthUser {
   @PrimaryGeneratedColumn()
   id: number;
 
-  @OneToOne(() => UserType)
-  @JoinColumn({ name: 'user_type_id' })
-  userType: UserType;
+  @Column()
+  user_type_id: number
 
   @Column()
   first_name: string;
@@ -37,13 +36,11 @@ export class AuthUser {
   @Column({ unique: true })
   username: string;
 
-  @OneToOne(() => Country)
-  @JoinColumn({ name: 'country_id' })
-  country: Country;
+  @Column()
+  country_id: number
 
-  @OneToOne(() => State)
-  @JoinColumn({ name: 'state_id' })
-  state: State;
+  @Column()
+  state_id: number
 
   @Column()
   address: string;
@@ -63,6 +60,18 @@ export class AuthUser {
 
   @Column({ nullable: true })
   deleted_at: Date;
+
+  @OneToOne(() => UserType)
+  @JoinColumn({ name: 'user_type_id' })
+  userType: UserType;
+
+  @OneToOne(() => Country)
+  @JoinColumn({ name: 'country_id' })
+  country: Country;
+
+  @OneToOne(() => State)
+  @JoinColumn({ name: 'state_id' })
+  state: State;
 }
 
 export class RequestAuthUser {
