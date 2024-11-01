@@ -7,6 +7,7 @@ import { CountrySeeder } from './context/seeds/country.seeder';
 import { StateSeeder } from './context/seeds/state.seeder';
 import { UserTypeSeeder } from './context/seeds/user-type.seeder';
 import { AuthUserSeeder } from './context/seeds/authuser.seeder';
+import { PermissionSeeder } from './context/seeds/permission.seeder';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
@@ -17,7 +18,8 @@ async function bootstrap() {
             CountrySeeder,
             StateSeeder,
             UserTypeSeeder,
-            AuthUserSeeder
+            AuthUserSeeder,
+            PermissionSeeder
         ],
     });
 
