@@ -11,6 +11,8 @@ import { CountrySeeder } from './context/seeds/country.seeder';
 import { StateSeeder } from './context/seeds/state.seeder';
 import { AuthUserSeeder } from './context/seeds/authuser.seeder';
 import { UserTypeSeeder } from './context/seeds/user-type.seeder';
+import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
+import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 
 @Module({
   imports: [
@@ -30,14 +32,16 @@ import { UserTypeSeeder } from './context/seeds/user-type.seeder';
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,  // Turn off in production mode
-        dropSchema: false,  // Turn off in production mode
+        dropSchema: true,  // Turn off in production mode
       }),
     }),
     
     AuthUserModule,
     UserTypeModule,
     CountryModule,
-    StateModule
+    StateModule,
+    PermissionModule,
+    PermissionUserTypeModule
   ],
 })
 export class AppModule { }
