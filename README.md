@@ -27,6 +27,7 @@ src/
 │   │   │   ├── use-case/
 │   │   ├── domain/               # Domain Entity
 │   │   └── infraestructure/      # Infraestructure of the entity
+│   ├── seeds/                    # Seeders Folder
 │   ├── services/                 # Global Services
 │   └── shared/                   # Global Shared Modules
 └──
