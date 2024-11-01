@@ -18,7 +18,10 @@ export class Country {
     phone_code: string;
 
     @Column()
-    flag: string;
+    region: string;
+
+    @Column()
+    currency: string;
 
     @Column()
     created_at: Date;
