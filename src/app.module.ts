@@ -9,6 +9,8 @@ import { DataSource } from 'typeorm';
 import { runSeeders } from 'typeorm-extension';
 import { CountrySeeder } from './context/seeds/country.seeder';
 import { StateSeeder } from './context/seeds/state.seeder';
+import { AuthUserSeeder } from './context/seeds/authuser.seeder';
+import { UserTypeSeeder } from './context/seeds/user-type.seeder';
 
 @Module({
   imports: [
@@ -45,7 +47,9 @@ export class AppModule implements OnModuleInit {
       await runSeeders(this.dataSource, {
         seeds: [
           CountrySeeder,
-          StateSeeder
+          StateSeeder,
+          UserTypeSeeder,
+          AuthUserSeeder
         ],
       });
   }
