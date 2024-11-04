@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn, ManyToOne } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { UserType } from '../../userType/domain/user-type.model';
 import { Country } from '../../country/domain/country.model';
@@ -65,11 +65,11 @@ export class AuthUser {
   @JoinColumn({ name: 'user_type_id' })
   userType: UserType;
 
-  @OneToOne(() => Country)
+  @ManyToOne(() => Country, country => country.id)
   @JoinColumn({ name: 'country_id' })
   country: Country;
 
-  @OneToOne(() => State)
+  @ManyToOne(() => State, state => state.id)
   @JoinColumn({ name: 'state_id' })
   state: State;
 }
