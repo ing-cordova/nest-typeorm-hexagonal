@@ -28,11 +28,14 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
     async findByUsername(username: string): Promise<AuthUser | null> {
         return await this.repository.findOne({
             where: { username },
+            relations: ['userType', 'country', 'state'],
         })
     }
 
     async findAll(): Promise<AuthUser[]> {
-        return await this.repository.find();
+        return await this.repository.find({
+            relations: ['userType', 'country', 'state'],
+        });
     }
 
     async deleteById(id: number): Promise<void> {
@@ -45,8 +48,8 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
         return await this.repository.findOne({ where: { id } }) as AuthUser;
     }
 
-    async login(username: string, password: string): Promise<AuthUser | null> {
-        const authUser = await this.repository.findOne({ where: { username } });
+    async login(email: string, password: string): Promise<AuthUser | null> {
+        const authUser = await this.repository.findOne({ where: { email }, relations: ['userType', 'country', 'state'], });
         if (authUser && decryptPassword(password, authUser.password)) return authUser;
         return null;
     }
