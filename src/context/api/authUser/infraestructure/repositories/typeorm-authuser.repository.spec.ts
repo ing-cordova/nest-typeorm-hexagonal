@@ -59,14 +59,17 @@ describe('TypeOrmAuthUserRepository', () => {
     const foundUser = await authUserRepository.findByUsername('testuser');
 
     // Assert: Verificar que se llamó a findOne con el username correcto
-    expect(mockRepository.findOne).toHaveBeenCalledWith({ where: { username: 'testuser' } });
+    expect(mockRepository.findOne).toHaveBeenCalledWith({
+      where: { username: 'testuser' },
+      relations: ['userType', 'country', 'state']
+    });
     expect(foundUser).toEqual(authUser);
   });
 
   it('should return all AuthUsers', async () => {
     // Arrange: Simular que find devuelve una lista de usuarios
     const users = [
-      { 
+      {
         id: 1,
         user_type_id: 1,
         userType: { id: 1, name: 'userType', description: 'user type', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
@@ -82,10 +85,10 @@ describe('TypeOrmAuthUserRepository', () => {
         country: { id: 1, name: 'country', iso2: 'test', iso3: 'test', phone_code: 'test', region: 'test', currency: 'test', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
         state_id: 1,
         state: {
-            id: 1, name: 'state', created_at: new Date(), updated_at: new Date(), deleted_at: new Date(),
-            state_code: 'test',
-            country_id: 1,
-            country: new Country()
+          id: 1, name: 'state', created_at: new Date(), updated_at: new Date(), deleted_at: new Date(),
+          state_code: 'test',
+          country_id: 1,
+          country: new Country()
         },
         address: 'test',
         password: 'password',
@@ -93,7 +96,7 @@ describe('TypeOrmAuthUserRepository', () => {
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: new Date(),
-       },
+      },
     ];
 
     mockRepository.find.mockResolvedValue(users);  // También aquí aseguramos que el mock funcione
