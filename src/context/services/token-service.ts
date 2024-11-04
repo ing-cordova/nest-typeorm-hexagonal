@@ -21,5 +21,5 @@ export const verifyToken = (token: string) => {
 };
 
 export const generateAppToken = (authUser: AuthUser) => {
-    return generateToken({user_type: 'SUPER_ADMIN', username: authUser.username});
+    return generateToken({user_type: authUser.userType.name, username: authUser.username, location: authUser.country.name});
  }
