@@ -5,8 +5,8 @@ import { Injectable } from "./../../../../shared/dependency-injection/injectable
 export class LoginUseCase {
     constructor(private readonly authUserRepository: AuthUserRepository) {}
 
-    async execute(username: string, password: string) {
-        const authUser = await this.authUserRepository.login(username, password);
+    async execute(email: string, password: string) {
+        const authUser = await this.authUserRepository.login(email, password);
         return authUser;
     }
 }

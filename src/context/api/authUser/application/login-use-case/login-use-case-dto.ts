@@ -1,4 +1,4 @@
 export interface LoginUseCaseDto {
-    username: string;
+    email: string;
     password: string;
 }
