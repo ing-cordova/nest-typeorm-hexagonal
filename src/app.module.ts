@@ -5,12 +5,6 @@ import { AuthUserModule } from './context/api/authUser/infraestructure/authuser.
 import { UserTypeModule } from './context/api/userType/infraestructure/user-type.module';
 import { CountryModule } from './context/api/country/infraestructure/country.module';
 import { StateModule } from './context/api/State/infraestructure/state.module';
-import { DataSource } from 'typeorm';
-import { runSeeders } from 'typeorm-extension';
-import { CountrySeeder } from './context/seeds/country.seeder';
-import { StateSeeder } from './context/seeds/state.seeder';
-import { AuthUserSeeder } from './context/seeds/authuser.seeder';
-import { UserTypeSeeder } from './context/seeds/user-type.seeder';
 import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 
@@ -32,7 +26,7 @@ import { PermissionUserTypeModule } from './context/api/permissionUserType/infra
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,  // Turn off in production mode
-        dropSchema: true,  // Turn off in production mode
+        dropSchema: false,  // Turn off in production mode
       }),
     }),
     
