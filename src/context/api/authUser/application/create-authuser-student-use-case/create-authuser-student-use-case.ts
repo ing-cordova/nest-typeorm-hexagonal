@@ -36,7 +36,7 @@ export class CreateAuthUserStudentUseCase {
             return { authUser };
         }
         catch (error) {
-            throw new HttpException('Error while creating user...', 500);
+            throw new HttpException(error.message, 400);
         }
     }
 

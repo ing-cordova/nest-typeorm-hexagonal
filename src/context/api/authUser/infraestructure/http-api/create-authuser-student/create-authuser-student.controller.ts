@@ -55,6 +55,7 @@ export class CreateAuthUserStudentController {
         @Body() createAuthUserStudentHttpDto: CreateAuthUserStudentHttpDto
     ): Promise<{ authUser: AuthUser }> {
         try {
+            if(!createAuthUserStudentHttpDto.accepted_terms) throw new HttpException('You must accept the terms and conditions', 400);
             return await this.createAuthUserStudentUseCase.execute({
                 first_name: createAuthUserStudentHttpDto.first_name,
                 last_name: createAuthUserStudentHttpDto.last_name,
