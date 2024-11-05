@@ -31,7 +31,8 @@ export class CreateAuthUserStudentUseCase {
             authUser.created_at = new Date();
 
             await this.authUserRepository.create(authUser);
-            console.log('> Temporal password generated: ', passwordGenerated);
+            // TODO: Send email with the credentials.
+            console.log(`Dear ${authUser.first_name} ${authUser.last_name}, your credentials are the following:\nEmail: ${authUser.email}\nPassword: [${passwordGenerated}]`);
 
             return { authUser };
         }
