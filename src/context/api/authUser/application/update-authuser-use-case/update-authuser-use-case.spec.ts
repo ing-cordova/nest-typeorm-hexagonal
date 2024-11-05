@@ -37,6 +37,7 @@ describe('UpdateAuthUserUseCase', () => {
         },
         address: 'test',
         password: 'password',
+        is_temporal_password: false,
         accepted_terms: true,
         created_at: new Date(),
         updated_at: new Date(),
