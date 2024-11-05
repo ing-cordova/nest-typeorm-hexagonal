@@ -1,4 +1,4 @@
-import { Controller, Get, NotFoundException, Param } from '@nestjs/common';
+import { ClassSerializerInterceptor, Controller, Get, NotFoundException, Param, UseInterceptors } from '@nestjs/common';
 import { FindAuthUserByUsernameUseCase } from 'src/context/api/authUser/application/find-authuser-by-username-use-case/find-authuser-by-username-use-case';
 import { FindAuthUserByUsernameHttpDto } from './find-authuser-by-username-http-dto';
 import { AuthUserNotFoundException } from 'src/context/api/authUser/domain/authuser-not-found.exception';
@@ -7,6 +7,7 @@ import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class FindAuthuserByUsernameController {
   constructor(
     private readonly findAuthuserByUsernameUseCase: FindAuthUserByUsernameUseCase,

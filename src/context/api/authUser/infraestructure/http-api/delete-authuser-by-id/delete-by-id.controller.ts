@@ -1,4 +1,4 @@
-import { Controller, Delete, Param, ParseIntPipe, UseGuards } from "@nestjs/common";
+import { ClassSerializerInterceptor, Controller, Delete, Param, ParseIntPipe, UseGuards, UseInterceptors } from "@nestjs/common";
 import { DeleteAuthUserByIdUseCase } from "src/context/api/authUser/application/delete-authuser-by-id-use-case/delete-authuser-by-id-use-case";
 import { DeleteByIdHttpDto } from "./delete-by-id-http-dto";
 import { ApiParam, ApiTags } from "@nestjs/swagger";
@@ -7,6 +7,7 @@ import { GetInformationByToken } from "src/context/services/get-information.deco
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class DeleteAuthUserByIdController {
 
     constructor(private readonly deleteAuthUserByIdUseCase: DeleteAuthUserByIdUseCase) {}

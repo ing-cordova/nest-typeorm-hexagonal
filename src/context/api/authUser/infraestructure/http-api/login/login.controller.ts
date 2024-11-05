@@ -1,4 +1,4 @@
-import { Body, Controller, HttpCode, HttpException, Post } from "@nestjs/common";
+import { Body, ClassSerializerInterceptor, Controller, HttpCode, HttpException, Post, UseInterceptors } from "@nestjs/common";
 import { ApiTags } from "@nestjs/swagger";
 import { LoginUseCase } from "src/context/api/authUser/application/login-use-case/login-use-case";
 import { LoginHttpDto } from "./login-http.dto";
@@ -6,6 +6,7 @@ import { generateAppRefreshToken, generateAppToken } from "src/context/services/
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class LoginController {
     constructor(private readonly loginUseCase: LoginUseCase) { }
 

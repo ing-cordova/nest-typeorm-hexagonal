@@ -1,10 +1,11 @@
-import { Controller, Get } from '@nestjs/common';
+import { ClassSerializerInterceptor, Controller, Get, UseInterceptors } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetAllAuthUserUseCase } from 'src/context/api/authUser/application/get-all-authuser-use-case/get-all-authuser-use-case';
 import { AuthUser } from 'src/context/api/authUser/domain/authuser.model';
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class GetAllAuthuserController {
   constructor(private readonly getAllAuthuserUseCase: GetAllAuthUserUseCase) { }
 

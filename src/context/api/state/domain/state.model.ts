@@ -1,5 +1,6 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Country } from "../../country/domain/country.model";
+import { Exclude } from "class-transformer";
 
 @Entity('state')
 export class State {
@@ -15,16 +16,19 @@ export class State {
     @Column()
     country_id: number
 
+    @Column()
+    @Exclude()
+    created_at: Date;
+    
+    @Column({ nullable: true })
+    @Exclude()
+    updated_at: Date;
+    
+    @Column({ nullable: true })
+    @Exclude()
+    deleted_at: Date;
+
     @ManyToOne(() => Country)
     @JoinColumn({ name: 'country_id' })
     country: Country
-
-    @Column()
-    created_at: Date;
-
-    @Column({ nullable: true })
-    updated_at: Date;
-
-    @Column({ nullable: true })
-    deleted_at: Date;
 }

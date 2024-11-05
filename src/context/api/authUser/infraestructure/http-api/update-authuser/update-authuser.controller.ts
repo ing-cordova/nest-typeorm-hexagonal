@@ -1,4 +1,4 @@
-import { Body, Controller, Param, ParseIntPipe, Patch } from "@nestjs/common";
+import { Body, ClassSerializerInterceptor, Controller, Param, ParseIntPipe, Patch, UseInterceptors } from "@nestjs/common";
 import { UpdateAuthUserUseCase } from "src/context/api/authUser/application/update-authuser-use-case/update-authuser-use-case";
 import { AuthUser } from "src/context/api/authUser/domain/authuser.model";
 import { UpdateAuthUserHttpDto } from "./update-authuser-http-dto";
@@ -7,6 +7,7 @@ import { ApiBody, ApiParam, ApiResponse, ApiTags } from "@nestjs/swagger";
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class UpdateAuthuserController {
     constructor(private readonly updateAuthUserUseCase: UpdateAuthUserUseCase) { }
 

@@ -1,4 +1,4 @@
-import { Body, Controller, Post } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } from '@nestjs/common';
 import { CreateAuthUserUseCase } from 'src/context/api/authUser/application/create-authuser-use-case/create-authuser-use-case';
 import { CreateAuthUserHttpDto } from './create-authuser-http-dto';
 import { AuthUser } from 'src/context/api/authUser/domain/authuser.model';
@@ -6,6 +6,7 @@ import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class CreateAuthUserController {
   constructor(private createAuthUserUseCase: CreateAuthUserUseCase) { }
 

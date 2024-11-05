@@ -1,6 +1,7 @@
 import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { Permission } from "../../permission/domain/permission.model";
 import { UserType } from "../../userType/domain/user-type.model";
+import { Exclude } from "class-transformer";
 
 @Entity('permission_user_type')
 export class PermissionUserType {
@@ -14,12 +15,15 @@ export class PermissionUserType {
     permission_id: number
 
     @Column()
+    @Exclude()
     created_at: Date
 
     @Column({ nullable: true })
+    @Exclude()
     updated_at: Date
 
     @Column({ nullable: true })
+    @Exclude()
     deleted_at: Date
 
     @ManyToOne(() => Permission, permission => permission.id)
