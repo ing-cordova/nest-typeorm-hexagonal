@@ -31,6 +31,7 @@ export class AuthUser {
   email: string;
 
   @Column({ nullable: true })
+  @Exclude()
   email_verified_at: Date;
 
   @Column({ unique: true })
@@ -42,7 +43,7 @@ export class AuthUser {
   @Column()
   state_id: number
 
-  @Column()
+  @Column({ nullable: true })
   address: string;
 
   @Column()
@@ -56,12 +57,15 @@ export class AuthUser {
   accepted_terms: boolean;
 
   @Column()
+  @Exclude()
   created_at: Date;
 
   @Column({ nullable: true })
+  @Exclude()
   updated_at: Date;
 
   @Column({ nullable: true })
+  @Exclude()
   deleted_at: Date;
 
   @ManyToOne(() => UserType, userType => userType.id)
