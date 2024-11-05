@@ -34,9 +34,16 @@ export const verifyToken = (token: string) => {
 };
 
 export const generateAppToken = (authUser: AuthUser) => {
-    return generateToken({user_type: authUser.userType.name, username: authUser.username, location: authUser.country.name});
+    return generateToken(
+        {
+            user_type: authUser.userType.name,
+            username: authUser.username,
+            location: authUser.country.name,
+            has_temporal_password: authUser.is_temporal_password
+        }
+    );
 };
 
 export const generateAppRefreshToken = () => {
-    return generateRefreshToken({type: 'refresh'});
+    return generateRefreshToken({ type: 'refresh' });
 }
