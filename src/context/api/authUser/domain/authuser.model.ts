@@ -30,7 +30,7 @@ export class AuthUser {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ nullable: true })
   email_verified_at: Date;
 
   @Column({ unique: true })
@@ -49,6 +49,9 @@ export class AuthUser {
   @Exclude()
   password: string;
 
+  @Column({ default: true })
+  is_temporal_password: boolean;
+
   @Column()
   accepted_terms: boolean;
 
@@ -61,7 +64,7 @@ export class AuthUser {
   @Column({ nullable: true })
   deleted_at: Date;
 
-  @OneToOne(() => UserType)
+  @ManyToOne(() => UserType, userType => userType.id)
   @JoinColumn({ name: 'user_type_id' })
   userType: UserType;
 
