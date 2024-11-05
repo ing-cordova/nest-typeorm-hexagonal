@@ -19,7 +19,7 @@ import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from '../../../services/jwt/jwt.strategy';
 import { CreateAuthUserStudentController } from './http-api/create-authuser-student/create-authuser-student.controller';
-import { CreateAuthUserStudentUseCase } from '../application/create-authuser-student-use-case/create-authuser-use-case';
+import { CreateAuthUserStudentUseCase } from '../application/create-authuser-student-use-case/create-authuser-student-use-case';
 
 const config = new ConfigService();
 @Module({
