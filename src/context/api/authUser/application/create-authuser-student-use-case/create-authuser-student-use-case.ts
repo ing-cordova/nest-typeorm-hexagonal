@@ -1,9 +1,9 @@
-import { Injectable } from './../../../../shared/dependency-injection/injectable';
+import { Injectable } from '../../../../shared/dependency-injection/injectable';
 import { AuthUser } from '../../domain/authuser.model';
 import { AuthUserRepository } from '../../domain/authuser.repository';
-import { UserTypeEnum } from 'src/context/api/userType/domain/user-type.enum';
-import { CreateAuthUserStudentUseCaseDto } from './create-authuser-use-case.dto';
-import { encryptPassword } from 'src/context/services/password-service';
+import { UserTypeEnum } from '../../../userType/domain/user-type.enum';
+import { CreateAuthUserStudentUseCaseDto } from './create-authuser-student-use-case.dto';
+import { encryptPassword } from '../../../../services/password-service';
 import { HttpException } from '@nestjs/common';
 
 @Injectable()

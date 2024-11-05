@@ -1,7 +1,7 @@
 import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseInterceptors } from '@nestjs/common';
 import { AuthUser } from 'src/context/api/authUser/domain/authuser.model';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateAuthUserStudentUseCase } from '../../../application/create-authuser-student-use-case/create-authuser-use-case';
+import { CreateAuthUserStudentUseCase } from '../../../application/create-authuser-student-use-case/create-authuser-student-use-case';
 import { CreateAuthUserStudentHttpDto } from './create-authuser-student-http-dto';
 import { TypeOrmAuthUserRepository } from '../../repositories/typeorm-authuser.repository';
 
