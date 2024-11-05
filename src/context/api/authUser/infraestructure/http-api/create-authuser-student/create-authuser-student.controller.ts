@@ -1,4 +1,4 @@
-import { Body, Controller, HttpException, Post } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseInterceptors } from '@nestjs/common';
 import { AuthUser } from 'src/context/api/authUser/domain/authuser.model';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { CreateAuthUserStudentUseCase } from '../../../application/create-authuser-student-use-case/create-authuser-use-case';
@@ -7,6 +7,7 @@ import { TypeOrmAuthUserRepository } from '../../repositories/typeorm-authuser.r
 
 @ApiTags('authuser')
 @Controller('authuser')
+@UseInterceptors(ClassSerializerInterceptor)
 export class CreateAuthUserStudentController {
     constructor(
         private createAuthUserStudentUseCase: CreateAuthUserStudentUseCase,
@@ -29,14 +30,14 @@ export class CreateAuthUserStudentController {
                     properties: {
                         id: { type: 'integer', example: 16 },
                         user_type_id: { type: 'integer', example: 3 },
-                        first_name: { type: 'string', example: 'Andres' },
-                        last_name: { type: 'string', example: 'Cordova' },
+                        first_name: { type: 'string', example: 'John' },
+                        last_name: { type: 'string', example: 'Doe' },
                         phone_number: { type: 'string', example: '90764567' },
-                        email: { type: 'string', example: 'andres.cordova6@yopmail.com' },
-                        username: { type: 'string', example: 'acordova7' },
+                        email: { type: 'string', example: 'johndoe@yopmail.com' },
+                        username: { type: 'string', example: 'johndoe' },
                         country_id: { type: 'integer', example: 66 },
                         state_id: { type: 'integer', example: 1109 },
-                        address: { type: 'string', example: 'La Palma, Chalatenango' },
+                        address: { type: 'string', example: 'Calle 123' },
                         accepted_terms: { type: 'boolean', example: true },
                         created_at: { type: 'string', format: 'date-time', example: '2024-11-05T15:17:41.081Z' },
                         second_name: { type: 'string', nullable: true, example: null },
@@ -61,7 +62,6 @@ export class CreateAuthUserStudentController {
                 email: createAuthUserStudentHttpDto.email,
                 country_id: createAuthUserStudentHttpDto.country_id,
                 state_id: createAuthUserStudentHttpDto.state_id,
-                address: createAuthUserStudentHttpDto.address,
                 accepted_terms: createAuthUserStudentHttpDto.accepted_terms,
                 username: await this.generateUsername(createAuthUserStudentHttpDto.first_name, createAuthUserStudentHttpDto.last_name)
             });
