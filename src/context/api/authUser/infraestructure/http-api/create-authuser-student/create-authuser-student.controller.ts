@@ -17,7 +17,7 @@ export class CreateAuthUserStudentController {
     @Post('/student-enrollment')
     @ApiBody({
         description: 'Atributes requerid to create a new user at the system',
-        type: CreateAuthUserStudentUseCase,
+        type: CreateAuthUserStudentHttpDto,
     })
     @ApiResponse({
         status: 201,
