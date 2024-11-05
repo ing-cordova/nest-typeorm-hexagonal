@@ -26,7 +26,6 @@ export class CreateAuthUserStudentUseCase {
             authUser.username = dto.username;
             authUser.country_id = dto.country_id;
             authUser.state_id = dto.state_id;
-            authUser.address = dto.address;
             authUser.password = encryptPassword(passwordGenerated);
             authUser.accepted_terms = dto.accepted_terms;
             authUser.created_at = new Date();

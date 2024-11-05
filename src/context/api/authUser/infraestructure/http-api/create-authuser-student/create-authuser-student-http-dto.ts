@@ -46,13 +46,6 @@ export class CreateAuthUserStudentHttpDto {
     state_id: number;
 
     @ApiProperty({
-        type: String,
-        description: 'Address',
-    })
-    @IsString()
-    address: string;
-
-    @ApiProperty({
         type: Boolean,
         description: 'Accepted terms',
     })

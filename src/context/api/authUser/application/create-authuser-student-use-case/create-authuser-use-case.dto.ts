@@ -6,6 +6,5 @@ export interface CreateAuthUserStudentUseCaseDto {
     email: string;
     country_id: number;
     state_id: number;
-    address: string;
     accepted_terms: boolean;
 } 
