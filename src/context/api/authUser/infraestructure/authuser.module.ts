@@ -17,7 +17,9 @@ import { LoginController } from './http-api/login/login.controller';
 import { LoginUseCase } from '../application/login-use-case/login-use-case';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
-import { JwtStrategy } from '../../../services/jwt.strategy';
+import { JwtStrategy } from '../../../services/jwt/jwt.strategy';
+import { CreateAuthUserStudentController } from './http-api/create-authuser-student/create-authuser-student.controller';
+import { CreateAuthUserStudentUseCase } from '../application/create-authuser-student-use-case/create-authuser-use-case';
 
 const config = new ConfigService();
 @Module({
@@ -30,6 +32,7 @@ const config = new ConfigService();
   ],
   controllers: [
     CreateAuthUserController,
+    CreateAuthUserStudentController,
     FindAuthuserByUsernameController,
     GetAllAuthuserController,
     DeleteAuthUserByIdController,
@@ -38,6 +41,7 @@ const config = new ConfigService();
   ],
   providers: [
     CreateAuthUserUseCase,
+    CreateAuthUserStudentUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
@@ -52,6 +56,7 @@ const config = new ConfigService();
   ],
   exports: [
     CreateAuthUserUseCase,
+    CreateAuthUserStudentUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
