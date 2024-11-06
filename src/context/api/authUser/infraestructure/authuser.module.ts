@@ -18,8 +18,10 @@ import { LoginUseCase } from '../application/login-use-case/login-use-case';
 import { JwtModule } from '@nestjs/jwt';
 import { ConfigService } from '@nestjs/config';
 import { JwtStrategy } from '../../../services/jwt/jwt.strategy';
-import { CreateAuthUserStudentController } from './http-api/create-authuser-student/create-authuser-student.controller';
-import { CreateAuthUserStudentUseCase } from '../application/create-authuser-student-use-case/create-authuser-student-use-case';
+import { CreateAuthUserStudentController } from './http-api/enroll-authuser-student/enroll-authuser-student.controller';
+import { EnrollAuthUserStudentUseCase } from '../application/enroll-authuser-student-use-case/enroll-authuser-student-use-case';
+import { ChangeTemporalPasswordController } from './http-api/change-temporal-password/change-temporal-password.controller';
+import { ChangeTemporalPasswordUseCase } from '../application/change-temporal-password-use-case/change-temporal-password-use-case';
 
 const config = new ConfigService();
 @Module({
@@ -37,16 +39,18 @@ const config = new ConfigService();
     GetAllAuthuserController,
     DeleteAuthUserByIdController,
     UpdateAuthuserController,
+    ChangeTemporalPasswordController,
     LoginController
   ],
   providers: [
     CreateAuthUserUseCase,
-    CreateAuthUserStudentUseCase,
+    EnrollAuthUserStudentUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
     UpdateAuthUserUseCase,
     LoginUseCase,
+    ChangeTemporalPasswordUseCase,
     TypeOrmAuthUserRepository,
     {
       provide: AuthUserRepository,
@@ -56,12 +60,13 @@ const config = new ConfigService();
   ],
   exports: [
     CreateAuthUserUseCase,
-    CreateAuthUserStudentUseCase,
+    EnrollAuthUserStudentUseCase,
     FindAuthUserByUsernameUseCase,
     GetAllAuthUserUseCase,
     DeleteAuthUserByIdUseCase,
     UpdateAuthUserUseCase,
-    LoginUseCase
+    LoginUseCase,
+    ChangeTemporalPasswordUseCase,
   ],
 })
 export class AuthUserModule {}
