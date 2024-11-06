@@ -7,4 +7,5 @@ export abstract class AuthUserRepository {
   abstract deleteById(id: number): Promise<void>;
   abstract updateById(id: number, authUser: RequestAuthUser): Promise<AuthUser>;
   abstract login(email: string, password: string): Promise<AuthUser | null>;
+  abstract changePassword(username: string, password: string): Promise<void>;
 }
