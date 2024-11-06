@@ -2,17 +2,22 @@ import { Injectable } from '../../../../shared/dependency-injection/injectable';
 import { AuthUser } from '../../domain/authuser.model';
 import { AuthUserRepository } from '../../domain/authuser.repository';
 import { UserTypeEnum } from '../../../userType/domain/user-type.enum';
-import { CreateAuthUserStudentUseCaseDto } from './create-authuser-student-use-case.dto';
+import { EnrollAuthUserStudentUseCaseDto } from './enroll-authuser-student-use-case.dto';
 import { encryptPassword } from '../../../../services/password-service';
 import { HttpException } from '@nestjs/common';
 
 @Injectable()
-export class CreateAuthUserStudentUseCase {
+export class EnrollAuthUserStudentUseCase {
     constructor(private readonly authUserRepository: AuthUserRepository) { }
 
     async execute(
-        dto: CreateAuthUserStudentUseCaseDto,
+        dto: EnrollAuthUserStudentUseCaseDto,
     ): Promise<{ authUser: AuthUser }> {
+
+        if (!dto.accepted_terms) {
+            throw new HttpException('You must accept the terms and conditions', 400);
+        }
+        
         try {
             const authUser = new AuthUser();
             const passwordGenerated = this.generatePassword(8);
@@ -41,7 +46,7 @@ export class CreateAuthUserStudentUseCase {
         }
     }
 
-    private generatePassword = (length = 10): string => {
+    public generatePassword = (length = 10): string => {
         const chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+{}:"<>?|[];\'/`~';
         let password = '';
         for (let i = 0; i < length; i++) {

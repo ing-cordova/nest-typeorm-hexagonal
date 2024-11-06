@@ -1,4 +1,4 @@
-export interface CreateAuthUserStudentUseCaseDto {
+export interface EnrollAuthUserStudentUseCaseDto {
     first_name: string;
     last_name: string;
     username: string;

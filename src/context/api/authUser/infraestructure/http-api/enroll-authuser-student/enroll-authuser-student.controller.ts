@@ -1,23 +1,23 @@
 import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseInterceptors } from '@nestjs/common';
 import { AuthUser } from 'src/context/api/authUser/domain/authuser.model';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { CreateAuthUserStudentUseCase } from '../../../application/create-authuser-student-use-case/create-authuser-student-use-case';
-import { CreateAuthUserStudentHttpDto } from './create-authuser-student-http-dto';
 import { TypeOrmAuthUserRepository } from '../../repositories/typeorm-authuser.repository';
+import { EnrollAuthUserStudentUseCase } from '../../../application/enroll-authuser-student-use-case/enroll-authuser-student-use-case';
+import { EnrollAuthUserStudentHttpDto } from './enroll-authuser-student-http-dto';
 
 @ApiTags('authuser')
 @Controller('authuser')
 @UseInterceptors(ClassSerializerInterceptor)
 export class CreateAuthUserStudentController {
     constructor(
-        private createAuthUserStudentUseCase: CreateAuthUserStudentUseCase,
+        private enrollAuthUserStudentUseCase: EnrollAuthUserStudentUseCase,
         private readonly typeOrmAuthUserRepository: TypeOrmAuthUserRepository
     ) { }
 
     @Post('/student-enrollment')
     @ApiBody({
         description: 'Atributes requerid to create a new user at the system',
-        type: CreateAuthUserStudentHttpDto,
+        type: EnrollAuthUserStudentHttpDto,
     })
     @ApiResponse({
         status: 201,
@@ -52,11 +52,11 @@ export class CreateAuthUserStudentController {
         },
     })
     async run(
-        @Body() createAuthUserStudentHttpDto: CreateAuthUserStudentHttpDto
+        @Body() createAuthUserStudentHttpDto: EnrollAuthUserStudentHttpDto
     ): Promise<{ authUser: AuthUser }> {
         try {
             if(!createAuthUserStudentHttpDto.accepted_terms) throw new HttpException('You must accept the terms and conditions', 400);
-            return await this.createAuthUserStudentUseCase.execute({
+            return await this.enrollAuthUserStudentUseCase.execute({
                 first_name: createAuthUserStudentHttpDto.first_name,
                 last_name: createAuthUserStudentHttpDto.last_name,
                 phone_number: createAuthUserStudentHttpDto.phone_number,
