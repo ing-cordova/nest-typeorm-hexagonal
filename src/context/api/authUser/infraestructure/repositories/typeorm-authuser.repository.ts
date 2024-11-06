@@ -3,7 +3,7 @@ import { AuthUserRepository } from "../../domain/authuser.repository";
 import { AuthUser } from "../../domain/authuser.model";
 import { Repository } from "typeorm";
 import { Injectable } from "../../../../shared/dependency-injection/injectable";
-import { decryptPassword } from "../../../../services/password-service";
+import { decryptPassword, encryptPassword } from "../../../../services/password-service";
 import { HttpException } from "@nestjs/common";
 
 @Injectable()
@@ -52,5 +52,9 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
         const authUser = await this.repository.findOne({ where: { email }, relations: ['userType', 'country', 'state'], });
         if (authUser && decryptPassword(password, authUser.password)) return authUser;
         return null;
+    }
+
+    async changePassword(username: string, password: string): Promise<void> {
+        await this.repository.update({ username }, { password: encryptPassword(password), is_temporal_password: false });
     }
 }
