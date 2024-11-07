@@ -1,9 +1,10 @@
-import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseInterceptors } from '@nestjs/common';
+import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseGuards, UseInterceptors } from '@nestjs/common';
 import { AuthUser } from 'src/context/api/authUser/domain/authuser.model';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TypeOrmAuthUserRepository } from '../../repositories/typeorm-authuser.repository';
 import { EnrollAuthUserStudentUseCase } from '../../../application/enroll-authuser-student-use-case/enroll-authuser-student-use-case';
 import { EnrollAuthUserStudentHttpDto } from './enroll-authuser-student-http-dto';
+import { JwtAuthGuard } from 'src/context/services/jwt/jwt.guard';
 
 @ApiTags('authuser')
 @Controller('authuser')
@@ -15,6 +16,7 @@ export class CreateAuthUserStudentController {
     ) { }
 
     @Post('/student-enrollment')
+    @UseGuards(JwtAuthGuard)
     @ApiBody({
         description: 'Atributes requerid to create a new user at the system',
         type: EnrollAuthUserStudentHttpDto,
