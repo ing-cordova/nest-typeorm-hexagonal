@@ -47,3 +47,10 @@ export const generateAppToken = (authUser: AuthUser) => {
 export const generateAppRefreshToken = () => {
     return generateRefreshToken({ type: 'refresh' });
 }
+
+export const generateAPPTokenAndRefreshToken = (authUser: AuthUser) => {
+    return {
+        token: generateAppToken(authUser),
+        refreshToken: generateAppRefreshToken()
+    }
+}
