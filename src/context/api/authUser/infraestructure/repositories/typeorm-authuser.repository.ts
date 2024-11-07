@@ -55,6 +55,9 @@ export class TypeOrmAuthUserRepository extends AuthUserRepository {
     }
 
     async changePassword(username: string, password: string): Promise<void> {
+        const hasTemporalPassword = await this.repository.findOne({ where: { username, is_temporal_password: true } });
+
+        if (!hasTemporalPassword) throw new HttpException("You already changed your password", 404);
         await this.repository.update({ username }, { password: encryptPassword(password), is_temporal_password: false });
     }
 }
