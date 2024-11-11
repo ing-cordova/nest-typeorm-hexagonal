@@ -7,6 +7,7 @@ import { CountryModule } from './context/api/country/infraestructure/country.mod
 import { StateModule } from './context/api/State/infraestructure/state.module';
 import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
+import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';
 
 @Module({
   imports: [
@@ -31,6 +32,7 @@ import { PermissionUserTypeModule } from './context/api/permissionUserType/infra
     }),
     
     AuthUserModule,
+    RefreshTokenModule,
     UserTypeModule,
     CountryModule,
     StateModule,
