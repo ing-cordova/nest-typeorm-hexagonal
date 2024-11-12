@@ -1,19 +1,19 @@
 import { Module } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
-import { AuthUser } from '../../authUser/domain/authuser.model';
 import { JwtModule } from '@nestjs/jwt';
 import { RefreshTokenController } from './http-api/refresh-token/refresh-token.controller';
 import { JwtRefreshTokenStrategy } from 'src/context/services/jwt/jwt-refresh-token.strategy';
-import { TypeOrmAuthUserRepository } from '../../authUser/infraestructure/repositories/typeorm-authuser.repository';
-import { AuthUserRepository } from '../../authUser/domain/authuser.repository';
-import { FindAuthUserByUsernameUseCase } from '../../authUser/application/find-authuser-by-username-use-case/find-authuser-by-username-use-case';
+import { UserProfile } from '../../userProfile/domain/userprofile.model';
+import { FindUserProfileByUsernameUseCase } from '../../userProfile/application/find-userprofile-by-username-use-case/find-userprofile-by-username-use-case';
+import { TypeOrmUserProfileRepository } from '../../userProfile/infraestructure/repositories/typeorm-userprofile.repository';
+import { UserProfileRepository } from '../../userProfile/domain/userprofile.repository';
 
 
 const config = new ConfigService();
 @Module({
     imports: [
-        TypeOrmModule.forFeature([AuthUser]),
+        TypeOrmModule.forFeature([UserProfile]),
         JwtModule.register({
             secret: config.get<string>('REFRESH_TOKEN_SECRET'),
             signOptions: { expiresIn: config.get<string>('REFRESH_TOKEN_EXPIRATION') },
@@ -23,16 +23,16 @@ const config = new ConfigService();
         RefreshTokenController
     ],
     providers: [
-        FindAuthUserByUsernameUseCase,
-        TypeOrmAuthUserRepository,
+        FindUserProfileByUsernameUseCase,
+        TypeOrmUserProfileRepository,
         {
-          provide: AuthUserRepository,
-          useClass: TypeOrmAuthUserRepository,
+          provide: UserProfileRepository,
+          useClass: TypeOrmUserProfileRepository,
         },
         JwtRefreshTokenStrategy
     ],
     exports: [
-        FindAuthUserByUsernameUseCase
+        FindUserProfileByUsernameUseCase
     ],
 })
 export class RefreshTokenModule { }

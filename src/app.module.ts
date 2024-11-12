@@ -1,13 +1,13 @@
 import { Module, OnModuleInit } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AuthUserModule } from './context/api/authUser/infraestructure/authuser.module';
 import { UserTypeModule } from './context/api/userType/infraestructure/user-type.module';
 import { CountryModule } from './context/api/country/infraestructure/country.module';
 import { StateModule } from './context/api/State/infraestructure/state.module';
 import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';
+import { UserProfileModule } from './context/api/userProfile/infraestructure/authuser.module';
 
 @Module({
   imports: [
@@ -27,11 +27,11 @@ import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/r
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,  // Turn off in production mode
-        dropSchema: false,  // Turn off in production mode
+        dropSchema: true,  // Turn off in production mode
       }),
     }),
     
-    AuthUserModule,
+    UserProfileModule,
     RefreshTokenModule,
     UserTypeModule,
     CountryModule,

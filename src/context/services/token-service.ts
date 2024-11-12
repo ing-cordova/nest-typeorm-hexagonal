@@ -1,7 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
-import { AuthUser } from '../api/authUser/domain/authuser.model';
 import exp from 'constants';
+import { UserProfile } from '../api/userProfile/domain/userprofile.model';
 
 const configService = new ConfigService();
 
@@ -33,13 +33,13 @@ export const verifyToken = (token: string) => {
     return jwt.verify(token, configService.get<string>('TOKEN_SECRET'));
 };
 
-export const generateAppToken = (authUser: AuthUser) => {
+export const generateAppToken = (userProfile: UserProfile) => {
     return generateToken(
         {
-            user_type: authUser.userType.name,
-            username: authUser.username,
-            location: authUser.country.name,
-            has_temporal_password: authUser.is_temporal_password
+            user_type: userProfile.userType.name,
+            username: userProfile.username,
+            location: userProfile.country.name,
+            has_temporal_password: userProfile.is_temporal_password
         }
     );
 };
@@ -48,9 +48,9 @@ export const generateAppRefreshToken = () => {
     return generateRefreshToken({ type: 'refresh' });
 }
 
-export const generateAPPTokenAndRefreshToken = (authUser: AuthUser) => {
+export const generateAPPTokenAndRefreshToken = (userProfile: UserProfile) => {
     return {
-        token: generateAppToken(authUser),
+        token: generateAppToken(userProfile),
         refreshToken: generateAppRefreshToken()
     }
 }

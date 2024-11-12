@@ -1,13 +1,13 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
-import { AuthUser } from "../api/authUser/domain/authuser.model";
 import { encryptPassword } from "../services/password-service";
+import { UserProfile } from "../api/userProfile/domain/userprofile.model";
 
-export class AuthUserSeeder implements Seeder {
+export class UserProfileSeeder implements Seeder {
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
-        const authUserRepository = dataSource.getRepository(AuthUser);
+        const userProfileRepository = dataSource.getRepository(UserProfile);
 
-        const authUserToInsert = [
+        const userProfileToInsert = [
             {
                 user_type_id: 1,
                 first_name: "Super Administrator",
@@ -71,7 +71,7 @@ export class AuthUserSeeder implements Seeder {
             
         ];
 
-        await authUserRepository.insert(authUserToInsert);
-        console.log('> Seeded AuthUser Successfully');
+        await userProfileRepository.insert(userProfileToInsert);
+        console.log('> Seeded UserProfile Successfully');
     }
 }

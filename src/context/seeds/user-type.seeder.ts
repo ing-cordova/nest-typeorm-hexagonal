@@ -1,7 +1,5 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
-import { AuthUser } from "../api/authUser/domain/authuser.model";
-import { encryptPassword } from "../services/password-service";
 import { UserType } from "../api/userType/domain/user-type.model";
 
 export class UserTypeSeeder implements Seeder {
