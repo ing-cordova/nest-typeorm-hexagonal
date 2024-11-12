@@ -5,8 +5,8 @@ import { ChangeTemporalPasswordHttpDto } from './change-temporal-password-http-d
 import { JwtAuthGuard } from 'src/context/services/jwt/jwt.guard';
 import { GetInformationByToken } from 'src/context/services/get-information.decorator';
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('auth')
+@Controller('auth')
 @UseInterceptors(ClassSerializerInterceptor)
 export class ChangeTemporalPasswordController {
     constructor(private changeTemporalPasswordUseCase: ChangeTemporalPasswordUseCase) { }

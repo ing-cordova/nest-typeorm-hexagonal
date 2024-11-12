@@ -5,8 +5,8 @@ import { JwtAuthGuard } from 'src/context/services/jwt/jwt.guard';
 import { generateAPPTokenAndRefreshToken } from 'src/context/services/token-service';
 import { FindAuthUserByUsernameUseCase } from 'src/context/api/authUser/application/find-authuser-by-username-use-case/find-authuser-by-username-use-case';
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('auth')
+@Controller('auth')
 @UseInterceptors(ClassSerializerInterceptor)
 export class RefreshTokenController {
     constructor(private readonly findAuthuserByUsernameUseCase: FindAuthUserByUsernameUseCase,) { }

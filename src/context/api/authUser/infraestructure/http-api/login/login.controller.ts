@@ -4,8 +4,8 @@ import { LoginUseCase } from "src/context/api/authUser/application/login-use-cas
 import { LoginHttpDto } from "./login-http.dto";
 import { generateAPPTokenAndRefreshToken } from "src/context/services/token-service";
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('auth')
+@Controller('auth')
 @UseInterceptors(ClassSerializerInterceptor)
 export class LoginController {
     constructor(private readonly loginUseCase: LoginUseCase) { }
