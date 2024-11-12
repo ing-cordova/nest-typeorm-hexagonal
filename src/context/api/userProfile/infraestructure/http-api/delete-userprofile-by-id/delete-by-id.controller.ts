@@ -5,8 +5,8 @@ import { JwtAuthGuard } from "src/context/services/jwt/jwt.guard";
 import { GetInformationByToken } from "src/context/services/get-information.decorator";
 import { DeleteUserProfileByIdUseCase } from "../../../application/delete-userprofile-by-id-use-case/delete-userprofile-by-id-use-case";
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('user-profile')
+@Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
 export class DeleteUserProfileByIdController {
 

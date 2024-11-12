@@ -5,8 +5,8 @@ import { UpdateUserProfileParamsHttpDto } from "./update-userprofile-params-http
 import { UpdateUserProfileHttpDto } from "./update-userprofile-http-dto";
 import { UserProfile } from "../../../domain/userprofile.model";
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('user-profile')
+@Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
 export class UpdateUserProfileController {
     constructor(private readonly updateUserProfileUseCase: UpdateUserProfileUseCase) { }

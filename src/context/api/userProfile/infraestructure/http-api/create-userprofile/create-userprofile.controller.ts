@@ -4,8 +4,8 @@ import { CreateUserProfileUseCase } from '../../../application/create-userprofil
 import { CreateUserProfileHttpDto } from './create-userprofile-http-dto';
 import { UserProfile } from '../../../domain/userprofile.model';
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('user-profile')
+@Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
 export class CreateUserProfileController {
   constructor(private createUserProfileUseCase: CreateUserProfileUseCase) { }

@@ -5,8 +5,8 @@ import { FindUserProfileByUsernameHttpDto } from './find-userprofile-by-username
 import { UserProfile } from '../../../domain/userprofile.model';
 import { UserProfileNotFoundException } from '../../../domain/userprofile-not-found.exception';
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('user-profile')
+@Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
 export class FindAuthuserByUsernameController {
   constructor(

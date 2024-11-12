@@ -16,7 +16,6 @@ async function bootstrap() {
     .setTitle('BelsGI Oficial API')
     .setDescription('This api was created for BELS GI ACADEMY 2024')
     .setVersion('1.0')
-    .addTag('authuser')
     .build();
 
   /**

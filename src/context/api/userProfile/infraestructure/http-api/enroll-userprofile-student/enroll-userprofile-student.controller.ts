@@ -6,8 +6,8 @@ import { EnrollUserProfileStudentUseCase } from '../../../application/enroll-use
 import { TypeOrmUserProfileRepository } from '../../repositories/typeorm-userprofile.repository';
 import { UserProfile } from '../../../domain/userprofile.model';
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('user-profile')
+@Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
 export class CreateUserProfileStudentController {
     constructor(

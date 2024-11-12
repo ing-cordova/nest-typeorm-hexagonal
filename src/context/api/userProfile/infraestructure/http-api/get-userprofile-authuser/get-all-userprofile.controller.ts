@@ -3,8 +3,8 @@ import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetAllUserProfileUseCase } from '../../../application/get-all-userprofile-use-case/get-all-userprofile-use-case';
 import { UserProfile } from '../../../domain/userprofile.model';
 
-@ApiTags('authuser')
-@Controller('authuser')
+@ApiTags('user-profile')
+@Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
 export class GetAllUserProfileqController {
   constructor(private readonly getAllUserProfileUseCase: GetAllUserProfileUseCase) { }
