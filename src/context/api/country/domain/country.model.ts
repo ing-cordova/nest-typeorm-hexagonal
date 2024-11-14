@@ -1,3 +1,4 @@
+import { Exclude } from "class-transformer";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity('country')
@@ -18,14 +19,20 @@ export class Country {
     phone_code: string;
 
     @Column()
-    flag: string;
+    region: string;
 
     @Column()
+    currency: string;
+
+    @Column()
+    @Exclude()
     created_at: Date;
 
     @Column({ nullable: true })
+    @Exclude()
     updated_at: Date;
 
     @Column({ nullable: true })
+    @Exclude()
     deleted_at: Date;
 }

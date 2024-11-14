@@ -1,0 +1,12 @@
+[
+    {
+        "id": 1,
+        "name": "ADD_NEW_USER",
+        "user_types": [1, 2]
+    },
+    {
+        "id": 2,
+        "name": "UPDATE_USER",
+        "user_types": [1, 2, 3, 4]
+    }
+]

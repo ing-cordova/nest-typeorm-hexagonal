@@ -1,13 +1,14 @@
 {
   "name": "nestjs-typeorm-hexagonal-ps",
   "version": "1.0.0",
-  "description": "API Example using Hexagonal Architecture with PostgreSQL",
+  "description": "API Template using Hexagonal Architecture with PostgreSQL",
   "author": "Andres Cordova",
   "private": false,
   "license": "MIT",
   "scripts": {
     "build": "nest build",
     "format": "prettier --write \"src/**/*.ts\" \"test/**/*.ts\"",
+    "seed": "ts-node -r tsconfig-paths/register src/cli.ts",
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",

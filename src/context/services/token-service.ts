@@ -1,6 +1,7 @@
 import * as jwt from 'jsonwebtoken';
 import { ConfigService } from '@nestjs/config';
-import { AuthUser } from '../api/authUser/domain/authuser.model';
+import exp from 'constants';
+import { UserProfile } from '../api/userProfile/domain/userprofile.model';
 
 const configService = new ConfigService();
 
@@ -16,10 +17,40 @@ export const generateToken = (payload: any) => {
     return token;
 };
 
+export const generateRefreshToken = (payload: any) => {
+    const refreshToken = jwt.sign(
+        payload,
+        configService.get<string>('REFRESH_TOKEN_SECRET'),
+        {
+            expiresIn: configService.get<string>('REFRESH_TOKEN_EXPIRATION'),
+        }
+    );
+
+    return refreshToken;
+};
+
 export const verifyToken = (token: string) => {
     return jwt.verify(token, configService.get<string>('TOKEN_SECRET'));
 };
 
-export const generateAppToken = (authUser: AuthUser) => {
-    return generateToken({user_type: 'SUPER_ADMIN', username: authUser.username});
- }
+export const generateAppToken = (userProfile: UserProfile) => {
+    return generateToken(
+        {
+            user_type: userProfile.userType.name,
+            username: userProfile.username,
+            location: userProfile.country.name,
+            has_temporal_password: userProfile.is_temporal_password
+        }
+    );
+};
+
+export const generateAppRefreshToken = () => {
+    return generateRefreshToken({ type: 'refresh' });
+}
+
+export const generateAPPTokenAndRefreshToken = (userProfile: UserProfile) => {
+    return {
+        token: generateAppToken(userProfile),
+        refreshToken: generateAppRefreshToken()
+    }
+}
