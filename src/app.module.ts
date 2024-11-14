@@ -7,7 +7,7 @@ import { StateModule } from './context/api/State/infraestructure/state.module';
 import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';
-import { UserProfileModule } from './context/api/userProfile/infraestructure/authuser.module';
+import { UserProfileModule } from './context/api/userProfile/infraestructure/userprofile.module';
 
 @Module({
   imports: [
@@ -27,7 +27,7 @@ import { UserProfileModule } from './context/api/userProfile/infraestructure/aut
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
         synchronize: true,  // Turn off in production mode
-        dropSchema: true,  // Turn off in production mode
+        dropSchema: false,  // Turn off in production mode
       }),
     }),
     
