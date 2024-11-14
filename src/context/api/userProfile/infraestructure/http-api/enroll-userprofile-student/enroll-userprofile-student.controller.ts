@@ -5,6 +5,8 @@ import { EnrollUserProfileStudentHttpDto } from './enroll-userprofile-student-ht
 import { EnrollUserProfileStudentUseCase } from '../../../application/enroll-userprofile-student-use-case/enroll-userprofile-student-use-case';
 import { TypeOrmUserProfileRepository } from '../../repositories/typeorm-userprofile.repository';
 import { UserProfile } from '../../../domain/userprofile.model';
+import { PermissionsGuard } from 'src/context/guards/permissions.guard';
+import { Permissions } from 'src/context/decorators/permissions.decorator';
 
 @ApiTags('user-profile')
 @Controller('user-profile')
@@ -16,11 +18,12 @@ export class CreateUserProfileStudentController {
     ) { }
 
     @Post('/student-enrollment')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, PermissionsGuard)
     @ApiBody({
         description: 'Atributes requerid to create a new user at the system',
         type: EnrollUserProfileStudentHttpDto,
     })
+    @Permissions('ADD_NEW_USER')
     @ApiResponse({
         status: 201,
         description: 'The user with student role has been successfully created.',
