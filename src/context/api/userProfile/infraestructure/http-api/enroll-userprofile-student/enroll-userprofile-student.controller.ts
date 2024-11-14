@@ -1,12 +1,12 @@
 import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { JwtAuthGuard } from 'src/context/services/jwt/jwt.guard';
 import { EnrollUserProfileStudentHttpDto } from './enroll-userprofile-student-http-dto';
 import { EnrollUserProfileStudentUseCase } from '../../../application/enroll-userprofile-student-use-case/enroll-userprofile-student-use-case';
 import { TypeOrmUserProfileRepository } from '../../repositories/typeorm-userprofile.repository';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { PermissionsGuard } from 'src/context/guards/permissions.guard';
 import { Permissions } from 'src/context/decorators/permissions.decorator';
+import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
 
 @ApiTags('user-profile')
 @Controller('user-profile')
