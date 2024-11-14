@@ -22,6 +22,7 @@ import { DeleteUserProfileByIdController } from './http-api/delete-userprofile-b
 import { CreateUserProfileStudentController } from './http-api/enroll-userprofile-student/enroll-userprofile-student.controller';
 import { GetAllUserProfileqController } from './http-api/get-userprofile-authuser/get-all-userprofile.controller';
 import { UpdateUserProfileController } from './http-api/update-userprofile/update-userprofile.controller';
+import { PermissionModule } from '../../permission/infraestructure/permission.module';
 
 const config = new ConfigService();
 @Module({
@@ -30,7 +31,8 @@ const config = new ConfigService();
     JwtModule.register({
       secret: config.get<string>('TOKEN_SECRET'),
       signOptions: { expiresIn: config.get<string>('TOKEN_EXPIRATION') },
-    })
+    }),
+    PermissionModule
   ],
   controllers: [
     CreateUserProfileController,
