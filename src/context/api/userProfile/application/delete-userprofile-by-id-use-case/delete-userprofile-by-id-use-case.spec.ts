@@ -8,7 +8,7 @@ describe('DeleteUserProfileByIdUseCase', () => {
     let userProfileRepository: UserProfileRepository;
 
     beforeEach(() => {
-        // Mock del AuthUserRepository
+        // Mock del UserProfileRepository
         userProfileRepository = {
             deleteById: jest.fn().mockResolvedValue(undefined), // Simulando que el deleteById siempre es exitoso
         } as unknown as UserProfileRepository;

@@ -4,9 +4,9 @@ import { DeleteUserProfileByIdUseCaseDto } from './delete-userprofile-use-by-id-
 
 @Injectable()
 export class DeleteUserProfileByIdUseCase {
-    constructor(private readonly authUserRepository: UserProfileRepository) {}
+    constructor(private readonly userProfileRepository: UserProfileRepository) {}
 
     execute(dto: DeleteUserProfileByIdUseCaseDto): Promise<void> {
-        return this.authUserRepository.deleteById(dto.id);
+        return this.userProfileRepository.deleteById(dto.id);
     }
 }

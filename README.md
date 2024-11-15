@@ -22,7 +22,7 @@ This api template was designed to help developers quickly build applications tha
 src/
 │
 ├── context/                      # Context of the project
-│   ├── authUser/                 # AuthUser Entity Folder
+│   ├── userProfile/              # UserProfile Entity Folder
 │   │   ├── application/          # Entity UseCases
 │   │   │   ├── use-case/
 │   │   ├── domain/               # Domain Entity

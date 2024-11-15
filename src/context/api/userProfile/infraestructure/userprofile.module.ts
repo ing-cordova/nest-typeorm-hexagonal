@@ -1,5 +1,4 @@
 import { Module } from '@nestjs/common';
-import { FindAuthuserByUsernameController } from './http-api/find-userprofile-by-username/find-userprofile-by-username.controller';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { LoginController } from './http-api/login/login.controller';
 import { LoginUseCase } from '../application/login-use-case/login-use-case';
@@ -20,9 +19,10 @@ import { TypeOrmUserProfileRepository } from './repositories/typeorm-userprofile
 import { CreateUserProfileController } from './http-api/create-userprofile/create-userprofile.controller';
 import { DeleteUserProfileByIdController } from './http-api/delete-userprofile-by-id/delete-by-id.controller';
 import { CreateUserProfileStudentController } from './http-api/enroll-userprofile-student/enroll-userprofile-student.controller';
-import { GetAllUserProfileqController } from './http-api/get-userprofile-authuser/get-all-userprofile.controller';
+import { GetAllUserProfileqController } from './http-api/get-all-userprofiles/get-all-userprofile.controller';
 import { UpdateUserProfileController } from './http-api/update-userprofile/update-userprofile.controller';
 import { PermissionModule } from '../../permission/infraestructure/permission.module';
+import { FindUserProfileByUsernameController } from './http-api/find-userprofile-by-username/find-userprofile-by-username.controller';
 
 const config = new ConfigService();
 @Module({
@@ -37,7 +37,7 @@ const config = new ConfigService();
   controllers: [
     CreateUserProfileController,
     CreateUserProfileStudentController,
-    FindAuthuserByUsernameController,
+    FindUserProfileByUsernameController,
     GetAllUserProfileqController,
     DeleteUserProfileByIdController,
     UpdateUserProfileController,

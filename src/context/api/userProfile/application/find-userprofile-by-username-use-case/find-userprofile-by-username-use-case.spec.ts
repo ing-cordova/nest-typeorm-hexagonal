@@ -10,7 +10,7 @@ describe('FindUserProfileByUsernameUseCase', () => {
 
   beforeEach(async () => {
     // Crear un mock del repositorio
-    const mockAuthUserRepository = {
+    const mockUserProfileRepository = {
       findByUsername: jest.fn(),
     };
 
@@ -19,7 +19,7 @@ describe('FindUserProfileByUsernameUseCase', () => {
         FindUserProfileByUsernameUseCase,
         {
           provide: UserProfileRepository,
-          useValue: mockAuthUserRepository, // Usamos el mock
+          useValue: mockUserProfileRepository, // Usamos el mock
         },
       ],
     }).compile();
@@ -32,7 +32,7 @@ describe('FindUserProfileByUsernameUseCase', () => {
     ) as jest.Mocked<UserProfileRepository>; // Asegurarse de que esté correctamente tipeado como un mock
   });
 
-  it('should return an AuthUser when found by username', async () => {
+  it('should return an UserProfile when found by username', async () => {
     // Arrange: Definir un mock de usuario
     const mockUserProfile = new UserProfile();
     mockUserProfile.username = 'testuser';
@@ -52,7 +52,7 @@ describe('FindUserProfileByUsernameUseCase', () => {
     expect(userProfileRepository.findByUsername).toHaveBeenCalledWith('testuser');
   });
 
-  it('should throw AuthUserNotFoundException when user not found', async () => {
+  it('should throw UserProfileNotFoundException when user not found', async () => {
     // Arrange: Simular que el repositorio no encuentra un usuario
     userProfileRepository.findByUsername.mockResolvedValue(null);
 

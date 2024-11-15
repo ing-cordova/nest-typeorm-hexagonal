@@ -9,7 +9,7 @@ describe('UpdateUserProfileUseCase', () => {
     let updateUserProfileUseCase: UpdateUserProfileUseCase;
     let userProfileRepository: UserProfileRepository;
 
-    const mockAuthUserRepository = {
+    const mockUserProfileRepository = {
         updateById: jest.fn(),
         findById: jest.fn(),
     };
@@ -42,7 +42,7 @@ describe('UpdateUserProfileUseCase', () => {
         created_at: new Date(),
         updated_at: new Date(),
         deleted_at: new Date(),
-        // otros campos necesarios para AuthUser
+        // otros campos necesarios para UserProfile
     };
 
     beforeEach(async () => {
@@ -51,7 +51,7 @@ describe('UpdateUserProfileUseCase', () => {
                 UpdateUserProfileUseCase,
                 {
                     provide: UserProfileRepository,
-                    useValue: mockAuthUserRepository,
+                    useValue: mockUserProfileRepository,
                 },
             ],
         }).compile();
@@ -62,7 +62,7 @@ describe('UpdateUserProfileUseCase', () => {
 
     it('debe actualizar un usuario autenticado exitosamente', async () => {
         // Simulamos que el repositorio devuelve el usuario actualizado
-        mockAuthUserRepository.updateById.mockResolvedValue(mockUserProfile);
+        mockUserProfileRepository.updateById.mockResolvedValue(mockUserProfile);
 
         const params = { id: 1 };
         const reqBody = { username: 'newUsername', email: 'newEmail@example.com' };
@@ -70,13 +70,13 @@ describe('UpdateUserProfileUseCase', () => {
         const result = await updateUserProfileUseCase.execute(params, reqBody);
 
         // Asegúrate de que el repositorio se haya llamado con los valores correctos
-        expect(mockAuthUserRepository.updateById).toHaveBeenCalledWith(1, reqBody);
+        expect(mockUserProfileRepository.updateById).toHaveBeenCalledWith(1, reqBody);
         expect(result.userProfile).toEqual(mockUserProfile);
     });
 
     it('debe lanzar una excepción si no se puede actualizar el usuario', async () => {
         // Simulamos que el repositorio lanza un error
-        mockAuthUserRepository.updateById.mockRejectedValue(new Error());
+        mockUserProfileRepository.updateById.mockRejectedValue(new Error());
 
         const params = { id: 1 };
         const reqBody = { username: 'newUsername', email: 'newEmail@example.com' };
@@ -84,6 +84,6 @@ describe('UpdateUserProfileUseCase', () => {
         await expect(updateUserProfileUseCase.execute(params, reqBody)).rejects.toThrow(UserProfileCannotUpdateException);
 
         // Verificamos que el repositorio haya sido llamado antes de lanzar la excepción
-        expect(mockAuthUserRepository.updateById).toHaveBeenCalledWith(1, reqBody);
+        expect(mockUserProfileRepository.updateById).toHaveBeenCalledWith(1, reqBody);
     });
 });

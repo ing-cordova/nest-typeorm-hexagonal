@@ -30,7 +30,7 @@ export class CreateUserProfileStudentController {
         schema: {
             type: 'object',
             properties: {
-                authUser: {
+                userProfile: {
                     type: 'object',
                     properties: {
                         id: { type: 'integer', example: 16 },
