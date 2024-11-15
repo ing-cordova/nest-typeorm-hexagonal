@@ -7,6 +7,7 @@ import { UserProfile } from '../../../domain/userprofile.model';
 import { PermissionsGuard } from 'src/context/guards/permissions.guard';
 import { Permissions } from 'src/context/decorators/permissions.decorator';
 import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
+import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
 
 @ApiTags('user-profile')
 @Controller('user-profile')
@@ -23,7 +24,7 @@ export class CreateUserProfileStudentController {
         description: 'Atributes requerid to create a new user at the system',
         type: EnrollUserProfileStudentHttpDto,
     })
-    @Permissions('ADD_NEW_USER')
+    @Permissions(PermissionEnum.ADD_NEW_USER)
     @ApiResponse({
         status: 201,
         description: 'The user with student role has been successfully created.',
