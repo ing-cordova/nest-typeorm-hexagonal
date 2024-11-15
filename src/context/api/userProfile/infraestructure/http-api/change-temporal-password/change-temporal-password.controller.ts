@@ -4,6 +4,9 @@ import { ChangeTemporalPasswordUseCase } from '../../../application/change-tempo
 import { ChangeTemporalPasswordHttpDto } from './change-temporal-password-http-dto';
 import { GetInformationByToken } from 'src/context/services/get-information.decorator';
 import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
+import { PermissionsGuard } from 'src/context/guards/permissions.guard';
+import { Permissions } from 'src/context/decorators/permissions.decorator';
+import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
 
 @ApiTags('auth')
 @Controller('auth')
@@ -12,7 +15,8 @@ export class ChangeTemporalPasswordController {
     constructor(private changeTemporalPasswordUseCase: ChangeTemporalPasswordUseCase) { }
 
     @Patch('change-temporal-password')
-    @UseGuards(JwtAuthGuard)
+    @UseGuards(JwtAuthGuard, PermissionsGuard)
+    @Permissions(PermissionEnum.CHANGE_TEMPORAL_PASSWORD)
     @ApiBody({
         description: 'Atributes requerid to change temporal password',
         type: ChangeTemporalPasswordHttpDto,
