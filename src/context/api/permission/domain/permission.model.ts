@@ -11,6 +11,9 @@ export class Permission {
     can: string
 
     @Column()
+    description: string
+
+    @Column()
     @Exclude()
     created_at: Date
     
