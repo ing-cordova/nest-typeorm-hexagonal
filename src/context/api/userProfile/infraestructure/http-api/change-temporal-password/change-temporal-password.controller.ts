@@ -2,8 +2,8 @@ import { Body, ClassSerializerInterceptor, Controller, Patch, UseGuards, UseInte
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ChangeTemporalPasswordUseCase } from '../../../application/change-temporal-password-use-case/change-temporal-password-use-case';
 import { ChangeTemporalPasswordHttpDto } from './change-temporal-password-http-dto';
-import { JwtAuthGuard } from 'src/context/services/jwt/jwt.guard';
 import { GetInformationByToken } from 'src/context/services/get-information.decorator';
+import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
 
 @ApiTags('auth')
 @Controller('auth')

@@ -2,8 +2,8 @@ import { ClassSerializerInterceptor, Controller, HttpException, Post, UseGuards,
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetInformationByToken } from 'src/context/services/get-information.decorator';
 import { generateAPPTokenAndRefreshToken } from 'src/context/services/token-service';
-import { JwtAuthRefreshGuard } from 'src/context/services/jwt/jwt-refresh.guard';
 import { FindUserProfileByUsernameUseCase } from 'src/context/api/userProfile/application/find-userprofile-by-username-use-case/find-userprofile-by-username-use-case';
+import { JwtAuthRefreshGuard } from 'src/context/guards/jwt-refresh.guard';
 
 @ApiTags('auth')
 @Controller('auth')
