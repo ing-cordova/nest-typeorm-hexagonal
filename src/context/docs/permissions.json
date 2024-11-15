@@ -1,12 +1,20 @@
 [
     {
         "id": 1,
-        "name": "ADD_NEW_USER",
+        "can": "ADD_NEW_USER",
+        "description": "Permission to add new user into the system",
         "user_types": [1, 2]
     },
     {
         "id": 2,
-        "name": "UPDATE_USER",
+        "can": "CHANGE_TEMPORAL_PASSWORD",
+        "description": "Permission to change the temporal password",
+        "user_types": [1, 2, 3, 4]
+    },
+    {
+        "id": 3,
+        "can": "REFRESH_TOKEN",
+        "description": "Permission to refresh the main token",
         "user_types": [1, 2, 3, 4]
     }
 ]

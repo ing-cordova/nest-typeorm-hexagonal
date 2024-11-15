@@ -16,7 +16,8 @@ export class PermissionSeeder implements Seeder {
 
         const permissionsToInsert = jsonData.map((permission: any) => ({
             id: permission.id,
-            can: permission.name,
+            can: permission.can,
+            description: permission.description,
             created_at: new Date()
         }));
 
