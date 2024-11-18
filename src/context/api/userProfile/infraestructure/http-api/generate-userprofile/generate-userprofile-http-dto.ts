@@ -3,6 +3,13 @@ import { IsBoolean, IsEmail, IsInt, IsString } from "class-validator";
 
 export class GenerateUserProfileHttpDto {
     @ApiProperty({
+        type: Number,
+        description: 'User type id',
+    })
+    @IsInt()
+    user_type_id: number;
+
+    @ApiProperty({
         type: String,
         description: 'First name',
     })
