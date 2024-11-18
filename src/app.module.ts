@@ -19,7 +19,7 @@ import { UserProfileModule } from './context/api/userProfile/infraestructure/use
       imports: [ConfigModule],
       inject: [ConfigService],
       useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
+        type: configService.get<string>('DB_TYPE') as any, // supported: https://typeorm.io/data-source-options
         host: configService.get<string>('DB_HOST'),
         port: configService.get<number>('DB_PORT'),
         username: configService.get<string>('DB_USERNAME'),
