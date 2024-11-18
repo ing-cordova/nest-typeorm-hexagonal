@@ -22,7 +22,7 @@ This api template was designed to help developers quickly build applications tha
 src/
 │
 ├── context/                      # Context of the project
-│   ├── authUser/                 # AuthUser Entity Folder
+│   ├── userProfile/              # UserProfile Entity Folder
 │   │   ├── application/          # Entity UseCases
 │   │   │   ├── use-case/
 │   │   ├── domain/               # Domain Entity
@@ -50,7 +50,45 @@ cd nest-typeorm-hexagonal
 npm install
 ```
 
-4. Set up environment variables
+4. **Set up your database**: By default, the application uses a PostgreSQL database. You can change the database configuration in the `.env` file. You can use the following databases:
+
+### Supported databases:
+
+* MySQL or MariaDB
+* PostgreSQL or CockroachDB
+* SQLite
+* Microsoft SQL Server
+* Oracle
+* SAP Hana
+* Google Cloud Spanner
+* MongoDB (experimental)
+
+### Installation:
+
+To use a different database, you need to install the right driver for your environment:
+
+```bash
+npm install DRIVER_NAME --save
+```
+
+
+| Database | Driver |
+| --- | --- |
+| MySQL or MariaDB | `mysql` or `mysql2` |
+| PostgreSQL or CockroachDB | `pg` |
+| SQLite | `sqlite3` |
+| Microsoft SQL Server | `mssql` |
+| Oracle | `oracledb` |
+| SAP Hana | `@sap/hana-client` and `hdb-pool` |
+| Google Cloud Spanner | `@google-cloud/spanner` |
+| MongoDB | `mongodb@^5.2.0` |
+
+### Environment variables:
+
+* For Google Cloud Spanner, you need to set the `GOOGLE_APPLICATION_CREDENTIALS` environment variable with the path to your JSON key file.
+* For SAP Hana, you need to set the `SPANNER_EMULATOR_HOST` environment variable if you want to use the emulator.
+
+5. Set up environment variables
 ```bash
 source .env
 ```

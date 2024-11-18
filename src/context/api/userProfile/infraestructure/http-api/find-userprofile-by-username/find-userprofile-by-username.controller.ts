@@ -8,7 +8,7 @@ import { UserProfileNotFoundException } from '../../../domain/userprofile-not-fo
 @ApiTags('user-profile')
 @Controller('user-profile')
 @UseInterceptors(ClassSerializerInterceptor)
-export class FindAuthuserByUsernameController {
+export class FindUserProfileByUsernameController {
   constructor(
     private readonly findUserProfileByUsernameUseCase: FindUserProfileByUsernameUseCase,
   ) {}
@@ -17,15 +17,15 @@ export class FindAuthuserByUsernameController {
     name: 'username',
     type: String,
     required: true,
-    description: 'The username of the authuser',
+    description: 'The username of the userProfile',
   })
   @ApiResponse({
     status: 200,
-    description: 'Returns the authuser found',
+    description: 'Returns the userProfile found',
     schema: {
       type: 'object',
       properties: {
-        authUser: {
+        userProfile: {
           type: 'object',
           properties: {
             id: { type: 'integer', example: 1 },

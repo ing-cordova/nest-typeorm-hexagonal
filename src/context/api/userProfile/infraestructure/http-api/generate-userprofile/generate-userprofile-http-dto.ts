@@ -1,7 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { IsBoolean, IsEmail, IsInt, IsString } from "class-validator";
 
-export class EnrollUserProfileStudentHttpDto {
+export class GenerateUserProfileHttpDto {
+    @ApiProperty({
+        type: Number,
+        description: 'User type id',
+    })
+    @IsInt()
+    user_type_id: number;
+
     @ApiProperty({
         type: String,
         description: 'First name',
@@ -44,11 +51,4 @@ export class EnrollUserProfileStudentHttpDto {
     })
     @IsInt()
     state_id: number;
-
-    @ApiProperty({
-        type: Boolean,
-        description: 'Accepted terms',
-    })
-    @IsBoolean()
-    accepted_terms: boolean;
 }

@@ -7,7 +7,7 @@ import { CountrySeeder } from './context/seeds/country.seeder';
 import { StateSeeder } from './context/seeds/state.seeder';
 import { UserTypeSeeder } from './context/seeds/user-type.seeder';
 import { PermissionSeeder } from './context/seeds/permission.seeder';
-import { UserProfileSeeder } from './context/seeds/authuser.seeder';
+import { UserProfileSeeder } from './context/seeds/user-profile.seeder';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);

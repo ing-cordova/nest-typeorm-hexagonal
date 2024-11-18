@@ -66,7 +66,7 @@ describe('TypeOrmUserProfileRepository', () => {
     expect(foundUser).toEqual(userProfile);
   });
 
-  it('should return all AuthUsers', async () => {
+  it('should return all UserProfiles', async () => {
     // Arrange: Simular que find devuelve una lista de usuarios
     const users = [
       {

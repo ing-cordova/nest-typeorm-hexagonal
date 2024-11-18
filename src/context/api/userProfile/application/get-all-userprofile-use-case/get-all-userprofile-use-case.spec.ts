@@ -10,7 +10,7 @@ describe('GetAllUserProfileUseCase', () => {
 
   beforeEach(async () => {
     // Crear un mock del repositorio
-    const mockAuthUserRepository = {
+    const mockUserProfileRepository = {
       findAll: jest.fn(),
     };
 
@@ -19,7 +19,7 @@ describe('GetAllUserProfileUseCase', () => {
         GetAllUserProfileUseCase,
         {
           provide: UserProfileRepository,
-          useValue: mockAuthUserRepository, // Usamos el mock
+          useValue: mockUserProfileRepository, // Usamos el mock
         },
       ],
     }).compile();

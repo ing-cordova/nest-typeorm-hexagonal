@@ -11,7 +11,7 @@ export class GetAllUserProfileqController {
 
   @ApiResponse({
     status: 200,
-    description: 'Get all authusers',
+    description: 'Get all userProfiles',
     schema: {
       type: 'array', // Definir que la respuesta es un array
       items: {

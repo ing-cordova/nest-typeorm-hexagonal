@@ -15,14 +15,14 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
         super();
     }
 
-    async create(authUser: UserProfile): Promise<void> {
+    async create(userProfile: UserProfile): Promise<void> {
         const foundUser = await this.repository.findOne({
-            where: [{ username: authUser.username }, { email: authUser.email }],
+            where: [{ username: userProfile.username }, { email: userProfile.email }],
         });
 
-        if (foundUser) throw new HttpException("User already exists", 409)
+        if (foundUser) throw new HttpException("There's already an account with this email or username", 409)
 
-        await this.repository.save(authUser);
+        await this.repository.save(userProfile);
     }
 
     async findByUsername(username: string): Promise<UserProfile | null> {
@@ -42,15 +42,15 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
         await this.repository.delete(id);
     }
 
-    async updateById(id: number, authUser: UserProfile): Promise<UserProfile> {
-        authUser.id = id;
-        await this.repository.update(id, authUser);
+    async updateById(id: number, userProfile: UserProfile): Promise<UserProfile> {
+        userProfile.id = id;
+        await this.repository.update(id, userProfile);
         return await this.repository.findOne({ where: { id } }) as UserProfile;
     }
 
     async login(email: string, password: string): Promise<UserProfile | null> {
-        const authUser = await this.repository.findOne({ where: { email }, relations: ['userType', 'country', 'state'], });
-        if (authUser && decryptPassword(password, authUser.password)) return authUser;
+        const userProfile = await this.repository.findOne({ where: { email }, relations: ['userType', 'country', 'state'], });
+        if (userProfile && decryptPassword(password, userProfile.password)) return userProfile;
         return null;
     }
 

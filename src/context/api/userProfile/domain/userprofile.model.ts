@@ -53,7 +53,7 @@ export class UserProfile {
   @Column({ default: true })
   is_temporal_password: boolean;
 
-  @Column()
+  @Column({ default: false })
   accepted_terms: boolean;
 
   @Column()

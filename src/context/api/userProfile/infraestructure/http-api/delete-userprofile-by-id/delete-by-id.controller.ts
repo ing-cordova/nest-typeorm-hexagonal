@@ -19,7 +19,7 @@ export class DeleteUserProfileByIdController {
         name: 'id',
         type: Number,
         required: true,
-        description: 'The id of the authuser',
+        description: 'The id of the userProfile',
     })
     @UseGuards(JwtAuthGuard)
     @Delete('/delete/:id')

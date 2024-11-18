@@ -1,4 +1,5 @@
-export interface EnrollUserProfileStudentUseCaseDto {
+export interface GenerateUserProfileUseCaseDto {
+    user_type_id: number;
     first_name: string;
     last_name: string;
     username: string;
@@ -6,5 +7,4 @@ export interface EnrollUserProfileStudentUseCaseDto {
     email: string;
     country_id: number;
     state_id: number;
-    accepted_terms: boolean;
 } 

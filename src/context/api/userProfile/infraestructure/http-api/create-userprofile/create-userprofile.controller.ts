@@ -21,7 +21,7 @@ export class CreateUserProfileController {
     schema: {
       type: 'object',
       properties: {
-        authUser: {
+        userProfile: {
           type: 'object',
           properties: {
             id: { type: 'integer', example: 1 },

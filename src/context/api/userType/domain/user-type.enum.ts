@@ -12,6 +12,13 @@ const userTypeMap: { [key: string]: number } = {
     'Teacher': UserTypeEnum.TEACHER
 };
 
+export const userTypeReverseMap: { [key: number]: string } = {
+    [UserTypeEnum.SUPER_ADMINISTRATOR]: 'SuperAdmin',
+    [UserTypeEnum.ADMINISTRATOR]: 'Administrator',
+    [UserTypeEnum.STUDENT]: 'Student',
+    [UserTypeEnum.TEACHER]: 'Teacher'
+};
+
 export function getUserTypeId(userType: string): number | undefined {
     return userTypeMap[userType];
 }
