@@ -4,7 +4,7 @@ import { HttpException } from '@nestjs/common';
 import { UserProfileRepository } from '../../domain/userprofile.repository';
 import { UserProfile } from '../../domain/userprofile.model';
 import { GenerateUserProfileUseCaseDto } from './generate-userprofile-use-case.dto';
-import { userTypeReverseMap } from 'src/context/api/userType/domain/user-type.enum';
+import { userTypeReverseMap } from '../../../userType/domain/user-type.enum';
 
 @Injectable()
 export class GenerateUserProfileUseCase {
