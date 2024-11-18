@@ -64,6 +64,7 @@ export class GenerateUserProfileController {
     ): Promise<{ userProfile: UserProfile }> {
         try {
             return await this.generateUserProfileUseCase.execute({
+                user_type_id: generateUserProfileHttpDto.user_type_id,
                 first_name: generateUserProfileHttpDto.first_name,
                 last_name: generateUserProfileHttpDto.last_name,
                 phone_number: generateUserProfileHttpDto.phone_number,
