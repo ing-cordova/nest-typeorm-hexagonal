@@ -14,10 +14,6 @@ export class GenerateUserProfileUseCase {
         dto: GenerateUserProfileUseCaseDto,
     ): Promise<{ userProfile: UserProfile }> {
 
-        if (!dto.accepted_terms) {
-            throw new HttpException('You must accept the terms and conditions', 400);
-        }
-
         try {
             const userProfile = new UserProfile();
             const passwordGenerated = this.generatePassword(8);
@@ -32,7 +28,6 @@ export class GenerateUserProfileUseCase {
             userProfile.country_id = dto.country_id;
             userProfile.state_id = dto.state_id;
             userProfile.password = encryptPassword(passwordGenerated);
-            userProfile.accepted_terms = dto.accepted_terms;
             userProfile.created_at = new Date();
 
             await this.userProfileRepository.create(userProfile);

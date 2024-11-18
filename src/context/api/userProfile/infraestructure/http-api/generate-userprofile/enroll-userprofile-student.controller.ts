@@ -63,7 +63,6 @@ export class GenerateUserProfileController {
         @Body() generateUserProfileHttpDto: GenerateUserProfileHttpDto
     ): Promise<{ userProfile: UserProfile }> {
         try {
-            if(!generateUserProfileHttpDto.accepted_terms) throw new HttpException('You must accept the terms and conditions', 400);
             return await this.generateUserProfileUseCase.execute({
                 first_name: generateUserProfileHttpDto.first_name,
                 last_name: generateUserProfileHttpDto.last_name,
@@ -71,7 +70,6 @@ export class GenerateUserProfileController {
                 email: generateUserProfileHttpDto.email,
                 country_id: generateUserProfileHttpDto.country_id,
                 state_id: generateUserProfileHttpDto.state_id,
-                accepted_terms: generateUserProfileHttpDto.accepted_terms,
                 username: await this.generateUsername(generateUserProfileHttpDto.first_name, generateUserProfileHttpDto.last_name)
             });
         }

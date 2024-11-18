@@ -44,11 +44,4 @@ export class GenerateUserProfileHttpDto {
     })
     @IsInt()
     state_id: number;
-
-    @ApiProperty({
-        type: Boolean,
-        description: 'Accepted terms',
-    })
-    @IsBoolean()
-    accepted_terms: boolean;
 }

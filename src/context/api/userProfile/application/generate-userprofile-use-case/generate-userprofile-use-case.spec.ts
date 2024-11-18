@@ -50,7 +50,6 @@ describe('GenerateUserProfileUseCase', () => {
             username: 'johndoe',
             country_id: 1,
             state_id: 1,
-            accepted_terms: true,
         };
 
         const passwordGenerated = 'StaticPassword123';
@@ -69,7 +68,6 @@ describe('GenerateUserProfileUseCase', () => {
         userProfile.country_id = dto.country_id;
         userProfile.state_id = dto.state_id;
         userProfile.password = encryptedPassword;
-        userProfile.accepted_terms = dto.accepted_terms;
         userProfile.created_at = expect.any(Date);
 
         jest.spyOn(userProfileRepository, 'create').mockResolvedValue(undefined);
@@ -87,25 +85,8 @@ describe('GenerateUserProfileUseCase', () => {
             country_id: dto.country_id,
             state_id: dto.state_id,
             password: encryptedPassword,
-            accepted_terms: dto.accepted_terms,
             created_at: expect.any(Date),
         }));
-    });
-
-    it('should throw an error if terms are not accepted', async () => {
-        const dto: GenerateUserProfileUseCaseDto = {
-            first_name: 'John',
-            last_name: 'Doe',
-            phone_number: '1234567890',
-            email: 'john.doe@example.com',
-            username: 'johndoe',
-            country_id: 1,
-            state_id: 1,
-            accepted_terms: false,
-        };
-
-        await expect(useCase.execute(dto)).rejects.toThrow(HttpException);
-        await expect(useCase.execute(dto)).rejects.toThrow('You must accept the terms and conditions');
     });
 
     it('should throw an error if creation fails', async () => {
@@ -117,7 +98,6 @@ describe('GenerateUserProfileUseCase', () => {
             username: 'johndoe',
             country_id: 1,
             state_id: 1,
-            accepted_terms: true,
         };
 
         jest.spyOn(userProfileRepository, 'create').mockRejectedValue(new Error('Creation failed'));

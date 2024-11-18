@@ -6,5 +6,4 @@ export interface GenerateUserProfileUseCaseDto {
     email: string;
     country_id: number;
     state_id: number;
-    accepted_terms: boolean;
 } 
