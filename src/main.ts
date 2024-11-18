@@ -13,8 +13,8 @@ async function bootstrap() {
    * Swagger Configuration
    */
   const config = new DocumentBuilder()
-    .setTitle('BelsGI Oficial API')
-    .setDescription('This api was created for BELS GI ACADEMY 2024')
+    .setTitle('NEST & TYPEORM API TEMPLATE')
+    .setDescription('This is a template for a REST API using NEST and TYPEORM with Hexagonal Architecture')
     .setVersion('1.0')
     .build();
 
