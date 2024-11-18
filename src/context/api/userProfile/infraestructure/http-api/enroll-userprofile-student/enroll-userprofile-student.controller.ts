@@ -8,9 +8,10 @@ import { PermissionsGuard } from 'src/context/guards/permissions.guard';
 import { Permissions } from 'src/context/decorators/permissions.decorator';
 import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
 import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
+import { PrivateEndpoints } from 'src/context/routes/routing';
 
-@ApiTags('user-profile')
-@Controller('user-profile')
+@ApiTags('private')
+@Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class CreateUserProfileStudentController {
     constructor(
@@ -18,7 +19,7 @@ export class CreateUserProfileStudentController {
         private readonly typeOrmUserProfileRepository: TypeOrmUserProfileRepository
     ) { }
 
-    @Post('/student-enrollment')
+    @Post(PrivateEndpoints.STUDENT_ENROLLMENT)
     @UseGuards(JwtAuthGuard, PermissionsGuard)
     @ApiBody({
         description: 'Atributes requerid to create a new user at the system',
