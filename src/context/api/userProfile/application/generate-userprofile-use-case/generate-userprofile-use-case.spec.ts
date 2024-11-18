@@ -43,6 +43,7 @@ describe('GenerateUserProfileUseCase', () => {
 
     it('should create a new user profile student', async () => {
         const dto: GenerateUserProfileUseCaseDto = {
+            user_type_id: UserTypeEnum.STUDENT,
             first_name: 'John',
             last_name: 'Doe',
             phone_number: '1234567890',
@@ -91,6 +92,7 @@ describe('GenerateUserProfileUseCase', () => {
 
     it('should throw an error if creation fails', async () => {
         const dto: GenerateUserProfileUseCaseDto = {
+            user_type_id: UserTypeEnum.STUDENT,
             first_name: 'John',
             last_name: 'Doe',
             phone_number: '1234567890',
