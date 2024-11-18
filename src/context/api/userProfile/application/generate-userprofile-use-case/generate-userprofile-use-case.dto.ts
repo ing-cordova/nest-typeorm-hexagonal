@@ -1,4 +1,4 @@
-export interface EnrollUserProfileStudentUseCaseDto {
+export interface GenerateUserProfileUseCaseDto {
     first_name: string;
     last_name: string;
     username: string;

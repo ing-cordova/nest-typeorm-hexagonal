@@ -20,7 +20,7 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
             where: [{ username: userProfile.username }, { email: userProfile.email }],
         });
 
-        if (foundUser) throw new HttpException("User already exists", 409)
+        if (foundUser) throw new HttpException("There's already an account with this email or username", 409)
 
         await this.repository.save(userProfile);
     }

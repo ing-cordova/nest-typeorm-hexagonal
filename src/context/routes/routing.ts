@@ -14,5 +14,5 @@ export const PublicEndpoints = {
 };
 
 export const PrivateEndpoints = {
-    STUDENT_ENROLLMENT: `${PrefixEndpointType.PRIVATE}/student-enrollment`,
+    GENERATE_PROFILE: `${PrefixEndpointType.PRIVATE}/generate-profile`,
 };

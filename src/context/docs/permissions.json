@@ -1,8 +1,8 @@
 [
     {
         "id": 1,
-        "can": "ADD_NEW_USER",
-        "description": "Permission to add new user into the system",
+        "can": "GENERATE_PROFILE",
+        "description": "Permission to generate a new profile",
         "user_types": [1, 2]
     },
     {

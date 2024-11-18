@@ -2,24 +2,24 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { UserTypeEnum } from '../../../userType/domain/user-type.enum';
 import { HttpException } from '@nestjs/common';
 import { encryptPassword } from '../../../../services/password-service';
-import { EnrollUserProfileStudentUseCase } from './enroll-userprofile-student-use-case';
 import { UserProfileRepository } from '../../domain/userprofile.repository';
-import { EnrollUserProfileStudentUseCaseDto } from './enroll-userprofile-student-use-case.dto';
 import { UserProfile } from '../../domain/userprofile.model';
+import { GenerateUserProfileUseCase } from './generate-userprofile-use-case';
+import { GenerateUserProfileUseCaseDto } from './generate-userprofile-use-case.dto';
 
 // Añadimos esta línea para simular el módulo completo donde se encuentra `encryptPassword`.
 jest.mock('../../../../services/password-service', () => ({
     encryptPassword: jest.fn(), // Simulamos `encryptPassword`
 }));
 
-describe('EnrollUserProfileStudentUseCase', () => {
-    let useCase: EnrollUserProfileStudentUseCase;
+describe('GenerateUserProfileUseCase', () => {
+    let useCase: GenerateUserProfileUseCase;
     let userProfileRepository: UserProfileRepository;
 
     beforeEach(async () => {
         const module: TestingModule = await Test.createTestingModule({
             providers: [
-                EnrollUserProfileStudentUseCase,
+                GenerateUserProfileUseCase,
                 {
                     provide: UserProfileRepository,
                     useValue: {
@@ -29,7 +29,7 @@ describe('EnrollUserProfileStudentUseCase', () => {
             ],
         }).compile();
 
-        useCase = module.get<EnrollUserProfileStudentUseCase>(EnrollUserProfileStudentUseCase);
+        useCase = module.get<GenerateUserProfileUseCase>(GenerateUserProfileUseCase);
         userProfileRepository = module.get<UserProfileRepository>(UserProfileRepository);
 
         // Simulamos `console.log` para evitar la salida en el test.
@@ -42,7 +42,7 @@ describe('EnrollUserProfileStudentUseCase', () => {
     });
 
     it('should create a new user profile student', async () => {
-        const dto: EnrollUserProfileStudentUseCaseDto = {
+        const dto: GenerateUserProfileUseCaseDto = {
             first_name: 'John',
             last_name: 'Doe',
             phone_number: '1234567890',
@@ -93,7 +93,7 @@ describe('EnrollUserProfileStudentUseCase', () => {
     });
 
     it('should throw an error if terms are not accepted', async () => {
-        const dto: EnrollUserProfileStudentUseCaseDto = {
+        const dto: GenerateUserProfileUseCaseDto = {
             first_name: 'John',
             last_name: 'Doe',
             phone_number: '1234567890',
@@ -109,7 +109,7 @@ describe('EnrollUserProfileStudentUseCase', () => {
     });
 
     it('should throw an error if creation fails', async () => {
-        const dto: EnrollUserProfileStudentUseCaseDto = {
+        const dto: GenerateUserProfileUseCaseDto = {
             first_name: 'John',
             last_name: 'Doe',
             phone_number: '1234567890',

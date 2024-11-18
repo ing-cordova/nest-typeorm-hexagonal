@@ -3,7 +3,7 @@ import { PermissionEnum } from "./permission.enum";
 export const PermissionsMainData = [
     {
         id: 1,
-        can: PermissionEnum.ADD_NEW_USER,
+        can: PermissionEnum.GENERATE_PROFILE,
         description: "Permission to add new user into the system",
         user_types: [1, 2]
     },

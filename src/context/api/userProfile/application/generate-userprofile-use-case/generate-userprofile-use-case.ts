@@ -3,15 +3,15 @@ import { UserTypeEnum } from '../../../userType/domain/user-type.enum';
 import { encryptPassword } from '../../../../services/password-service';
 import { HttpException } from '@nestjs/common';
 import { UserProfileRepository } from '../../domain/userprofile.repository';
-import { EnrollUserProfileStudentUseCaseDto } from './enroll-userprofile-student-use-case.dto';
 import { UserProfile } from '../../domain/userprofile.model';
+import { GenerateUserProfileUseCaseDto } from './generate-userprofile-use-case.dto';
 
 @Injectable()
-export class EnrollUserProfileStudentUseCase {
+export class GenerateUserProfileUseCase {
     constructor(private readonly userProfileRepository: UserProfileRepository) { }
 
     async execute(
-        dto: EnrollUserProfileStudentUseCaseDto,
+        dto: GenerateUserProfileUseCaseDto,
     ): Promise<{ userProfile: UserProfile }> {
 
         if (!dto.accepted_terms) {

@@ -1,7 +1,5 @@
 import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { EnrollUserProfileStudentHttpDto } from './enroll-userprofile-student-http-dto';
-import { EnrollUserProfileStudentUseCase } from '../../../application/enroll-userprofile-student-use-case/enroll-userprofile-student-use-case';
 import { TypeOrmUserProfileRepository } from '../../repositories/typeorm-userprofile.repository';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { PermissionsGuard } from 'src/context/guards/permissions.guard';
@@ -9,26 +7,29 @@ import { Permissions } from 'src/context/decorators/permissions.decorator';
 import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
 import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
 import { PrivateEndpoints } from 'src/context/routes/routing';
+import { GenerateUserProfileUseCase } from '../../../application/generate-userprofile-use-case/generate-userprofile-use-case';
+import { GenerateUserProfileHttpDto } from './generate-userprofile-http-dto';
+
 
 @ApiTags('private')
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
-export class CreateUserProfileStudentController {
+export class GenerateUserProfileController {
     constructor(
-        private enrollUserProfileStudentUseCase: EnrollUserProfileStudentUseCase,
+        private generateUserProfileUseCase: GenerateUserProfileUseCase,
         private readonly typeOrmUserProfileRepository: TypeOrmUserProfileRepository
     ) { }
 
-    @Post(PrivateEndpoints.STUDENT_ENROLLMENT)
+    @Post(PrivateEndpoints.GENERATE_PROFILE)
     @UseGuards(JwtAuthGuard, PermissionsGuard)
     @ApiBody({
         description: 'Atributes requerid to create a new user at the system',
-        type: EnrollUserProfileStudentHttpDto,
+        type: GenerateUserProfileHttpDto,
     })
-    @Permissions(PermissionEnum.ADD_NEW_USER)
+    @Permissions(PermissionEnum.GENERATE_PROFILE)
     @ApiResponse({
         status: 201,
-        description: 'The user with student role has been successfully created.',
+        description: 'The user with some role has been successfully created.',
         schema: {
             type: 'object',
             properties: {
@@ -59,19 +60,19 @@ export class CreateUserProfileStudentController {
         },
     })
     async run(
-        @Body() createUserProfileStudentHttpDto: EnrollUserProfileStudentHttpDto
+        @Body() generateUserProfileHttpDto: GenerateUserProfileHttpDto
     ): Promise<{ userProfile: UserProfile }> {
         try {
-            if(!createUserProfileStudentHttpDto.accepted_terms) throw new HttpException('You must accept the terms and conditions', 400);
-            return await this.enrollUserProfileStudentUseCase.execute({
-                first_name: createUserProfileStudentHttpDto.first_name,
-                last_name: createUserProfileStudentHttpDto.last_name,
-                phone_number: createUserProfileStudentHttpDto.phone_number,
-                email: createUserProfileStudentHttpDto.email,
-                country_id: createUserProfileStudentHttpDto.country_id,
-                state_id: createUserProfileStudentHttpDto.state_id,
-                accepted_terms: createUserProfileStudentHttpDto.accepted_terms,
-                username: await this.generateUsername(createUserProfileStudentHttpDto.first_name, createUserProfileStudentHttpDto.last_name)
+            if(!generateUserProfileHttpDto.accepted_terms) throw new HttpException('You must accept the terms and conditions', 400);
+            return await this.generateUserProfileUseCase.execute({
+                first_name: generateUserProfileHttpDto.first_name,
+                last_name: generateUserProfileHttpDto.last_name,
+                phone_number: generateUserProfileHttpDto.phone_number,
+                email: generateUserProfileHttpDto.email,
+                country_id: generateUserProfileHttpDto.country_id,
+                state_id: generateUserProfileHttpDto.state_id,
+                accepted_terms: generateUserProfileHttpDto.accepted_terms,
+                username: await this.generateUsername(generateUserProfileHttpDto.first_name, generateUserProfileHttpDto.last_name)
             });
         }
         catch (error) {
