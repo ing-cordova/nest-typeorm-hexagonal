@@ -1,6 +1,6 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
-import { State } from "../api/State/domain/state.model";
+import { State } from "../api/state/domain/state.model";
 import * as fs from "fs";
 import * as path from "path";
 

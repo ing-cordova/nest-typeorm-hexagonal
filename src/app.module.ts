@@ -3,7 +3,7 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { UserTypeModule } from './context/api/userType/infraestructure/user-type.module';
 import { CountryModule } from './context/api/country/infraestructure/country.module';
-import { StateModule } from './context/api/State/infraestructure/state.module';
+import { StateModule } from './context/api/state/infraestructure/state.module';
 import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';

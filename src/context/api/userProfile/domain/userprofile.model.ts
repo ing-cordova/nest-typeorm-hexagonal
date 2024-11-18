@@ -2,7 +2,7 @@ import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 't
 import { Exclude } from 'class-transformer';
 import { UserType } from '../../userType/domain/user-type.model';
 import { Country } from '../../country/domain/country.model';
-import { State } from '../../State/domain/state.model';
+import { State } from '../../state/domain/state.model';
 
 @Entity('user_profile')
 export class UserProfile {
