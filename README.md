@@ -94,12 +94,27 @@ source .env
 ```
 
 ## ⚙️ Usage
-1. Run the seeders
+1. Generate the migrations
+```bash
+npm run typeorm:generate -- ./src/migrations/initial-migration
+```
+
+2. Run the migrations
+```bash
+npm run typeorm:run
+```
+
+2.1 If you want to revert the migrations
+```bash
+npm run typeorm:revert
+```
+
+3. Run the seeders
 ```bash
 npm run seed
 ```
 
-2. Run the application
+4. Run the application
 ```bash
 npm run start
 ```
