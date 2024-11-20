@@ -26,8 +26,9 @@ import { UserProfileModule } from './context/api/userProfile/infraestructure/use
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
         autoLoadEntities: true,
-        synchronize: true,  // Turn off in production mode
-        dropSchema: true,  // Turn off in production mode
+        synchronize: false,  // Turn off in production mode
+        dropSchema: false,  // Turn off in production mode
+        migrationsRun: false,  // Turn off in production mode
       }),
     }),
     
