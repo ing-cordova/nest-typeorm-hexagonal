@@ -1,22 +1,10 @@
 version: '3.8'
 
 services:
-  app:
+  nest-api:
     build: .
     ports:
-      - '3010:3010'
-    environment:
-      - APP_PORT=3010
-      - DB_TYPE=postgres
-      - DB_HOST=host.docker.internal # Usar host.docker.internal para conectarse a la base de datos local
-      - DB_PORT=5432 # Puerto de tu instancia local de PostgreSQL
-      - DB_USERNAME=postgres
-      - DB_PASSWORD=admin
-      - DB_DATABASE=fornest
-      - TOKEN_SECRET=d84a70d4-40c1-44be-b87d-4c5fe6e060c7
-      - TOKEN_EXPIRATION=3600000
-      - REFRESH_TOKEN_SECRET=417e8bcf-27ed-4985-b4c1-acf7206c4056
-      - REFRESH_TOKEN_EXPIRATION=4500000
+      - '3010:8090'
 
 volumes:
   postgres_data:

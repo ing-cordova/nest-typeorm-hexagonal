@@ -13,11 +13,17 @@ RUN npm install
 # Copia el resto del código de la aplicación
 COPY . .
 
+# RUN npm run typeorm:generate -- ./src/migrations/migrations
+
+RUN npm run typeorm:run
+
+# RUN npm run seed
+
 # Compila el proyecto
 RUN npm run build
 
 # Expone el puerto en el que la aplicación se ejecutará
-EXPOSE 3010
+EXPOSE 8090
 
 # Comando para ejecutar la aplicación
 CMD ["npm", "run", "start:dev"] 
