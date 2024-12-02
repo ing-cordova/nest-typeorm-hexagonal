@@ -1,19 +1,27 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsString } from 'class-validator';
+import { IsEmail, IsInt, IsString } from 'class-validator';
 
 export class CreateUserProfileHttpDto {
   @ApiProperty({
     type: String,
-    description: 'Username',
+    description: 'First name',
   })
   @IsString()
-  username: string;
+  first_name: string;
+
+  @ApiProperty({
+    type: String,
+    description: 'Last name',
+  })
+  @IsString()
+  last_name: string;
 
   @ApiProperty({
     type: String,
     description: 'Email',
   })
   @IsString()
+  @IsEmail()
   email: string;
 
   @ApiProperty({
@@ -22,4 +30,11 @@ export class CreateUserProfileHttpDto {
   })
   @IsString()
   password: string;
+
+  @ApiProperty({
+    type: Number,
+    description: 'Country id',
+  })
+  @IsInt()
+  country_id: number;
 }
