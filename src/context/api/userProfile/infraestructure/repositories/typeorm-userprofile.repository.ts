@@ -48,9 +48,20 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
         return await this.repository.findOne({ where: { id } }) as UserProfile;
     }
 
-    async login(email: string, password: string): Promise<UserProfile | null> {
-        const userProfile = await this.repository.findOne({ where: { email }, relations: ['userType', 'country', 'state'], });
-        if (userProfile && decryptPassword(password, userProfile.password)) return userProfile;
+    async login(identifier: string, password: string): Promise<UserProfile | null> {
+        let userProfile: UserProfile | null = null;
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        if (emailRegex.test(identifier)) {
+            userProfile = await this.repository.findOne({ where: { email: identifier }, relations: ['userType', 'country', 'state'] });
+        } else {
+            userProfile = await this.repository.findOne({ where: { username: identifier }, relations: ['userType', 'country', 'state'] });
+        }
+
+        if (userProfile && decryptPassword(password, userProfile.password)) {
+            return userProfile;
+        }
+
         return null;
     }
 
