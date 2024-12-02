@@ -10,11 +10,14 @@ export class UserProfileSeeder implements Seeder {
         const userProfileToInsert = [
             {
                 user_type_id: 1,
-                first_name: "Super Administrator",
-                last_name: "Company",
-                email: "superadmin@test.com",
+                first_name: "Andres",
+                second_name: "Eduardo",
+                last_name: "Cordova",
+                second_last_name: "Orellana",
+                phone_number: "79677324",
+                email: "andrescordovaoficial@gmail.com",
                 email_verified_at: new Date(),
-                username: "superadmin",
+                username: "acordova",
                 country_id: 66,
                 state_id: 1109,
                 address: "Casa Matriz, Fte. a Departamental de Chalatenango",
