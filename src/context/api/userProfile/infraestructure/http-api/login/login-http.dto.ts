@@ -7,7 +7,7 @@ export class LoginHttpDto {
         description: 'Email',
     })
     @IsString()
-    @IsEmail({}, { message: 'Email format is not valid' })
+    // @IsEmail({}, { message: 'Email format is not valid' })
     email: string;
 
     @ApiProperty({
