@@ -9,22 +9,27 @@ export class UserTypeSeeder implements Seeder {
         const userTypeToInsert = [
             {
                 name: "SuperAdmin",
-                description: "User Type in which all the features are available",
+                description: "Super usuario con acceso a todas las funcionalidades",
                 created_at: new Date(),
             },
             {
-                name: "Administrator",
-                description: "User Type in which some of the most important features are available",
+                name: "Administrador/a",
+                description: "Tipo de usuario especializado en la administración de la plataforma",
                 created_at: new Date(),
             },
             {
-                name: "Student",
-                description: "User Type in which just students can access the system",
+                name: "Doctor/a",
+                description: "Tipo de usuario especializado en la consulta de pacientes",
                 created_at: new Date(),
             },
             {
-                name: "Teacher",
-                description: "User Type in which just teachers can access the system",
+                name: "Enfermero/a",
+                description: "Tipo de usuario especializado en la atención de pacientes",
+                created_at: new Date(),
+            },
+            {
+                name: "Cajero/a",
+                description: "Tipo de usuario especializado en la facturación de pacientes",
                 created_at: new Date(),
             }
         ]
