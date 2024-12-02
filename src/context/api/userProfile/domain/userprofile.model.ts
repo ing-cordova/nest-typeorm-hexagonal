@@ -40,7 +40,7 @@ export class UserProfile {
   @Column()
   country_id: number
 
-  @Column()
+  @Column({ nullable: true })
   state_id: number
 
   @Column({ nullable: true })
