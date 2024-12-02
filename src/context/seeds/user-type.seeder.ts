@@ -8,7 +8,7 @@ export class UserTypeSeeder implements Seeder {
 
         const userTypeToInsert = [
             {
-                name: "SuperAdmin",
+                name: "SuperAdministrator",
                 description: "User Type in which all the features are available",
                 created_at: new Date(),
             },
