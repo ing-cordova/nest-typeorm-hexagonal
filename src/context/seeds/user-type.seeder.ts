@@ -18,15 +18,15 @@ export class UserTypeSeeder implements Seeder {
                 created_at: new Date(),
             },
             {
+                name: "Teacher",
+                description: "User Type in which just teachers can access the system",
+                created_at: new Date(),
+            },
+            {
                 name: "Student",
                 description: "User Type in which just students can access the system",
                 created_at: new Date(),
             },
-            {
-                name: "Teacher",
-                description: "User Type in which just teachers can access the system",
-                created_at: new Date(),
-            }
         ]
 
         await userTypeRepository.insert(userTypeToInsert);
