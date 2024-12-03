@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, DeleteDateColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { UserType } from '../../userType/domain/user-type.model';
 import { Country } from '../../country/domain/country.model';
@@ -56,15 +56,15 @@ export class UserProfile {
   @Column({ default: false })
   accepted_terms: boolean;
 
-  @Column()
+  @CreateDateColumn()
   @Exclude()
   created_at: Date;
 
-  @Column({ nullable: true })
+  @UpdateDateColumn()
   @Exclude()
   updated_at: Date;
 
-  @Column({ nullable: true })
+  @DeleteDateColumn()
   @Exclude()
   deleted_at: Date;
 
