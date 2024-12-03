@@ -42,6 +42,10 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
         await this.repository.delete(id);
     }
 
+    async softDeleteById(id: number): Promise<void> {
+        await this.repository.softDelete(id);
+    }
+
     async updateById(id: number, userProfile: Partial<UserProfile>): Promise<UserProfile> {
         await this.repository.update(id, userProfile);
         return await this.repository.findOne({ where: { id } }) as UserProfile;
