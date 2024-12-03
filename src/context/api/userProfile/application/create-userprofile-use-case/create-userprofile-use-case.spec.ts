@@ -4,7 +4,6 @@ import * as passwordService from '../../../../services/password-service';
 import { CreateUserProfileUseCase } from './create-userprofile-use-case';
 import { UserProfileRepository } from '../../domain/userprofile.repository';
 import { CreateUserProfileUseCaseDto } from './create-userprofile-use-case.dto';
-
 describe('CreateUserProfileUseCase', () => {
   let useCase: CreateUserProfileUseCase;
   let repository: UserProfileRepository;
@@ -16,7 +15,7 @@ describe('CreateUserProfileUseCase', () => {
         {
           provide: UserProfileRepository,
           useValue: {
-            create: jest.fn(),  // Mock de la función create
+            create: jest.fn(),
           },
         },
       ],
@@ -27,33 +26,73 @@ describe('CreateUserProfileUseCase', () => {
   });
 
   afterEach(() => {
-    jest.clearAllMocks(); // Limpia los mocks después de cada test
+    jest.clearAllMocks();
   });
 
   it('should create a new user with hashed password', async () => {
-    // Arrange
     const dto: CreateUserProfileUseCaseDto = {
+      first_name: 'John',
+      last_name: 'Doe',
       username: 'testuser',
       email: 'testuser@example.com',
-      password: 'hashedPassword',
+      password: 'plainPassword',
+      country_id: 1,
+      user_type_id: 1,
     };
 
-    // Mock de bcrypt.hash para devolver una contraseña encriptada
     const hashedPassword = 'hashedPassword';
-    jest.spyOn(passwordService, 'encryptPassword' as any).mockReturnValue(hashedPassword);
+    jest.spyOn(passwordService, 'encryptPassword').mockReturnValue(hashedPassword);
 
-    // Act
     const result = await useCase.execute(dto);
 
-    // Assert
-    expect(passwordService.encryptPassword).toHaveBeenCalledWith(dto.password); // Verifica que bcrypt.hash fue llamado con la contraseña y el salt
+    expect(passwordService.encryptPassword).toHaveBeenCalledWith(dto.password);
     expect(repository.create).toHaveBeenCalledWith(
       expect.objectContaining({
+        first_name: dto.first_name,
+        last_name: dto.last_name,
         username: dto.username,
         email: dto.email,
-        password: hashedPassword, // Verifica que la contraseña fue encriptada antes de ser guardada
+        password: hashedPassword,
+        country_id: dto.country_id,
+        user_type_id: dto.user_type_id,
       }),
     );
     expect(result.userProfile.password).toBe(hashedPassword);
+  });
+
+  it('should throw an error if repository create fails', async () => {
+    const dto: CreateUserProfileUseCaseDto = {
+      first_name: 'John',
+      last_name: 'Doe',
+      username: 'testuser',
+      email: 'testuser@example.com',
+      password: 'plainPassword',
+      country_id: 1,
+      user_type_id: 1,
+    };
+
+    jest.spyOn(passwordService, 'encryptPassword').mockReturnValue('hashedPassword');
+    jest.spyOn(repository, 'create').mockRejectedValue(new Error('Repository create failed'));
+
+    await expect(useCase.execute(dto)).rejects.toThrow('Repository create failed');
+  });
+
+  it('should create a user with the correct created_at date', async () => {
+    const dto: CreateUserProfileUseCaseDto = {
+      first_name: 'John',
+      last_name: 'Doe',
+      username: 'testuser',
+      email: 'testuser@example.com',
+      password: 'plainPassword',
+      country_id: 1,
+      user_type_id: 1,
+    };
+
+    const hashedPassword = 'hashedPassword';
+    jest.spyOn(passwordService, 'encryptPassword').mockReturnValue(hashedPassword);
+
+    const result = await useCase.execute(dto);
+
+    expect(result.userProfile.created_at).toBeInstanceOf(Date);
   });
 });
