@@ -1,5 +1,5 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsBoolean, IsEmail, IsInt, IsString } from "class-validator";
+import { IsEmail, IsInt, IsString } from "class-validator";
 
 export class GenerateUserProfileHttpDto {
     @ApiProperty({
