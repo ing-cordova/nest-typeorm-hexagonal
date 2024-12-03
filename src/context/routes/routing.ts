@@ -17,4 +17,5 @@ export const PublicEndpoints = {
 export const PrivateEndpoints = {
     GENERATE_PROFILE: `${PrefixEndpointType.PRIVATE}/generate-profile`,
     UPDATE_PROFILE: `${PrefixEndpointType.PRIVATE}/update-profile`,
+    DELETE_PROFILE: `${PrefixEndpointType.PRIVATE}/delete-profile/:id`,
 };
