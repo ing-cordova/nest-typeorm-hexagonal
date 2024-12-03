@@ -7,6 +7,6 @@ export class DeleteUserProfileByIdUseCase {
     constructor(private readonly userProfileRepository: UserProfileRepository) {}
 
     execute(dto: DeleteUserProfileByIdUseCaseDto): Promise<void> {
-        return this.userProfileRepository.deleteById(dto.id);
+        return this.userProfileRepository.softDeleteById(dto.id);
     }
 }
