@@ -5,7 +5,7 @@ export abstract class UserProfileRepository {
   abstract findByUsername(username: string): Promise<UserProfile | null>;
   abstract findAll(): Promise<UserProfile[]>;
   abstract deleteById(id: number): Promise<void>;
-  abstract updateById(id: number, userProfile: RequestUserProfile): Promise<UserProfile>;
+  abstract updateById(id: number, userProfile: Partial<UserProfile>): Promise<UserProfile>;
   abstract login(email: string, password: string): Promise<UserProfile | null>;
   abstract changePassword(username: string, password: string): Promise<void>;
 }
