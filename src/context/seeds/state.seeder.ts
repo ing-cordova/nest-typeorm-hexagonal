@@ -13,7 +13,7 @@ export class StateSeeder implements Seeder {
         const jsonData = JSON.parse(fileData);
 
         const statesToInsert = jsonData.map((state: any) => ({
-            name: state.name,
+            name: state.name.replace(' Department', ''),
             country_id: state.country_id,
             state_code: state.state_code,
             created_at: new Date(),
