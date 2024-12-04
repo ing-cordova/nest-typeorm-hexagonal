@@ -12,6 +12,7 @@ export const AuthEndpoints = {
 export const PublicEndpoints = {
     LOGIN: `${PrefixEndpointType.PUBLIC}/login`,
     CREATE_PROFILE: `${PrefixEndpointType.PUBLIC}/create-profile`,
+    GET_ALL_COUNTRIES: `${PrefixEndpointType.PUBLIC}/get-all-countries`,
 };
 
 export const PrivateEndpoints = {
