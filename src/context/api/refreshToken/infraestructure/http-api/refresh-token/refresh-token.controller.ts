@@ -4,9 +4,9 @@ import { GetInformationByToken } from 'src/context/services/get-information.deco
 import { generateAPPTokenAndRefreshToken } from 'src/context/services/token-service';
 import { FindUserProfileByUsernameUseCase } from 'src/context/api/userProfile/application/find-userprofile-by-username-use-case/find-userprofile-by-username-use-case';
 import { JwtAuthRefreshGuard } from 'src/context/guards/jwt-refresh.guard';
-import { AuthEndpoints } from 'src/context/routes/routing';
+import { AuthEndpoints, PrefixEndpointType } from 'src/context/routes/routing';
 
-@ApiTags('auth')
+@ApiTags(PrefixEndpointType.AUTH)
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class RefreshTokenController {

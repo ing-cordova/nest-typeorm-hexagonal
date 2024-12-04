@@ -4,13 +4,13 @@ import { FindUserProfileByUsernameUseCase } from '../../../application/find-user
 import { FindUserProfileByUsernameHttpDto } from './find-userprofile-by-username-http-dto';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { UserProfileNotFoundException } from '../../../domain/userprofile-not-found.exception';
-import { PrivateEndpoints } from 'src/context/routes/routing';
+import { PrefixEndpointType, PrivateEndpoints } from 'src/context/routes/routing';
 import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
 import { PermissionsGuard } from 'src/context/guards/permissions.guard';
 import { Permissions } from 'src/context/decorators/permissions.decorator';
 import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
 
-@ApiTags('private')
+@ApiTags(PrefixEndpointType.PRIVATE)
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class FindUserProfileByUsernameController {

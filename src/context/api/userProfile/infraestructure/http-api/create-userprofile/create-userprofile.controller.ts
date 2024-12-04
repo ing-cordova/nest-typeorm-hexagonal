@@ -4,12 +4,12 @@ import { CreateUserProfileUseCase } from '../../../application/create-userprofil
 import { CreateUserProfileHttpDto } from './create-userprofile-http-dto';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { UserTypeEnum } from 'src/context/api/userType/domain/user-type.enum';
-import { PublicEndpoints } from 'src/context/routes/routing';
+import { PrefixEndpointType, PublicEndpoints } from 'src/context/routes/routing';
 import { TypeOrmUserProfileRepository } from '../../repositories/typeorm-userprofile.repository';
 import { Permissions } from 'src/context/decorators/permissions.decorator';
 import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
 
-@ApiTags('public')
+@ApiTags(PrefixEndpointType.PUBLIC)
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class CreateUserProfileController {

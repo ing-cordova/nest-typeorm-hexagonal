@@ -7,9 +7,9 @@ import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
 import { PermissionsGuard } from 'src/context/guards/permissions.guard';
 import { Permissions } from 'src/context/decorators/permissions.decorator';
 import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
-import { AuthEndpoints } from 'src/context/routes/routing';
+import { AuthEndpoints, PrefixEndpointType } from 'src/context/routes/routing';
 
-@ApiTags('auth')
+@ApiTags(PrefixEndpointType.AUTH)
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class ChangeTemporalPasswordController {

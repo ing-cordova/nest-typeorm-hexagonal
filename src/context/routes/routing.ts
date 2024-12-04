@@ -1,4 +1,4 @@
-const enum PrefixEndpointType {
+export const enum PrefixEndpointType {
     AUTH = '/auth',
     PUBLIC = '/public',
     PRIVATE = '/private',

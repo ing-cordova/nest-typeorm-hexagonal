@@ -7,9 +7,9 @@ import { JwtAuthGuard } from "src/context/guards/jwt.guard";
 import { PermissionsGuard } from "src/context/guards/permissions.guard";
 import { Permissions } from "src/context/decorators/permissions.decorator";
 import { PermissionEnum } from "src/context/api/permission/domain/permission.enum";
-import { PrivateEndpoints } from "src/context/routes/routing";
+import { PrefixEndpointType, PrivateEndpoints } from "src/context/routes/routing";
 
-@ApiTags('private')
+@ApiTags(PrefixEndpointType.PRIVATE)
 @Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class DeleteUserProfileByIdController {
