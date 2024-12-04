@@ -1,4 +1,4 @@
-import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 import { Country } from "../../country/domain/country.model";
 import { Exclude } from "class-transformer";
 
@@ -16,15 +16,15 @@ export class State {
     @Column()
     country_id: number
 
-    @Column()
+    @CreateDateColumn({ nullable: true })
     @Exclude()
     created_at: Date;
-    
-    @Column({ nullable: true })
+
+    @UpdateDateColumn({ nullable: true })
     @Exclude()
     updated_at: Date;
-    
-    @Column({ nullable: true })
+
+    @DeleteDateColumn({ nullable: true })
     @Exclude()
     deleted_at: Date;
 
