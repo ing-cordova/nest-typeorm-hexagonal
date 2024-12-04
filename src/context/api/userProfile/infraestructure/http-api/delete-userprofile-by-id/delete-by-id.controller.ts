@@ -30,6 +30,9 @@ export class DeleteUserProfileByIdController {
     @Delete(PrivateEndpoints.DELETE_PROFILE)
     async run(@Param('id', ParseIntPipe) id: number, @GetInformationByToken() gibt: any): Promise<void> {
         try {
+
+            if(id === 1) throw new BadRequestException('You cannot delete this profile');
+            
             const params = new DeleteByIdHttpDto();
             params.id = id;
             await this.deleteUserProfileByIdUseCase.execute(params);
