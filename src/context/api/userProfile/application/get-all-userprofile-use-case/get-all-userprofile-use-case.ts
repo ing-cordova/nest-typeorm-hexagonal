@@ -6,8 +6,8 @@ import { UserProfileRepository } from '../../domain/userprofile.repository';
 export class GetAllUserProfileUseCase {
   constructor(private readonly userProfileRepository: UserProfileRepository) { }
 
-  async execute(): Promise<{ userProfiles: UserProfile[] }> {
-    const userProfiles = await this.userProfileRepository.findAll();
-    return { userProfiles };
+  async execute(page: number, pageSize: number): Promise<{ data: UserProfile[], total: number, nextPage: number | null, prevPage: number | null, limit: number }> {
+    const { data, total, nextPage, prevPage, limit } = await this.userProfileRepository.findAllWithPagination(page, pageSize);
+    return { data, total, nextPage, prevPage, limit };
   }
 }
