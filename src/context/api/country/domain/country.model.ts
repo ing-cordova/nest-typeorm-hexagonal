@@ -1,5 +1,5 @@
 import { Exclude } from "class-transformer";
-import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
 
 @Entity('country')
 export class Country {
@@ -24,15 +24,15 @@ export class Country {
     @Column()
     currency: string;
 
-    @Column()
+    @CreateDateColumn()
     @Exclude()
     created_at: Date;
 
-    @Column({ nullable: true })
+    @UpdateDateColumn({ nullable: true })
     @Exclude()
     updated_at: Date;
 
-    @Column({ nullable: true })
+    @DeleteDateColumn({ nullable: true })
     @Exclude()
     deleted_at: Date;
 }
