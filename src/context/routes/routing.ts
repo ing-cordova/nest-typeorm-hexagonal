@@ -19,4 +19,5 @@ export const PrivateEndpoints = {
     UPDATE_PROFILE: `${PrefixEndpointType.PRIVATE}/update-profile`,
     DELETE_PROFILE: `${PrefixEndpointType.PRIVATE}/delete-profile/:id`,
     VIEW_PROFILE: `${PrefixEndpointType.PRIVATE}/view-profile/:username`,
+    VIEW_ALL_PROFILE: `${PrefixEndpointType.PRIVATE}/view-all-profile`,
 };
