@@ -38,6 +38,18 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
         });
     }
 
+    async findAllWithPagination(page: number, limit: number): Promise<{ data: UserProfile[], total: number, nextPage: number | null, prevPage: number | null, limit: number }> {
+        const [userProfiles, total] = await this.repository.findAndCount({
+            relations: ['userType', 'country', 'state'],
+            skip: (page - 1) * limit,
+            take: limit,
+        });
+
+        const nextPage = (page * limit) < total ? page + 1 : null;
+        const prevPage = page > 1 ? page - 1 : null;
+        return { data: userProfiles, total, nextPage, prevPage, limit };
+    }
+
     async deleteById(id: number): Promise<void> {
         await this.repository.delete(id);
     }
