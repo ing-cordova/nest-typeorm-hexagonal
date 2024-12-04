@@ -8,6 +8,7 @@ import { PermissionsGuard } from "src/context/guards/permissions.guard";
 import { Permissions } from "src/context/decorators/permissions.decorator";
 import { PermissionEnum } from "src/context/api/permission/domain/permission.enum";
 import { PrefixEndpointType, PrivateEndpoints } from "src/context/routes/routing";
+import { isMaster } from "src/context/api/userType/domain/user-type.enum";
 
 @ApiTags(PrefixEndpointType.PRIVATE)
 @Controller()
@@ -30,8 +31,7 @@ export class DeleteUserProfileByIdController {
     @Delete(PrivateEndpoints.DELETE_PROFILE)
     async run(@Param('id', ParseIntPipe) id: number, @GetInformationByToken() gibt: any): Promise<void> {
         try {
-
-            if(id === 1) throw new BadRequestException('You cannot delete this profile');
+            if(id === 1 || isMaster(gibt.user_type)) throw new BadRequestException('You cannot delete this profile');
             
             const params = new DeleteByIdHttpDto();
             params.id = id;
