@@ -4,6 +4,7 @@ export abstract class UserProfileRepository {
   abstract create(userProfile: UserProfile): Promise<void>;
   abstract findByUsername(username: string): Promise<UserProfile | null>;
   abstract findAll(): Promise<UserProfile[]>;
+  abstract findAllWithPagination(page: number, limit: number): Promise<{ data: UserProfile[], total: number, nextPage: number | null, prevPage: number | null, limit: number }>;
   abstract deleteById(id: number): Promise<void>;
   abstract softDeleteById(id: number): Promise<void>;
   abstract updateById(id: number, userProfile: Partial<UserProfile>): Promise<UserProfile>;
