@@ -16,20 +16,60 @@ export class GetAllUserProfileqController {
 
   @ApiResponse({
     status: 200,
-    description: 'Get all userProfiles',
+    description: 'Returns a list of userProfiles found',
     schema: {
-      type: 'array', // Definir que la respuesta es un array
-      items: {
-        type: 'object',
-        properties: {
-          id: { type: 'integer', example: 1 },
-          username: { type: 'string', example: 'testuser' },
-          email: { type: 'string', example: 'testuser@example.com' },
-          password: { type: 'string', example: 'hashedPassword' },
+      type: 'object',
+      properties: {
+        userProfiles: {
+          type: 'array',
+          items: {
+            type: 'object',
+            properties: {
+              id: { type: 'integer', example: 1 },
+              username: { type: 'string', example: 'acordova' },
+              email: { type: 'string', example: 'andrescordovaoficial@gmail.com' },
+              phoneNumber: { type: 'string', example: '79677324' },
+              isTemporalPassword: { type: 'boolean', example: false },
+              acceptedTerms: { type: 'boolean', example: true },
+              userType: {
+                properties: {
+                  id: { type: 'integer', example: 1 },
+                  name: { type: 'string', example: 'SuperAdministrator' },
+                  description: { 
+                    type: 'string', 
+                    example: 'User Type in which all the features are available' 
+                  },
+                },
+              },
+              country: {
+                properties: {
+                  id: { type: 'integer', example: 66 },
+                  name: { type: 'string', example: 'El Salvador' },
+                  iso2: { type: 'string', example: 'SV' },
+                  iso3: { type: 'string', example: 'SLV' },
+                  phoneCode: { type: 'string', example: '503' },
+                  region: { type: 'string', example: 'Americas' },
+                  currency: { type: 'string', example: 'USD' },
+                },
+              },
+              state: {
+                properties: {
+                  id: { type: 'integer', example: 1109 },
+                  name: { type: 'string', example: 'Chalatenango Department' },
+                  stateCode: { type: 'string', example: 'CH' },
+                },
+              },
+              address: { 
+                type: 'string', 
+                example: 'Casa Matriz, Fte. a Departamental de Chalatenango' 
+              },
+            },
+          },
         },
       },
     },
   })
+  
   @UseGuards(JwtAuthGuard, PermissionsGuard)
   @Permissions(PermissionEnum.VIEW_ALL_PROFILE)
   @Get(PrivateEndpoints.VIEW_ALL_PROFILE)
