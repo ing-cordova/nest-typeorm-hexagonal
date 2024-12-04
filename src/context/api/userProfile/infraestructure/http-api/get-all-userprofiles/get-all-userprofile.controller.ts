@@ -1,4 +1,4 @@
-import { BadRequestException, ClassSerializerInterceptor, Controller, Get, UseGuards, UseInterceptors } from '@nestjs/common';
+import { BadRequestException, ClassSerializerInterceptor, Controller, DefaultValuePipe, Get, ParseIntPipe, Query, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetAllUserProfileUseCase } from '../../../application/get-all-userprofile-use-case/get-all-userprofile-use-case';
 import { UserProfile } from '../../../domain/userprofile.model';
@@ -35,9 +35,9 @@ export class GetAllUserProfileqController {
                 properties: {
                   id: { type: 'integer', example: 1 },
                   name: { type: 'string', example: 'SuperAdministrator' },
-                  description: { 
-                    type: 'string', 
-                    example: 'User Type in which all the features are available' 
+                  description: {
+                    type: 'string',
+                    example: 'User Type in which all the features are available'
                   },
                 },
               },
@@ -59,9 +59,9 @@ export class GetAllUserProfileqController {
                   stateCode: { type: 'string', example: 'CH' },
                 },
               },
-              address: { 
-                type: 'string', 
-                example: 'Casa Matriz, Fte. a Departamental de Chalatenango' 
+              address: {
+                type: 'string',
+                example: 'Casa Matriz, Fte. a Departamental de Chalatenango'
               },
             },
           },
@@ -69,13 +69,14 @@ export class GetAllUserProfileqController {
       },
     },
   })
-  
+
   @UseGuards(JwtAuthGuard, PermissionsGuard)
   @Permissions(PermissionEnum.VIEW_ALL_PROFILE)
   @Get(PrivateEndpoints.VIEW_ALL_PROFILE)
-  async run(): Promise<{ userProfiles: UserProfile[] }> {
+  async run(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
+    @Query('limit', new DefaultValuePipe(5), ParseIntPipe) limit: number): Promise<{ data: UserProfile[], total: number, nextPage: number | null, prevPage: number | null, limit: number }> {
     try {
-      return await this.getAllUserProfileUseCase.execute();
+      return await this.getAllUserProfileUseCase.execute(page, limit);
     }
     catch (error) {
       throw new BadRequestException(error.message);
