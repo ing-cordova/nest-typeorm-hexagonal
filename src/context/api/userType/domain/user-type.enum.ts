@@ -22,3 +22,8 @@ export const userTypeReverseMap: { [key: number]: string } = {
 export function getUserTypeId(userType: string): number | undefined {
     return userTypeMap[userType];
 }
+
+export function isMaster(userType: string): boolean {
+    const userTypeId = getUserTypeId(userType);
+    return userTypeId === UserTypeEnum.SUPER_ADMINISTRATOR || userTypeId === UserTypeEnum.ADMINISTRATOR;
+} 
