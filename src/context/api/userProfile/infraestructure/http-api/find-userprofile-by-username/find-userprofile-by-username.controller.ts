@@ -1,17 +1,22 @@
-import { ClassSerializerInterceptor, Controller, Get, NotFoundException, Param, UseInterceptors } from '@nestjs/common';
+import { ClassSerializerInterceptor, Controller, Get, NotFoundException, Param, UseGuards, UseInterceptors } from '@nestjs/common';
 import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FindUserProfileByUsernameUseCase } from '../../../application/find-userprofile-by-username-use-case/find-userprofile-by-username-use-case';
 import { FindUserProfileByUsernameHttpDto } from './find-userprofile-by-username-http-dto';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { UserProfileNotFoundException } from '../../../domain/userprofile-not-found.exception';
+import { PrivateEndpoints } from 'src/context/routes/routing';
+import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
+import { PermissionsGuard } from 'src/context/guards/permissions.guard';
+import { Permissions } from 'src/context/decorators/permissions.decorator';
+import { PermissionEnum } from 'src/context/api/permission/domain/permission.enum';
 
-@ApiTags('user-profile')
-@Controller('user-profile')
+@ApiTags('private')
+@Controller()
 @UseInterceptors(ClassSerializerInterceptor)
 export class FindUserProfileByUsernameController {
   constructor(
     private readonly findUserProfileByUsernameUseCase: FindUserProfileByUsernameUseCase,
-  ) {}
+  ) { }
 
   @ApiParam({
     name: 'username',
@@ -29,15 +34,55 @@ export class FindUserProfileByUsernameController {
           type: 'object',
           properties: {
             id: { type: 'integer', example: 1 },
-            username: { type: 'string', example: 'testuser' },
-            email: { type: 'string', example: 'testuser@example.com' },
-            password: { type: 'string', example: 'hashedPassword' },
+            username: { type: 'string', example: 'acordova' },
+            email: { type: 'string', example: 'andrescordovaoficial@gmail.com' },
+            isTemporalPassword: { type: 'boolean', example: false },
+            acceptedTerms: { type: 'boolean', example: true },
+            userType: {
+              type: 'object',
+              properties: {
+                id: { type: 'integer', example: 1 },
+                name: { type: 'string', example: 'SuperAdministrator' },
+                description: {
+                  type: 'string',
+                  example: 'User Type in which all the features are available'
+                },
+              },
+            },
+            country: {
+              type: 'object',
+              properties: {
+                id: { type: 'integer', example: 66 },
+                name: { type: 'string', example: 'El Salvador' },
+                iso2: { type: 'string', example: 'SV' },
+                iso3: { type: 'string', example: 'SLV' },
+                phoneCode: { type: 'string', example: '503' },
+                region: { type: 'string', example: 'Americas' },
+                currency: { type: 'string', example: 'USD' },
+              },
+            },
+            state: {
+              type: 'object',
+              properties: {
+                id: { type: 'integer', example: 1109 },
+                name: { type: 'string', example: 'Chalatenango Department' },
+                stateCode: { type: 'string', example: 'CH' },
+              },
+            },
+            address: {
+              type: 'string',
+              example: 'Casa Matriz, Fte. a Departamental de Chalatenango'
+            },
+            phoneNumber: { type: 'string', example: '79677324' },
           },
         },
       },
     },
   })
-  @Get('/find/:username')
+
+  @UseGuards(JwtAuthGuard, PermissionsGuard)
+  @Permissions(PermissionEnum.VIEW_PROFILE)
+  @Get(PrivateEndpoints.VIEW_PROFILE)
   async run(
     @Param() params: FindUserProfileByUsernameHttpDto,
   ): Promise<{ userProfile: UserProfile }> {
