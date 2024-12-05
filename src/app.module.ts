@@ -8,6 +8,7 @@ import { PermissionModule } from './context/api/permission/infraestructure/permi
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';
 import { UserProfileModule } from './context/api/userProfile/infraestructure/userprofile.module';
+import { CategoryModule } from './context/api/category/infraestructure/category.module';
 
 @Module({
   imports: [
@@ -38,7 +39,8 @@ import { UserProfileModule } from './context/api/userProfile/infraestructure/use
     CountryModule,
     StateModule,
     PermissionModule,
-    PermissionUserTypeModule
+    PermissionUserTypeModule,
+    CategoryModule,
   ],
 })
 export class AppModule { }
