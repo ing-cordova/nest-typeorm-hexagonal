@@ -8,6 +8,7 @@ import { UserTypeSeeder } from './context/seeds/user-type.seeder';
 import { PermissionSeeder } from './context/seeds/permission.seeder';
 import { UserProfileSeeder } from './context/seeds/user-profile.seeder';
 import { CategorySeeder } from './context/seeds/category.seeder';
+import { SubCategorySeeder } from './context/seeds/subcategory.seeder';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
@@ -20,7 +21,8 @@ async function bootstrap() {
             UserTypeSeeder,
             UserProfileSeeder,
             PermissionSeeder,
-            CategorySeeder
+            CategorySeeder,
+            SubCategorySeeder
         ],
     });
 
