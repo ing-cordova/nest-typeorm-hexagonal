@@ -15,6 +15,7 @@ export const PublicEndpoints = {
     GET_ALL_COUNTRIES: `${PrefixEndpointType.PUBLIC}/get-all-countries`,
     GET_STATES_BY_COUNTRY: `${PrefixEndpointType.PUBLIC}/get-states-by-country/:countryId`,
     GET_CATEGORIES: `${PrefixEndpointType.PUBLIC}/get-categories`,
+    GET_SUBCATEGORIES_BY_CATEGORY_ID: `${PrefixEndpointType.PUBLIC}/subcategories/category/:categoryId`,
 };
 
 export const PrivateEndpoints = {
