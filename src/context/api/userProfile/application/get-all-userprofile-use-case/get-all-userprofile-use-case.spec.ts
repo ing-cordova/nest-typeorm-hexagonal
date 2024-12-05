@@ -3,15 +3,21 @@ import { Country } from '../../../country/domain/country.model';
 import { GetAllUserProfileUseCase } from './get-all-userprofile-use-case';
 import { UserProfileRepository } from '../../domain/userprofile.repository';
 import { UserProfile } from '../../domain/userprofile.model';
+import { PaginationService } from '../../../../services/pagination/pagination.service';
 
 describe('GetAllUserProfileUseCase', () => {
   let getAllUserProfileUseCase: GetAllUserProfileUseCase;
-  let userPrfileRepository: jest.Mocked<UserProfileRepository>;
+  let userProfileRepository: jest.Mocked<UserProfileRepository>;
+  let paginationService: jest.Mocked<PaginationService>;
 
   beforeEach(async () => {
-    // Crear un mock del repositorio
+    // Crear un mock del repositorio y del servicio de paginación
     const mockUserProfileRepository = {
-      findAll: jest.fn(),
+      findAllWithPagination: jest.fn(),
+    };
+
+    const mockPaginationService = {
+      paginate: jest.fn(),
     };
 
     const module: TestingModule = await Test.createTestingModule({
@@ -21,18 +27,25 @@ describe('GetAllUserProfileUseCase', () => {
           provide: UserProfileRepository,
           useValue: mockUserProfileRepository, // Usamos el mock
         },
+        {
+          provide: PaginationService,
+          useValue: mockPaginationService, // Usamos el mock
+        },
       ],
     }).compile();
 
     getAllUserProfileUseCase = module.get<GetAllUserProfileUseCase>(
       GetAllUserProfileUseCase,
     );
-    userPrfileRepository = module.get<UserProfileRepository>(
+    userProfileRepository = module.get<UserProfileRepository>(
       UserProfileRepository,
     ) as jest.Mocked<UserProfileRepository>; // Asegurarse de que esté correctamente tipeado como un mock
+    paginationService = module.get<PaginationService>(
+      PaginationService,
+    ) as jest.Mocked<PaginationService>; // Asegurarse de que esté correctamente tipeado como un mock
   });
 
-  it('should return all auth users', async () => {
+  it('should return all auth users with pagination', async () => {
     // Arrange: Definir un mock de usuarios
     const mockUserProfiles: UserProfile[] = [
       {
@@ -56,24 +69,33 @@ describe('GetAllUserProfileUseCase', () => {
           country_id: 1,
           country: new Country()
         },
-        address: 'test',
-        password: 'password',
+        address: 'test address',
+        password: 'testpassword',
         is_temporal_password: false,
         accepted_terms: true,
         created_at: new Date(),
         updated_at: new Date(),
-        deleted_at: new Date(),
-      },
+        deleted_at: null,
+      }
     ];
 
-    // Simular que el repositorio devuelve todos los usuarios
-    userPrfileRepository.findAll.mockResolvedValue(mockUserProfiles);
+    const mockPaginationResult = {
+      data: mockUserProfiles,
+      total: 1,
+      nextPage: null,
+      prevPage: null,
+      limit: 10,
+    };
 
-    // Act: Ejecutar el caso de uso
-    const result = await getAllUserProfileUseCase.execute();
+    userProfileRepository.findAllWithPagination.mockResolvedValue({ data: mockUserProfiles, total: 1, nextPage: null, prevPage: null, limit: 10 });
+    paginationService.paginate.mockReturnValue(mockPaginationResult);
 
-    // Assert: Verificar que el resultado es el esperado
-    expect(result).toEqual({ userProfiles: mockUserProfiles });
-    expect(userPrfileRepository.findAll).toHaveBeenCalled();
+    // Act
+    const result = await getAllUserProfileUseCase.execute(1, 10);
+
+    // Assert
+    expect(result).toEqual(mockPaginationResult);
+    expect(userProfileRepository.findAllWithPagination).toHaveBeenCalledWith(1, 10);
+    expect(paginationService.paginate).toHaveBeenCalledWith(mockUserProfiles, 1, 1, 10);
   });
 });

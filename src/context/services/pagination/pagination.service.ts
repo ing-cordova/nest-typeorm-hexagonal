@@ -1,4 +1,4 @@
-import { Injectable } from "src/context/shared/dependency-injection/injectable";
+import { Injectable } from "../../shared/dependency-injection/injectable";
 
 @Injectable()
 export class PaginationService {
