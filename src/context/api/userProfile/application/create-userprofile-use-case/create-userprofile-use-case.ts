@@ -20,6 +20,7 @@ export class CreateUserProfileUseCase {
         userProfile.password = encryptPassword(dto.password);
         userProfile.country_id = dto.country_id;
         userProfile.user_type_id = dto.user_type_id;
+        userProfile.is_temporal_password = false;
         userProfile.created_at = new Date();
     
         await this.userProfileRepository.create(userProfile);
