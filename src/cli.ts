@@ -1,4 +1,3 @@
-// src/cli.ts
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { DataSource } from 'typeorm';
@@ -8,6 +7,7 @@ import { StateSeeder } from './context/seeds/state.seeder';
 import { UserTypeSeeder } from './context/seeds/user-type.seeder';
 import { PermissionSeeder } from './context/seeds/permission.seeder';
 import { UserProfileSeeder } from './context/seeds/user-profile.seeder';
+import { CategorySeeder } from './context/seeds/category.seeder';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
@@ -19,7 +19,8 @@ async function bootstrap() {
             StateSeeder,
             UserTypeSeeder,
             UserProfileSeeder,
-            PermissionSeeder
+            PermissionSeeder,
+            CategorySeeder
         ],
     });
 
