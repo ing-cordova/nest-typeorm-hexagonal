@@ -3,11 +3,12 @@ import { Exclude } from 'class-transformer';
 import { UserType } from '../../userType/domain/user-type.model';
 import { Country } from '../../country/domain/country.model';
 import { State } from '../../state/domain/state.model';
+import { UUID } from 'crypto';
 
 @Entity('user_profile')
 export class UserProfile {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: UUID;
 
   @Column()
   user_type_id: number

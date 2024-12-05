@@ -5,6 +5,7 @@ import { decryptPassword, encryptPassword } from "../../../../services/password-
 import { HttpException } from "@nestjs/common";
 import { UserProfileRepository } from "../../domain/userprofile.repository";
 import { UserProfile } from "../../domain/userprofile.model";
+import { UUID } from "crypto";
 
 @Injectable()
 export class TypeOrmUserProfileRepository extends UserProfileRepository {
@@ -58,7 +59,7 @@ export class TypeOrmUserProfileRepository extends UserProfileRepository {
         await this.repository.softDelete(id);
     }
 
-    async updateById(id: number, userProfile: Partial<UserProfile>): Promise<UserProfile> {
+    async updateById(id: UUID, userProfile: Partial<UserProfile>): Promise<UserProfile> {
         await this.repository.update(id, userProfile);
         return await this.repository.findOne({ where: { id } }) as UserProfile;
     }
