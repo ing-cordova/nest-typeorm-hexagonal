@@ -24,7 +24,7 @@ describe('UpdateUserProfileUseCase', () => {
         };
 
         const mockUserProfile: UserProfile = {
-            id: 1,
+            id: '12345-12345-12345-12345-12345',
             user_type_id: 1,
             userType: { id: 1, name: 'userType', description: 'user type', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
             first_name: 'test',

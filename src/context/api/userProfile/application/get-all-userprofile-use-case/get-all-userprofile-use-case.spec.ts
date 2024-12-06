@@ -49,7 +49,7 @@ describe('GetAllUserProfileUseCase', () => {
     // Arrange: Definir un mock de usuarios
     const mockUserProfiles: UserProfile[] = [
       {
-        id: 1,
+        id: '00000000-0000-0000-0000-000000000001',
         user_type_id: 1,
         userType: { id: 1, name: 'userType', description: 'user type', created_at: new Date(), updated_at: new Date(), deleted_at: new Date() },
         first_name: 'test',
