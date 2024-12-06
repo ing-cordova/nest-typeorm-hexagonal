@@ -10,6 +10,7 @@ import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/r
 import { UserProfileModule } from './context/api/userProfile/infraestructure/userprofile.module';
 import { CategoryModule } from './context/api/category/infraestructure/category.module';
 import { SubCategoryModule } from './context/api/subCategory/infraestructure/subcategory.module';
+import { MessagesModule } from './context/api/messages/infraestructure/messages.module';
 
 @Module({
   imports: [
@@ -42,7 +43,8 @@ import { SubCategoryModule } from './context/api/subCategory/infraestructure/sub
     PermissionModule,
     PermissionUserTypeModule,
     CategoryModule,
-    SubCategoryModule
+    SubCategoryModule,
+    MessagesModule
   ],
 })
 export class AppModule { }
