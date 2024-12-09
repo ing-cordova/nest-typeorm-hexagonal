@@ -25,4 +25,5 @@ export const PrivateEndpoints = {
     DELETE_PROFILE: `${PrefixEndpointType.PRIVATE}/delete-profile/:id`,
     VIEW_PROFILE: `${PrefixEndpointType.PRIVATE}/view-profile/:username`,
     VIEW_ALL_PROFILE: `${PrefixEndpointType.PRIVATE}/view-all-profile`,
+    VIEW_ALL_MESSAGES: `${PrefixEndpointType.PRIVATE}/view-all-messages`,
 };
