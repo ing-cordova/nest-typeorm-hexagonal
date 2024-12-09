@@ -1,4 +1,4 @@
-import { PaginationService } from "src/context/services/pagination/pagination.service";
+import { PaginationService } from "../../../../services/pagination/pagination.service";
 import { Injectable } from "../../../../shared/dependency-injection/injectable";
 import { Messages } from "../../domain/messages.model";
 import { MessagesRepository } from "../../domain/messages.repository";
