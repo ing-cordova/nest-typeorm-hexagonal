@@ -1,7 +1,7 @@
 import { BadRequestException, Body, ClassSerializerInterceptor, Controller, Post, UseInterceptors } from "@nestjs/common";
 import { ApiBody, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { PrefixEndpointType, PublicEndpoints } from "src/context/routes/routing";
-import { CreateNewMessageUseCase } from "../../application/create-new-message-use-case/create-new-message-use-case";
+import { CreateNewMessageUseCase } from "../../../application/create-new-message-use-case/create-new-message-use-case";
 import { CreateNewMessageHttpDto } from "./create-new-message-http-dto";
 
 @ApiTags(PrefixEndpointType.PUBLIC)
