@@ -58,5 +58,11 @@ export const PermissionsMainData = [
         can: PermissionEnum.VIEW_ALL_PROFILE,
         description: "Permission to view all the users information",
         user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR, UserTypeEnum.ADMINISTRATOR])
+    },
+    {
+        id: 9,
+        can: PermissionEnum.VIEW_ALL_MESSAGES,
+        description: "Permission to view all the messages",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR, UserTypeEnum.ADMINISTRATOR])
     }
 ];
