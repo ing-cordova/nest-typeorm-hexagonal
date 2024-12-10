@@ -1,16 +1,11 @@
-import { Module, OnModuleInit } from '@nestjs/common';
+import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { UserTypeModule } from './context/api/userType/infraestructure/user-type.module';
-import { CountryModule } from './context/api/country/infraestructure/country.module';
-import { StateModule } from './context/api/state/infraestructure/state.module';
-import { PermissionModule } from './context/api/permission/infraestructure/permission.module';
-import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
-import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';
-import { UserProfileModule } from './context/api/userProfile/infraestructure/userprofile.module';
-import { CategoryModule } from './context/api/category/infraestructure/category.module';
-import { SubCategoryModule } from './context/api/subCategory/infraestructure/subcategory.module';
-import { MessagesModule } from './context/api/messages/infraestructure/messages.module';
+import { join } from 'path';
+const requireContext = require('require-context');
+
+const modulesContext = requireContext(join(__dirname, 'context/api'), true, /\.module\.ts$/);
+const modules = modulesContext.keys().map((key) => modulesContext(key).default);
 
 @Module({
   imports: [
@@ -35,16 +30,7 @@ import { MessagesModule } from './context/api/messages/infraestructure/messages.
       }),
     }),
     
-    UserProfileModule,
-    RefreshTokenModule,
-    UserTypeModule,
-    CountryModule,
-    StateModule,
-    PermissionModule,
-    PermissionUserTypeModule,
-    CategoryModule,
-    SubCategoryModule,
-    MessagesModule
+    ...modules
   ],
 })
 export class AppModule { }
