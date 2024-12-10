@@ -31,6 +31,7 @@ program
     });
 
     const files = [
+      // Application
       {
         path: path.join(
           baseDir,
@@ -161,6 +162,7 @@ export class FindAll${capitalize(moduleName)}UseCase {
     }
 }`,
       },
+      // Domain
       {
         path: path.join(baseDir, "domain", `${moduleName}.model.ts`),
         content: `
@@ -205,6 +207,7 @@ export abstract class ${capitalize(moduleName)}Repository {
     abstract delete(id: number): Promise<void>;
 }
 `,
+        // Infraestructure
       },
       {
         path: path.join(
@@ -224,20 +227,51 @@ export class ${capitalize(moduleName)}Controller {
         path: path.join(
           baseDir,
           "infraestructure/repositories",
-          `${moduleName}.repository.ts`
+          `typeorm-${moduleName}.repository.ts`
         ),
-        content: `export class ${capitalize(moduleName)}Repository {}`,
+        content: `import { InjectRepository } from "@nestjs/typeorm";
+import { Repository } from "typeorm";
+import { Injectable } from "../../../../shared/dependency-injection/injectable";
+import { ${capitalize(moduleName)} } from "../../domain/${moduleName}.model";
+import { ${capitalize(moduleName)}Repository } from "../../domain/${moduleName}.repository";
+
+@Injectable()
+export class TypeOrm${capitalize(moduleName)}Repository extends ${capitalize(moduleName)}Repository {
+    constructor(
+        @InjectRepository(${capitalize(moduleName)})
+        private readonly repository: Repository<${capitalize(moduleName)}>,
+    ) {
+        super();
+    }
+
+    async create(data: ${capitalize(moduleName)}): Promise<${capitalize(moduleName)}> {
+        return this.repository.save(data);
+    }
+    async findAll(): Promise<${capitalize(moduleName)}[]> {
+        return this.repository.find();
+    }
+    async findOne(id: number): Promise<${capitalize(moduleName)} | null> {
+        return this.repository.findOne({ where: { id } });
+    }
+    async update(id: number, data: ${capitalize(moduleName)}): Promise<${capitalize(moduleName)} | null> {
+        await this.repository.update(id, data);
+        return this.repository.findOne({ where: { id } });
+    }
+    async delete(id: number): Promise<void> {
+        await this.repository.delete(id);
+    }
+}`,
       },
       {
         path: path.join(baseDir, `infraestructure`, `${moduleName}.module.ts`),
         content: `import { Module } from '@nestjs/common';
 import { ${capitalize(moduleName)}Controller } from './http-api/${moduleName}.controller';
 import { Create${capitalize(moduleName)}UseCase } from '../application/create-${moduleName}-use-case/create-${moduleName}-use-case';
-import { ${capitalize(moduleName)}Repository } from '../repositories/${moduleName}.repository';
+import { TypeOrm${capitalize(moduleName)}Repository } from './repositories/typeorm-${moduleName}.repository';
 
 @Module({
     controllers: [${capitalize(moduleName)}Controller],
-    providers: [Create${capitalize(moduleName)}UseCase, ${capitalize(moduleName)}Repository],
+    providers: [Create${capitalize(moduleName)}UseCase, TypeOrm${capitalize(moduleName)}Repository],
     exports: [Create${capitalize(moduleName)}UseCase],
 })
 export class ${capitalize(moduleName)}Module {}`,
