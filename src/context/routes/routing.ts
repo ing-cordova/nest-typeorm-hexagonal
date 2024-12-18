@@ -26,4 +26,6 @@ export const PrivateEndpoints = {
     VIEW_PROFILE: `${PrefixEndpointType.PRIVATE}/view-profile/:username`,
     VIEW_ALL_PROFILE: `${PrefixEndpointType.PRIVATE}/view-all-profile`,
     VIEW_ALL_MESSAGES: `${PrefixEndpointType.PRIVATE}/view-all-messages`,
+    VIEW_ALL_PAYMENT_METHODS: `${PrefixEndpointType.PRIVATE}/payment-methods`,
+    CREATE_NEW_PAYMENT_METHOD: `${PrefixEndpointType.PRIVATE}/create-payment-method`,
 };
