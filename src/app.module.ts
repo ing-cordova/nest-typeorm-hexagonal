@@ -11,6 +11,7 @@ import { UserProfileModule } from './context/api/userProfile/infraestructure/use
 import { CategoryModule } from './context/api/category/infraestructure/category.module';
 import { SubCategoryModule } from './context/api/subCategory/infraestructure/subcategory.module';
 import { MessagesModule } from './context/api/messages/infraestructure/messages.module';
+import { PaymentMethodModule } from './context/api/paymentMethod/infraestructure/payment-method.module';
 
 @Module({
   imports: [
@@ -45,7 +46,8 @@ import { MessagesModule } from './context/api/messages/infraestructure/messages.
     PermissionUserTypeModule,
     CategoryModule,
     SubCategoryModule,
-    MessagesModule
+    MessagesModule,
+    PaymentMethodModule
   ],
 })
 export class AppModule { }
