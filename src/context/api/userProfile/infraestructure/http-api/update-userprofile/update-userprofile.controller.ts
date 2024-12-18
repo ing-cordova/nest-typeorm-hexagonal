@@ -2,7 +2,7 @@ import { Body, ClassSerializerInterceptor, Controller, HttpException, Param, Par
 import { ApiBearerAuth, ApiBody, ApiParam, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { UpdateUserProfileUseCase } from "../../../application/update-userprofile-use-case/update-userprofile-use-case";
 import { UserProfile } from "../../../domain/userprofile.model";
-import { GetInformationByToken } from "src/context/services/get-information.decorator";
+import { GetInformationByToken } from "src/context/decorators/get-information.decorator";
 import { PrefixEndpointType, PrivateEndpoints } from "src/context/routes/routing";
 import { JwtAuthGuard } from "src/context/guards/jwt.guard";
 import { PermissionsGuard } from "src/context/guards/permissions.guard";

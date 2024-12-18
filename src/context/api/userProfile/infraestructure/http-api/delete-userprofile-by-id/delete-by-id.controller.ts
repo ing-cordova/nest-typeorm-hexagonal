@@ -1,7 +1,7 @@
 import { BadRequestException, ClassSerializerInterceptor, Controller, Delete, Param, ParseIntPipe, UseGuards, UseInterceptors } from "@nestjs/common";
 import { DeleteByIdHttpDto } from "./delete-by-id-http-dto";
 import { ApiParam, ApiTags } from "@nestjs/swagger";
-import { GetInformationByToken } from "src/context/services/get-information.decorator";
+import { GetInformationByToken } from "src/context/decorators/get-information.decorator";
 import { DeleteUserProfileByIdUseCase } from "../../../application/delete-userprofile-by-id-use-case/delete-userprofile-by-id-use-case";
 import { JwtAuthGuard } from "src/context/guards/jwt.guard";
 import { PermissionsGuard } from "src/context/guards/permissions.guard";
