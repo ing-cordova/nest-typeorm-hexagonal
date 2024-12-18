@@ -64,5 +64,17 @@ export const PermissionsMainData = [
         can: PermissionEnum.VIEW_ALL_MESSAGES,
         description: "Permission to view all the messages",
         user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR, UserTypeEnum.ADMINISTRATOR])
+    },
+    {
+        id: 10,
+        can: PermissionEnum.VIEW_ALL_PAYMENT_METHODS,
+        description: "Permission to view all the payment methods",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR, UserTypeEnum.ADMINISTRATOR])
+    },
+    {
+        id: 11,
+        can: PermissionEnum.CREATE_PAYMENT_METHOD,
+        description: "Permission to create a new payment method",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
     }
 ];
