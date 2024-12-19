@@ -1,13 +1,14 @@
 import { ApiProperty } from "@nestjs/swagger";
-import { IsEmail, IsInt, IsString } from "class-validator";
+import { IsEmail, IsInt, IsString, IsUUID } from "class-validator";
+import { UUID } from "crypto";
 
 export class GenerateUserProfileHttpDto {
     @ApiProperty({
-        type: Number,
+        type: String,
         description: 'User type id',
     })
-    @IsInt()
-    user_type_id: number;
+    @IsUUID()
+    user_type_id: UUID;
 
     @ApiProperty({
         type: String,

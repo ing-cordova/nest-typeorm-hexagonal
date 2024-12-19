@@ -2,6 +2,8 @@ import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { encryptPassword } from "../services/password-service";
 import { UserProfile } from "../api/userProfile/domain/userprofile.model";
+import { UserType } from "../api/userType/domain/user-type.model";
+import { UUID } from "crypto";
 
 export class UserProfileSeeder implements Seeder {
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
@@ -9,7 +11,7 @@ export class UserProfileSeeder implements Seeder {
 
         const userProfileToInsert = [
             {
-                user_type_id: 1,
+                user_type_id: '5a954780-7dcb-4c06-a005-f2013292c70b' as UUID,
                 first_name: "Andres",
                 second_name: "Eduardo",
                 last_name: "Cordova",

@@ -23,7 +23,7 @@ export class PermissionSeeder implements Seeder {
         // Ahora insertamos las relaciones permission_id y user_type_id en PermissionUserType
         const permissionUserTypesToInsert = [];
         PermissionsMainData.forEach((permission: any) => {
-            permission.user_types.forEach((userTypeId: number) => {
+            permission.user_types.forEach((userTypeId: string) => {
                 permissionUserTypesToInsert.push({
                     permission_id: permission.id,
                     user_type_id: userTypeId,

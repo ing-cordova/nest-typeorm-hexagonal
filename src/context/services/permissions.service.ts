@@ -15,7 +15,7 @@ export class PermissionService {
       .createQueryBuilder('permissionUserType')
       .leftJoinAndSelect('permissionUserType.permission', 'permission')
       .leftJoinAndSelect('permissionUserType.user_type', 'userType')
-      .where('userType.name = :userType', { userType })
+      .where('userType.id = :userType', { userType })
       .getMany();
 
     const userPermissions = permissions.map(p => p.permission.can);

@@ -11,7 +11,7 @@ export class UserProfile {
   id: UUID;
 
   @Column()
-  user_type_id: number
+  user_type_id: UUID;
 
   @Column()
   first_name: string;

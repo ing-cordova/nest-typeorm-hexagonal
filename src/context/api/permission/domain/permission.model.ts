@@ -1,11 +1,12 @@
 import { Exclude } from "class-transformer";
+import { UUID } from "crypto";
 import { Column, Entity, PrimaryGeneratedColumn } from "typeorm";
 
 
 @Entity('permission')
 export class Permission {
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryGeneratedColumn('uuid')
+    id: UUID
 
     @Column()
     can: string
