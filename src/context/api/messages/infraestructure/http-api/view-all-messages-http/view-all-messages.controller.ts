@@ -1,5 +1,5 @@
 import { BadRequestException, ClassSerializerInterceptor, Controller, DefaultValuePipe, Get, ParseIntPipe, Query, UseGuards, UseInterceptors } from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
 import { PrefixEndpointType, PrivateEndpoints } from "src/context/routes/routing";
 import { ViewAllMessagesUseCase } from "../../../application/view-all-messages-use-case/view-all-messages-use-case";
 import { JwtAuthGuard } from "src/context/guards/jwt.guard";
@@ -16,6 +16,7 @@ export class ViewAllMessagesHttpController {
     @Get(PrivateEndpoints.VIEW_ALL_MESSAGES)
     @UseGuards(JwtAuthGuard, PermissionsGuard)
     @Permissions(PermissionEnum.VIEW_ALL_MESSAGES)
+    @ApiBearerAuth()
     async viewAllMessages(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
         @Query('limit', new DefaultValuePipe(5), ParseIntPipe) limit: number) {
         try {

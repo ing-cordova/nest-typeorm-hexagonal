@@ -1,5 +1,5 @@
 import { Body, ClassSerializerInterceptor, Controller, HttpException, Post, UseGuards, UseInterceptors } from '@nestjs/common';
-import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { TypeOrmUserProfileRepository } from '../../repositories/typeorm-userprofile.repository';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { PermissionsGuard } from 'src/context/guards/permissions.guard';
@@ -59,6 +59,7 @@ export class GenerateUserProfileController {
             },
         },
     })
+    @ApiBearerAuth()
     async run(
         @Body() generateUserProfileHttpDto: GenerateUserProfileHttpDto
     ): Promise<{ userProfile: UserProfile }> {

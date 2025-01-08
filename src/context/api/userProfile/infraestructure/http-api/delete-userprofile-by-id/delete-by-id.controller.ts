@@ -1,6 +1,6 @@
 import { BadRequestException, ClassSerializerInterceptor, Controller, Delete, Param, ParseIntPipe, UseGuards, UseInterceptors } from "@nestjs/common";
 import { DeleteByIdHttpDto } from "./delete-by-id-http-dto";
-import { ApiParam, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiParam, ApiTags } from "@nestjs/swagger";
 import { GetInformationByToken } from "src/context/decorators/get-information.decorator";
 import { DeleteUserProfileByIdUseCase } from "../../../application/delete-userprofile-by-id-use-case/delete-userprofile-by-id-use-case";
 import { JwtAuthGuard } from "src/context/guards/jwt.guard";
@@ -29,6 +29,7 @@ export class DeleteUserProfileByIdController {
     @UseGuards(JwtAuthGuard, PermissionsGuard)
     @Permissions(PermissionEnum.DELETE_PROFILE)
     @Delete(PrivateEndpoints.DELETE_PROFILE)
+    @ApiBearerAuth()
     async run(@Param('id', ParseIntPipe) id: number, @GetInformationByToken() gibt: any): Promise<void> {
         try {
             if(id === 1 || isMaster(gibt.user_type)) throw new BadRequestException('You cannot delete this profile');

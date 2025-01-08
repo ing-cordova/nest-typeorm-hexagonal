@@ -1,5 +1,5 @@
 import { ClassSerializerInterceptor, Controller, HttpException, Post, UseGuards, UseInterceptors } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetInformationByToken } from 'src/context/decorators/get-information.decorator';
 import { generateAPPTokenAndRefreshToken } from 'src/context/services/token-service';
 import { FindUserProfileByUsernameUseCase } from 'src/context/api/userProfile/application/find-userprofile-by-username-use-case/find-userprofile-by-username-use-case';
@@ -18,6 +18,7 @@ export class RefreshTokenController {
         status: 200,
         description: 'Refresh token created successfully',
     })
+    @ApiBearerAuth()
     async run(@GetInformationByToken() gibt: any) {
         try {
             const result = await this.findUserProfileByUsernameUseCase.execute({ username: gibt.username });

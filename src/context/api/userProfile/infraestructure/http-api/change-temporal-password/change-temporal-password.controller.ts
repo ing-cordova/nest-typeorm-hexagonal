@@ -1,5 +1,5 @@
 import { Body, ClassSerializerInterceptor, Controller, Patch, UseGuards, UseInterceptors } from '@nestjs/common';
-import { ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiBody, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { ChangeTemporalPasswordUseCase } from '../../../application/change-temporal-password-use-case/change-temporal-password-use-case';
 import { ChangeTemporalPasswordHttpDto } from './change-temporal-password-http-dto';
 import { GetInformationByToken } from 'src/context/decorators/get-information.decorator';
@@ -25,6 +25,7 @@ export class ChangeTemporalPasswordController {
     @ApiResponse({
         status: 200,
     })
+    @ApiBearerAuth()
     async run(
         @Body() changeTemporalPasswordHttpDto: ChangeTemporalPasswordHttpDto,
         @GetInformationByToken() gibt: any

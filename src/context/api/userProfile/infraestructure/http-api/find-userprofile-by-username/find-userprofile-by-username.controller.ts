@@ -1,5 +1,5 @@
 import { ClassSerializerInterceptor, Controller, Get, NotFoundException, Param, UseGuards, UseInterceptors } from '@nestjs/common';
-import { ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiParam, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { FindUserProfileByUsernameUseCase } from '../../../application/find-userprofile-by-username-use-case/find-userprofile-by-username-use-case';
 import { FindUserProfileByUsernameHttpDto } from './find-userprofile-by-username-http-dto';
 import { UserProfile } from '../../../domain/userprofile.model';
@@ -79,10 +79,10 @@ export class FindUserProfileByUsernameController {
       },
     },
   })
-
   @UseGuards(JwtAuthGuard, PermissionsGuard)
   @Permissions(PermissionEnum.VIEW_PROFILE)
   @Get(PrivateEndpoints.VIEW_PROFILE)
+  @ApiBearerAuth()
   async run(
     @Param() params: FindUserProfileByUsernameHttpDto,
   ): Promise<{ userProfile: UserProfile }> {

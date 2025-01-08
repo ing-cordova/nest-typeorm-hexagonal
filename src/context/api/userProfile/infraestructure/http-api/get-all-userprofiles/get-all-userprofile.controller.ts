@@ -1,5 +1,5 @@
 import { BadRequestException, ClassSerializerInterceptor, Controller, DefaultValuePipe, Get, ParseIntPipe, Query, UseGuards, UseInterceptors } from '@nestjs/common';
-import { ApiResponse, ApiTags } from '@nestjs/swagger';
+import { ApiBearerAuth, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { GetAllUserProfileUseCase } from '../../../application/get-all-userprofile-use-case/get-all-userprofile-use-case';
 import { UserProfile } from '../../../domain/userprofile.model';
 import { JwtAuthGuard } from 'src/context/guards/jwt.guard';
@@ -73,6 +73,7 @@ export class GetAllUserProfileqController {
   @UseGuards(JwtAuthGuard, PermissionsGuard)
   @Permissions(PermissionEnum.VIEW_ALL_PROFILE)
   @Get(PrivateEndpoints.VIEW_ALL_PROFILE)
+  @ApiBearerAuth()
   async run(@Query('page', new DefaultValuePipe(1), ParseIntPipe) page: number,
     @Query('limit', new DefaultValuePipe(5), ParseIntPipe) limit: number): Promise<{ data: UserProfile[], total: number, nextPage: number | null, prevPage: number | null, limit: number }> {
     try {
