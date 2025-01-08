@@ -76,5 +76,35 @@ export const PermissionsMainData = [
         can: PermissionEnum.CREATE_PAYMENT_METHOD,
         description: "Permission to create a new payment method",
         user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
+    },
+    {
+        id: '77d5f5c9-6dc5-4f03-b64a-1f3fe995abf6',
+        can: PermissionEnum.CREATE_NEW_ISSUER_TYPE,
+        description: "Permission to create a new issuer type",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
+    },
+    {
+        id: 'ed577d99-3310-4c9b-8499-0888e04780d1',
+        can: PermissionEnum.VIEW_ALL_ISSUER_TYPES,
+        description: "Permission to view all the issuer types",
+        user_types: expandUserTypes(['*'])
+    },
+    {
+        id: '0d91d14b-5543-4a75-8abd-a3c2fab253fe',
+        can: PermissionEnum.VIEW_ISSUER_TYPE_BY_ID,
+        description: "Permission to view an issuer type by id",
+        user_types: expandUserTypes(['*'])
+    },
+    {
+        id: '39eea33a-4911-4850-aa8e-f8ff9599516f',
+        can: PermissionEnum.UPDATE_ISSUER_TYPE,
+        description: "Permission to update an issuer type",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
+    }, 
+    {
+        id: '13c9b526-0f78-46b6-be30-4729f2f10ccb',
+        can: PermissionEnum.DELETE_ISSUER_TYPE,
+        description: "Permission to delete an issuer type",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
     }
 ];

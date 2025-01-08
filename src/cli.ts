@@ -10,6 +10,7 @@ import { UserProfileSeeder } from './context/seeds/user-profile.seeder';
 import { CategorySeeder } from './context/seeds/category.seeder';
 import { SubCategorySeeder } from './context/seeds/subcategory.seeder';
 import { PaymentMethodSeeder } from './context/seeds/payment-method.seeder';
+import { IssuerTypeSeeder } from './context/seeds/issuer-type.seeder';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
@@ -24,7 +25,8 @@ async function bootstrap() {
             PermissionSeeder,
             CategorySeeder,
             SubCategorySeeder,
-            PaymentMethodSeeder
+            PaymentMethodSeeder,
+            IssuerTypeSeeder,
         ],
     });
 

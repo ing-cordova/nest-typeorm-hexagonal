@@ -12,6 +12,7 @@ import { CategoryModule } from './context/api/category/infraestructure/category.
 import { SubCategoryModule } from './context/api/subCategory/infraestructure/subcategory.module';
 import { MessagesModule } from './context/api/messages/infraestructure/messages.module';
 import { PaymentMethodModule } from './context/api/paymentMethod/infraestructure/payment-method.module';
+import { IssuerTypeModule } from './context/api/issuerType/infraestructure/issuer-type.module';
 
 @Module({
   imports: [
@@ -47,7 +48,8 @@ import { PaymentMethodModule } from './context/api/paymentMethod/infraestructure
     CategoryModule,
     SubCategoryModule,
     MessagesModule,
-    PaymentMethodModule
+    PaymentMethodModule,
+    IssuerTypeModule
   ],
 })
 export class AppModule { }

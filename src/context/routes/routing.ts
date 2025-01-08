@@ -28,4 +28,9 @@ export const PrivateEndpoints = {
     VIEW_ALL_MESSAGES: `${PrefixEndpointType.PRIVATE}/view-all-messages`,
     VIEW_ALL_PAYMENT_METHODS: `${PrefixEndpointType.PRIVATE}/payment-methods`,
     CREATE_NEW_PAYMENT_METHOD: `${PrefixEndpointType.PRIVATE}/create-payment-method`,
+    CREATE_NEW_ISSUER_TYPE: `${PrefixEndpointType.PRIVATE}/create-issuer-type`,
+    VIEW_ALL_ISSUER_TYPES: `${PrefixEndpointType.PRIVATE}/issuer-types`,
+    VIEW_ISSUER_TYPE_BY_ID: `${PrefixEndpointType.PRIVATE}/issuer-type/:id`,
+    UPDATE_ISSUER_TYPE: `${PrefixEndpointType.PRIVATE}/update-issuer-type/:id`,
+    DELETE_ISSUER_TYPE: `${PrefixEndpointType.PRIVATE}/delete-issuer-type/:id`,
 };
