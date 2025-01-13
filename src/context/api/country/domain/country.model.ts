@@ -22,7 +22,25 @@ export class Country {
     region: string;
 
     @Column()
+    sub_region: string
+
+    @Column()
     currency: string;
+
+    @Column()
+    currency_name: string;
+
+    @Column()
+    currency_symbol: string;
+
+    @Column()
+    nationality: string;
+
+    @Column()
+    latitude: string;
+
+    @Column()
+    longitude: string;
 
     @CreateDateColumn()
     @Exclude()

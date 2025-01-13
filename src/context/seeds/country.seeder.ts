@@ -18,8 +18,14 @@ export class CountrySeeder implements Seeder {
                 iso2: country.iso2,
                 iso3: country.iso3,
                 phone_code: country.phone_code,
-                region: country.region,
+                region: country.region ? country.region : 'N/A',
+                sub_region: country.subregion ? country.subregion : 'N/A',
                 currency: country.currency,
+                currency_name: country.currency_name,
+                currency_symbol: country.currency_symbol,
+                nationality: country.nationality,
+                latitude: country.latitude,
+                longitude: country.longitude,
                 created_at: new Date(),
             }));
 
