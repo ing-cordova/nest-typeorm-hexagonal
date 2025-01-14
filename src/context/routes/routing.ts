@@ -33,4 +33,5 @@ export const PrivateEndpoints = {
     VIEW_ISSUER_TYPE_BY_ID: `${PrefixEndpointType.PRIVATE}/issuer-type/:id`,
     UPDATE_ISSUER_TYPE: `${PrefixEndpointType.PRIVATE}/update-issuer-type/:id`,
     DELETE_ISSUER_TYPE: `${PrefixEndpointType.PRIVATE}/delete-issuer-type/:id`,
+    VIEW_ALL_REGIONS: `${PrefixEndpointType.PRIVATE}/regions`,
 };
