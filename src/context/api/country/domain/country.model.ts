@@ -1,5 +1,6 @@
 import { Exclude } from "class-transformer";
-import { Column, CreateDateColumn, DeleteDateColumn, Entity, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Column, CreateDateColumn, DeleteDateColumn, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn, UpdateDateColumn } from "typeorm";
+import { Region } from "../../region/domain/region.model";
 
 @Entity('country')
 export class Country {
@@ -18,8 +19,8 @@ export class Country {
     @Column()
     phone_code: string;
 
-    @Column()
-    region: string;
+    @Column({nullable: true})
+    region_id: number;
 
     @Column()
     sub_region: string
@@ -47,4 +48,8 @@ export class Country {
     @DeleteDateColumn({ nullable: true })
     @Exclude()
     deleted_at: Date;
+
+    @ManyToOne(() => Region, region => region.id)
+    @JoinColumn({ name: 'region_id' })
+    region: Region;
 }
