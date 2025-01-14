@@ -106,5 +106,11 @@ export const PermissionsMainData = [
         can: PermissionEnum.DELETE_ISSUER_TYPE,
         description: "Permission to delete an issuer type",
         user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
+    },
+    {
+        id: 'd6e08e52-4497-4daa-a827-614f4510fd93',
+        can: PermissionEnum.VIEW_ALL_REGIONS,
+        description: "Permission to view all the regions available in the system",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
     }
 ];
