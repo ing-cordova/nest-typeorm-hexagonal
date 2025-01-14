@@ -11,6 +11,7 @@ import { CategorySeeder } from './context/seeds/category.seeder';
 import { SubCategorySeeder } from './context/seeds/subcategory.seeder';
 import { PaymentMethodSeeder } from './context/seeds/payment-method.seeder';
 import { IssuerTypeSeeder } from './context/seeds/issuer-type.seeder';
+import { RegionSeeder } from './context/seeds/region.seeder';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
@@ -18,6 +19,7 @@ async function bootstrap() {
 
     await runSeeders(dataSource, {
         seeds: [
+            RegionSeeder,
             CountrySeeder,
             StateSeeder,
             UserTypeSeeder,
