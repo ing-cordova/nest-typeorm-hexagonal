@@ -36,12 +36,6 @@ export class Country {
     @Column()
     nationality: string;
 
-    @Column()
-    latitude: string;
-
-    @Column()
-    longitude: string;
-
     @CreateDateColumn()
     @Exclude()
     created_at: Date;

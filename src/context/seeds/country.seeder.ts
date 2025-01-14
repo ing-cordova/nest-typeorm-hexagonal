@@ -24,8 +24,6 @@ export class CountrySeeder implements Seeder {
                 currency_name: country.currency_name,
                 currency_symbol: country.currency_symbol,
                 nationality: country.nationality,
-                latitude: country.latitude,
-                longitude: country.longitude,
                 created_at: new Date(),
             }));
 
