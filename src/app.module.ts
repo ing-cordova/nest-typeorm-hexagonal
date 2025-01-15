@@ -14,6 +14,7 @@ import { MessagesModule } from './context/api/messages/infraestructure/messages.
 import { PaymentMethodModule } from './context/api/paymentMethod/infraestructure/payment-method.module';
 import { IssuerTypeModule } from './context/api/issuerType/infraestructure/issuer-type.module';
 import { RegionModule } from './context/api/region/infraestructure/region.module';
+import { SubRegionModule } from './context/api/subRegion/infraestructure/sub-region.module';
 
 @Module({
   imports: [
@@ -51,7 +52,8 @@ import { RegionModule } from './context/api/region/infraestructure/region.module
     MessagesModule,
     PaymentMethodModule,
     IssuerTypeModule,
-    RegionModule
+    RegionModule,
+    SubRegionModule,
   ],
 })
 export class AppModule { }
