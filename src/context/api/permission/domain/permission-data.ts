@@ -112,5 +112,17 @@ export const PermissionsMainData = [
         can: PermissionEnum.VIEW_ALL_REGIONS,
         description: "Permission to view all the regions available in the system",
         user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
+    },
+    {
+        id: 'd0f805ff-fa0c-4b92-b2a7-f342bad4c5e8',
+        can: PermissionEnum.VIEW_ALL_SUB_REGIONS,
+        description: "Permission to view all the sub regions available in the system",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
+    },
+    {
+        id: '3268ce2e-8694-49e6-bd8f-23f750007c35',
+        can: PermissionEnum.VIEW_SUB_REGIONS_BY_REGION_ID,
+        description: "Permission to view all the sub regions available in the system by region id",
+        user_types: expandUserTypes([UserTypeEnum.SUPER_ADMINISTRATOR])
     }
 ];
