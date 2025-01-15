@@ -19,7 +19,7 @@ export class CountrySeeder implements Seeder {
                 iso3: country.iso3,
                 phone_code: country.phone_code,
                 region_id: country.region_id && country.region_id !== 0 ? country.region_id : null,
-                sub_region: country.subregion ? country.subregion : 'N/A',
+                sub_region_id: country.subregion_id && country.subregion_id !== 0 ? country.subregion_id : null,
                 currency: country.currency,
                 currency_name: country.currency_name,
                 currency_symbol: country.currency_symbol,
