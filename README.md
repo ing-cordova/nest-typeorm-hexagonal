@@ -93,8 +93,15 @@ npm install DRIVER_NAME --save
 source .env
 ```
 
+## ✨ Generate new Modules
+```bash
+npm run generate:module module-name
+```
+
+After you run the command, you will see a new folder in the `src/context` directory with the name of the module you entered. Also, you have to include into the `src/app.module` file the new module.
+
 ## ⚙️ Usage
-1. Generate the migrations
+1. Generate the migrations (at the project will be a initial migration, you can create more migrations based on the entities you create)
 ```bash
 npm run typeorm:generate -- ./src/migrations/initial-migration
 ```
