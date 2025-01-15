@@ -6,7 +6,7 @@ import { SubRegionRepository } from "../../domain/sub-region.repository";
 export class FindAllSubRegionUseCase {
     constructor(private readonly subRegionRepository: SubRegionRepository) {}
 
-    async execute(): Promise<SubRegion[]> {
-        return this.subRegionRepository.findAll();
+    async execute(filter: Partial<SubRegion> = {}): Promise<SubRegion[]> {
+        return this.subRegionRepository.findAll(filter);
     }
 }

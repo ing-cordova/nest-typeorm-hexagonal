@@ -21,8 +21,8 @@ export class TypeOrmCountryRepository extends CountryRepository {
 
     //3. return countries with sub_region specified
     return this.repository.find({
-      where: { sub_region: In(["Northern America", "Central America"]) },
-      relations: ["region"],
+      where: { sub_region_id: In([6, 9]) },
+      relations: ["region", "sub_region"],
     });
   }
 }

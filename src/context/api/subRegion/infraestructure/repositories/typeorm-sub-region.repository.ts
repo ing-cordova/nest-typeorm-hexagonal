@@ -13,14 +13,7 @@ export class TypeOrmSubRegionRepository extends SubRegionRepository {
     super();
   }
 
-  async findAll(): Promise<SubRegion[]> {
-    return this.repository.find({ relations: ["region"] });
-  }
-
-  async findByRegionId(regionId: number): Promise<SubRegion[]> {
-    return this.repository.find({
-      where: { region_id: regionId },
-      relations: ["region"],
-    });
+  async findAll(filter: Partial<SubRegion> = {}): Promise<SubRegion[]> {
+    return this.repository.find({ where: filter, relations: ["region"] });
   }
 }

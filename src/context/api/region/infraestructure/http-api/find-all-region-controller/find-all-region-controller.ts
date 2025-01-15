@@ -1,4 +1,4 @@
-import { ApiBearerAuth, ApiTags } from "@nestjs/swagger";
+import { ApiBearerAuth, ApiResponse, ApiTags } from "@nestjs/swagger";
 import { FindAllRegionUseCase } from "../../../application/find-all-region-use-case/find-all-region-use-case";
 import {
   ClassSerializerInterceptor,
@@ -27,6 +27,26 @@ export class FindAllRegionController {
   @ApiBearerAuth()
   @UseGuards(JwtAuthGuard, PermissionsGuard)
   @Permissions(PermissionEnum.VIEW_ALL_REGIONS)
+  @ApiResponse({
+    status: 200,
+    description: "Regions found",
+    schema: {
+      type: "array",
+      items: {
+        type: "object",
+        properties: {
+          id: { type: "integer", example: 1 },
+          name: { type: "string", example: "Americas" },
+        },
+      },
+      example: [
+        {
+          id: 1,
+          name: "Americas",
+        },
+      ],
+    },
+  })
   async execute(): Promise<Region[]> {
     return await this.findAllRegionUseCase.execute();
   }

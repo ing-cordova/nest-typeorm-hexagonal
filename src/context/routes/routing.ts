@@ -35,5 +35,4 @@ export const PrivateEndpoints = {
     DELETE_ISSUER_TYPE: `${PrefixEndpointType.PRIVATE}/delete-issuer-type/:id`,
     VIEW_ALL_REGIONS: `${PrefixEndpointType.PRIVATE}/regions`,
     VIEW_ALL_SUB_REGIONS: `${PrefixEndpointType.PRIVATE}/sub-regions`,
-    VIEW_SUB_REGIONS_BY_REGION_ID: `${PrefixEndpointType.PRIVATE}/sub-regions/region/:regionId`,
 };
