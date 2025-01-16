@@ -2,17 +2,18 @@ import { Column, Entity, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from "t
 import { Permission } from "../../permission/domain/permission.model";
 import { UserType } from "../../userType/domain/user-type.model";
 import { Exclude } from "class-transformer";
+import { UUID } from "crypto";
 
 @Entity('permission_user_type')
 export class PermissionUserType {
-    @PrimaryGeneratedColumn()
-    id: number
+    @PrimaryGeneratedColumn('uuid')
+    id: UUID
 
     @Column()
-    user_type_id: number
+    user_type_id: UUID
 
     @Column()
-    permission_id: number
+    permission_id: UUID
 
     @Column()
     @Exclude()

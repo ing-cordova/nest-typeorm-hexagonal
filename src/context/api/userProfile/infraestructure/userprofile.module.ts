@@ -23,11 +23,12 @@ import { PermissionModule } from '../../permission/infraestructure/permission.mo
 import { FindUserProfileByUsernameController } from './http-api/find-userprofile-by-username/find-userprofile-by-username.controller';
 import { GenerateUserProfileController } from './http-api/generate-userprofile/enroll-userprofile-student.controller';
 import { GenerateUserProfileUseCase } from '../application/generate-userprofile-use-case/generate-userprofile-use-case';
+import { PaginationService } from 'src/context/services/pagination/pagination.service';
 
 const config = new ConfigService();
 @Module({
   imports: [
-    TypeOrmModule.forFeature([UserProfile]), 
+    TypeOrmModule.forFeature([UserProfile]),
     JwtModule.register({
       secret: config.get<string>('TOKEN_SECRET'),
       signOptions: { expiresIn: config.get<string>('TOKEN_EXPIRATION') },
@@ -36,7 +37,7 @@ const config = new ConfigService();
   ],
   controllers: [
     CreateUserProfileController,
-   GenerateUserProfileController,
+    GenerateUserProfileController,
     FindUserProfileByUsernameController,
     GetAllUserProfileqController,
     DeleteUserProfileByIdController,
@@ -58,7 +59,8 @@ const config = new ConfigService();
       provide: UserProfileRepository,
       useClass: TypeOrmUserProfileRepository,
     },
-    JwtStrategy
+    JwtStrategy,
+    PaginationService
   ],
   exports: [
     CreateUserProfileUseCase,
@@ -71,4 +73,4 @@ const config = new ConfigService();
     ChangeTemporalPasswordUseCase,
   ],
 })
-export class UserProfileModule {}
+export class UserProfileModule { }

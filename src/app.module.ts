@@ -8,6 +8,13 @@ import { PermissionModule } from './context/api/permission/infraestructure/permi
 import { PermissionUserTypeModule } from './context/api/permissionUserType/infraestructure/permission-user-type.module';
 import { RefreshTokenModule } from './context/api/refreshToken/infraestructure/refreshtoken.module';
 import { UserProfileModule } from './context/api/userProfile/infraestructure/userprofile.module';
+import { CategoryModule } from './context/api/category/infraestructure/category.module';
+import { SubCategoryModule } from './context/api/subCategory/infraestructure/subcategory.module';
+import { MessagesModule } from './context/api/messages/infraestructure/messages.module';
+import { PaymentMethodModule } from './context/api/paymentMethod/infraestructure/payment-method.module';
+import { IssuerTypeModule } from './context/api/issuerType/infraestructure/issuer-type.module';
+import { RegionModule } from './context/api/region/infraestructure/region.module';
+import { SubRegionModule } from './context/api/subRegion/infraestructure/sub-region.module';
 
 @Module({
   imports: [
@@ -32,13 +39,21 @@ import { UserProfileModule } from './context/api/userProfile/infraestructure/use
       }),
     }),
     
+    //modules here
     UserProfileModule,
     RefreshTokenModule,
     UserTypeModule,
     CountryModule,
     StateModule,
     PermissionModule,
-    PermissionUserTypeModule
+    PermissionUserTypeModule,
+    CategoryModule,
+    SubCategoryModule,
+    MessagesModule,
+    PaymentMethodModule,
+    IssuerTypeModule,
+    RegionModule,
+    SubRegionModule,
   ],
 })
 export class AppModule { }

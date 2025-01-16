@@ -32,7 +32,9 @@ export class GenerateUserProfileUseCase {
 
             await this.userProfileRepository.create(userProfile);
             // TODO: Send email with the credentials.
+            console.log('--------------------------------------------------');
             console.log(`Welcome ${userTypeReverseMap[dto.user_type_id]}\nDear ${userProfile.first_name} ${userProfile.last_name}, your credentials are the following:\nEmail: ${userProfile.email}\nPassword: [${passwordGenerated}]`);
+            console.log('--------------------------------------------------');
 
             return { userProfile };
         }

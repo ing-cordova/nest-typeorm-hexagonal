@@ -1,11 +1,3 @@
-import { IsInt, IsOptional, IsString } from "class-validator";
+import { UpdateUserProfileUseCaseDto } from "../../../application/update-userprofile-use-case/update-userprofile-use-case.dto";
 
-export class UpdateUserProfileHttpDto {
-    @IsString()
-    @IsOptional()
-    username: string;
-
-    @IsString()
-    @IsOptional()
-    email: string;
-}
+export interface UpdateUserProfileHttpDto extends UpdateUserProfileUseCaseDto { }

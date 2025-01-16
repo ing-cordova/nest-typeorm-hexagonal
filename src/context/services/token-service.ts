@@ -36,10 +36,11 @@ export const verifyToken = (token: string) => {
 export const generateAppToken = (userProfile: UserProfile) => {
     return generateToken(
         {
-            user_type: userProfile.userType.name,
+            user_type: userProfile.userType.id,
             username: userProfile.username,
             location: userProfile.country.name,
-            has_temporal_password: userProfile.is_temporal_password
+            // itp: Is Temporal Password
+            itp: userProfile.is_temporal_password
         }
     );
 };

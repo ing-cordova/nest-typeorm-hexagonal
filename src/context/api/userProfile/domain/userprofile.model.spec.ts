@@ -5,14 +5,14 @@ describe('UserProfile Model', () => {
   it('should create an instance of UserProfile', () => {
     // Arrange: Crear un nuevo usuario con los valores dados
     const userProfile = new UserProfile();
-    userProfile.id = 1;
+    userProfile.id = '00000000-0000-0000-0000-000000000001';
     userProfile.username = 'testuser';
     userProfile.email = 'testuser@example.com';
     userProfile.password = 'password123';
 
     // Assert: Verificar que las propiedades están asignadas correctamente
     expect(userProfile).toBeInstanceOf(UserProfile);
-    expect(userProfile.id).toBe(1);
+    expect(userProfile.id).toBe('00000000-0000-0000-0000-000000000001');
     expect(userProfile.username).toBe('testuser');
     expect(userProfile.email).toBe('testuser@example.com');
     expect(userProfile.password).toBe('password123');
@@ -21,7 +21,7 @@ describe('UserProfile Model', () => {
   it('should exclude the password field when transformed to plain object', () => {
     // Arrange: Crear un nuevo usuario
     const userProfile = new UserProfile();
-    userProfile.id = 1;
+    userProfile.id = '00000000-0000-0000-0000-000000000001';
     userProfile.username = 'testuser';
     userProfile.email = 'testuser@example.com';
     userProfile.password = 'password123';
@@ -31,7 +31,7 @@ describe('UserProfile Model', () => {
 
     // Assert: Verificar que el campo password está excluido
     expect(plainUser).toEqual({
-      id: 1,
+      id: '00000000-0000-0000-0000-000000000001',
       username: 'testuser',
       email: 'testuser@example.com',
     });

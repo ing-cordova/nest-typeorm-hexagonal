@@ -1,16 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, JoinColumn, ManyToOne, DeleteDateColumn, UpdateDateColumn, CreateDateColumn } from 'typeorm';
 import { Exclude } from 'class-transformer';
 import { UserType } from '../../userType/domain/user-type.model';
 import { Country } from '../../country/domain/country.model';
 import { State } from '../../state/domain/state.model';
+import { UUID } from 'crypto';
 
 @Entity('user_profile')
 export class UserProfile {
-  @PrimaryGeneratedColumn()
-  id: number;
+  @PrimaryGeneratedColumn('uuid')
+  id: UUID;
 
   @Column()
-  user_type_id: number
+  user_type_id: UUID;
 
   @Column()
   first_name: string;
@@ -40,7 +41,7 @@ export class UserProfile {
   @Column()
   country_id: number
 
-  @Column()
+  @Column({ nullable: true })
   state_id: number
 
   @Column({ nullable: true })
@@ -56,15 +57,15 @@ export class UserProfile {
   @Column({ default: false })
   accepted_terms: boolean;
 
-  @Column()
+  @CreateDateColumn()
   @Exclude()
   created_at: Date;
 
-  @Column({ nullable: true })
+  @UpdateDateColumn()
   @Exclude()
   updated_at: Date;
 
-  @Column({ nullable: true })
+  @DeleteDateColumn()
   @Exclude()
   deleted_at: Date;
 
