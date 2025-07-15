@@ -2,8 +2,10 @@ import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { IssuerType } from "../api/issuerType/domain/issuer-type.model";
 import { IssuerTypeEnum } from "../api/issuerType/domain/issuer-type.enum";
+import { Logger } from "@nestjs/common";
 
 export class IssuerTypeSeeder implements Seeder {
+    private readonly logger = new Logger(IssuerTypeSeeder.name);
     async run(datasource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const issuerTypeRepository = datasource.getRepository(IssuerType);
 
@@ -31,7 +33,7 @@ export class IssuerTypeSeeder implements Seeder {
         ];
 
         await issuerTypeRepository.insert(issuerTypeToInsert);
-        console.log('> Seeded Issuer Type Successfully');
+        this.logger.log('[🌱] Seeded IssuerType Successfully');
     }
 
 }

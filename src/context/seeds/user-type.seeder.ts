@@ -1,8 +1,10 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { UserType } from "../api/userType/domain/user-type.model";
+import { Logger } from "@nestjs/common";
 
 export class UserTypeSeeder implements Seeder {
+    private readonly logger = new Logger(UserTypeSeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const userTypeRepository = dataSource.getRepository(UserType);
 
@@ -34,6 +36,6 @@ export class UserTypeSeeder implements Seeder {
         ]
 
         await userTypeRepository.insert(userTypeToInsert);
-        console.log('> Seeded UserType Successfully');
+        this.logger.log('[🌱] Seeded UserType Successfully');
     }
 }

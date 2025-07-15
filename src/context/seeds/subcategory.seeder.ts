@@ -2,8 +2,10 @@ import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { Category } from "../api/category/domain/category.model";
 import { SubCategory } from "../api/subCategory/domain/subcategory.model";
+import { Logger } from "@nestjs/common";
 
 export class SubCategorySeeder implements Seeder {
+    private readonly logger = new Logger(SubCategorySeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const subCategoryRepository = dataSource.getRepository(SubCategory);
 
@@ -31,6 +33,6 @@ export class SubCategorySeeder implements Seeder {
         ]
 
         await subCategoryRepository.insert(subCategoryToInsert);
-        console.log('> Seeded SubCategorySeeder Successfully');
+        this.logger.log('[🌱] Seeded SubCategory Successfully');
     }
 }

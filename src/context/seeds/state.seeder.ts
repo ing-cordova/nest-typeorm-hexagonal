@@ -3,8 +3,10 @@ import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { State } from "../api/state/domain/state.model";
 import * as fs from "fs";
 import * as path from "path";
+import { Logger } from "@nestjs/common";
 
 export class StateSeeder implements Seeder {
+    private readonly logger = new Logger(StateSeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const stateRepository = dataSource.getRepository(State);
 
@@ -20,6 +22,6 @@ export class StateSeeder implements Seeder {
         }));
 
         await stateRepository.insert(statesToInsert);
-        console.log('> Seeded States Successfully');
+        this.logger.log('[🌱] Seeded State Successfully');
     }
 }
