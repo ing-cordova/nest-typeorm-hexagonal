@@ -1,9 +1,11 @@
 import { Command } from "commander";
+import { Logger } from "@nestjs/common";
 import * as fs from "fs";
 import * as path from "path";
 
 const program = new Command();
 
+const logger = new Logger("ModuleStructureGenerator");
 program
     .version("1.0.0")
     .description("CLI to generate module structure")
@@ -32,7 +34,7 @@ program
         folders.forEach((folder) => {
             const dir = path.join(baseDir, folder);
             fs.mkdirSync(dir, { recursive: true });
-            console.log(`Created folder: ${dir}`);
+            logger.log(`Created folder: ${dir}`);
         });
 
         const files = [
@@ -487,10 +489,10 @@ export class ${capitalize(moduleName)}Module {}`,
 
         files.forEach((file) => {
             fs.writeFileSync(file.path, file.content);
-            console.log(`Created file: ${file.path}`);
+            logger.log(`Created file: ${file.path}`);
         });
 
-        console.log(`Module ${moduleName} created successfully!`);
+        logger.log(`Module structure for ${moduleName} created successfully at ${baseDir}`);
     });
 
 program.parse(process.argv);

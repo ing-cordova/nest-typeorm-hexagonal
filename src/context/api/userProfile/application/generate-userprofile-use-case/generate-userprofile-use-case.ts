@@ -5,11 +5,13 @@ import { UserProfileRepository } from '../../domain/userprofile.repository';
 import { UserProfile } from '../../domain/userprofile.model';
 import { GenerateUserProfileUseCaseDto } from './generate-userprofile-use-case.dto';
 import { userTypeReverseMap } from '../../../userType/domain/user-type.enum';
+import { Logger } from '@nestjs/common';
 
 @Injectable()
 export class GenerateUserProfileUseCase {
     constructor(private readonly userProfileRepository: UserProfileRepository) { }
 
+    private readonly logger = new Logger(GenerateUserProfileUseCase.name);
     async execute(
         dto: GenerateUserProfileUseCaseDto,
     ): Promise<{ userProfile: UserProfile }> {
@@ -32,9 +34,7 @@ export class GenerateUserProfileUseCase {
 
             await this.userProfileRepository.create(userProfile);
             // TODO: Send email with the credentials.
-            console.log('--------------------------------------------------');
-            console.log(`Welcome ${userTypeReverseMap[dto.user_type_id]}\nDear ${userProfile.first_name} ${userProfile.last_name}, your credentials are the following:\nEmail: ${userProfile.email}\nPassword: [${passwordGenerated}]`);
-            console.log('--------------------------------------------------');
+            this.logger.verbose(`\nWelcome ${userTypeReverseMap[dto.user_type_id]}\nDear ${userProfile.first_name} ${userProfile.last_name}, your credentials are the following:\nEmail: ${userProfile.email}\nPassword: [${passwordGenerated}]`);
 
             return { userProfile };
         }

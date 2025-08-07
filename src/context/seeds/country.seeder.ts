@@ -1,10 +1,12 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { Country } from "../api/country/domain/country.model";
+import { Logger } from "@nestjs/common";
 import * as fs from "fs";
 import * as path from "path";
 
 export class CountrySeeder implements Seeder {
+    private readonly logger = new Logger(CountrySeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         try {
             const countryRepository = dataSource.getRepository(Country);
@@ -28,10 +30,10 @@ export class CountrySeeder implements Seeder {
             }));
 
             await countryRepository.insert(countriesToInsert);
-            console.log('> Seeded Countries Successfully');
+            this.logger.log('[🌱] Seeded Country Successfully');
         }
         catch (err) {
-            console.error(err);
+            this.logger.error('[🚫] Error seeding Country', err);
             throw new Error(err);
         }
     }

@@ -13,11 +13,14 @@ import { PaymentMethodSeeder } from './context/seeds/payment-method.seeder';
 import { IssuerTypeSeeder } from './context/seeds/issuer-type.seeder';
 import { RegionSeeder } from './context/seeds/region.seeder';
 import { SubRegionSeeder } from './context/seeds/sub_region.seeder';
+import { Logger } from '@nestjs/common';
 
 async function bootstrap() {
     const app = await NestFactory.createApplicationContext(AppModule);
     const dataSource = app.get(DataSource);
 
+    const logger = new Logger('Seeder');
+    logger.log('🕙 Starting seeders...');
     await runSeeders(dataSource, {
         seeds: [
             RegionSeeder,
@@ -33,6 +36,7 @@ async function bootstrap() {
             IssuerTypeSeeder,
         ],
     });
+    logger.log('✅ Seeders completed successfully.');
 
     await app.close();
 }

@@ -4,8 +4,10 @@ import { encryptPassword } from "../services/password-service";
 import { UserProfile } from "../api/userProfile/domain/userprofile.model";
 import { UserType } from "../api/userType/domain/user-type.model";
 import { UUID } from "crypto";
+import { Logger } from "@nestjs/common";
 
 export class UserProfileSeeder implements Seeder {
+    private readonly logger = new Logger(UserProfileSeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const userProfileRepository = dataSource.getRepository(UserProfile);
 
@@ -31,6 +33,6 @@ export class UserProfileSeeder implements Seeder {
         ];
 
         await userProfileRepository.insert(userProfileToInsert);
-        console.log('> Seeded UserProfile Successfully');
+        this.logger.log('[🌱] Seeded UserProfile Successfully');
     }
 }

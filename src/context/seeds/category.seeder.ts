@@ -1,8 +1,11 @@
 import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { Category } from "../api/category/domain/category.model";
+import { Logger } from "@nestjs/common";
 
 export class CategorySeeder implements Seeder {
+    
+    private readonly logger = new Logger(CategorySeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const categoryRepository = dataSource.getRepository(Category);
 
@@ -30,6 +33,6 @@ export class CategorySeeder implements Seeder {
         ]
 
         await categoryRepository.insert(categoryToInsert);
-        console.log('> Seeded Category Successfully');
+        this.logger.log('[🌱] Seeded Category Successfully');
     }
 }

@@ -2,8 +2,10 @@ import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { Region } from "../api/region/domain/region.model";
 import { SubRegion } from "../api/subRegion/domain/sub-region.model";
+import { Logger } from "@nestjs/common";
 
 export class SubRegionSeeder implements Seeder {
+    private readonly logger = new Logger(SubRegionSeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const subRegionRepository = dataSource.getRepository(SubRegion);
 
@@ -99,6 +101,6 @@ export class SubRegionSeeder implements Seeder {
         ]
 
         await subRegionRepository.insert(subRegionToInsert);
-        console.log('> Seeded SubRegion Successfully');
+        this.logger.log('[🌱] Seeded SubRegion Successfully');
     }
 }

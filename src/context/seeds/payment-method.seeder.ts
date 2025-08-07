@@ -2,8 +2,10 @@ import { DataSource } from "typeorm";
 import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { PaymentMethod } from "../api/paymentMethod/domain/payment-method.model";
 import { PaymentMethodEnum } from "../api/paymentMethod/domain/payment-method.enum";
+import { Logger } from "@nestjs/common";
 
 export class PaymentMethodSeeder implements Seeder {
+    private readonly logger = new Logger(PaymentMethodSeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const paymentMethodRepository = dataSource.getRepository(PaymentMethod);
 
@@ -27,6 +29,6 @@ export class PaymentMethodSeeder implements Seeder {
         ]
 
         await paymentMethodRepository.insert(paymentMethodToInsert);
-        console.log('> Seeded Payment Method Successfully');
+        this.logger.log('[🌱] Seeded PaymentMethod Successfully');
     }
 }

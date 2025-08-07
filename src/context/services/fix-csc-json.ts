@@ -1,13 +1,15 @@
+import { Logger } from "@nestjs/common";
 import * as fs from "fs";
 import * as path from "path";
 
 // Ruta del archivo JSON original
 const filePath = path.join(process.cwd(), 'src/context/docs/countries+states+cities.json');
 
+const logger = new Logger('FixCSCJson');
 // Leer el archivo JSON original
 fs.readFile(filePath, 'utf8', (err, data) => {
     if (err) {
-        console.error('Error al leer el archivo:', err);
+        logger.error('Error al leer el archivo JSON:', err);
         return;
     }
 
@@ -61,19 +63,19 @@ fs.readFile(filePath, 'utf8', (err, data) => {
         // Países
         fs.writeFile(path.join(outputFolder, 'countries-v1.json'), JSON.stringify(countryData, null, 4), (err) => {
             if (err) console.error('Error al guardar countries-v1.json:', err);
-            else console.log('countries-v1.json creado correctamente');
+            else logger.log('countries-v1.json creado correctamente con', countryData.length, 'países');
         });
 
         // Estados
         fs.writeFile(path.join(outputFolder, 'states-v1.json'), JSON.stringify(stateData, null, 4), (err) => {
             if (err) console.error('Error al guardar states-v1.json:', err);
-            else console.log('states-v1.json creado correctamente con', stateData.length, 'estados');
+            else logger.log('states-v1.json creado correctamente con', stateData.length, 'estados');
         });
 
         // Ciudades
         fs.writeFile(path.join(outputFolder, 'cities-v1.json'), JSON.stringify(cityData, null, 4), (err) => {
             if (err) console.error('Error al guardar cities-v1.json:', err);
-            else console.log('cities-v1.json creado correctamente con', cityData.length, 'ciudades');
+            else logger.log('cities-v1.json creado correctamente con', cityData.length, 'ciudades');
         });
 
     } catch (parseError) {

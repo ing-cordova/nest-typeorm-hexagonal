@@ -3,8 +3,10 @@ import { Seeder, SeederFactoryManager } from "typeorm-extension";
 import { Permission } from "../api/permission/domain/permission.model";
 import { PermissionUserType } from "../api/permissionUserType/domain/permission-user-type.model";
 import { PermissionsMainData } from "../api/permission/domain/permission-data";
+import { Logger } from "@nestjs/common";
 
 export class PermissionSeeder implements Seeder {
+    private readonly logger = new Logger(PermissionSeeder.name);
     async run(dataSource: DataSource, factoryManager: SeederFactoryManager): Promise<void> {
         const permissionRepository = dataSource.getRepository(Permission);
         const permissionUserTypeRepository = dataSource.getRepository(PermissionUserType);
@@ -18,7 +20,7 @@ export class PermissionSeeder implements Seeder {
 
         // Guardamos primero los permisos
         await permissionRepository.insert(permissionsToInsert);
-        console.log("> Seeded Permissions Successfully");
+        this.logger.log('[🌱] Seeded Permissions Successfully');
 
         // Ahora insertamos las relaciones permission_id y user_type_id en PermissionUserType
         const permissionUserTypesToInsert = [];
@@ -34,6 +36,6 @@ export class PermissionSeeder implements Seeder {
 
         // Guardamos las relaciones en PermissionUserType
         await permissionUserTypeRepository.insert(permissionUserTypesToInsert);
-        console.log("> Seeded PermissionUserTypes Successfully");
+        this.logger.log('[🌱] Seeded PermissionUserType Successfully');
     }
 }
